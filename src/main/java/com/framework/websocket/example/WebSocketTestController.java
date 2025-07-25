@@ -1,5 +1,9 @@
 package com.framework.websocket.example;
 
+import com.framework.websocket.event.WebSocketEvent;
+import com.framework.websocket.event.WebSocketEventBus;
+import com.framework.websocket.event.WebSocketEventType;
+import com.framework.websocket.handler.WebSocketMessageHandlerDispatcher;
 import com.framework.websocket.session.WebSocketSessionManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,12 @@ public class WebSocketTestController {
 
     @Autowired
     private WebSocketSessionManager sessionManager;
+
+    @Autowired
+    private WebSocketEventBus eventBus;
+    
+    @Autowired
+    private WebSocketMessageHandlerDispatcher dispatcher;
 
     @Autowired
     private ChatRoomWebSocketService chatRoomService;
@@ -172,5 +182,87 @@ public class WebSocketTestController {
         result.put("recipients", onlineCount);
         result.put("message", "系统维护通知发送完成");
         return result;
+    }
+
+    // ========== 新增调度器测试功能 ==========
+
+    /**
+     * 获取调度器状态信息
+     */
+    @GetMapping("/dispatcher/status")
+    public Map<String, Object> getDispatcherStatus() {
+        Map<String, Object> status = new HashMap<>();
+        status.put("handlerCount", dispatcher.getHandlerCount());
+        status.put("interceptorCount", dispatcher.getInterceptorCount());
+        status.put("totalOnlineUsers", sessionManager.getTotalOnlineCount());
+        
+        log.info("获取调度器状态: handlerCount={}, interceptorCount={}, totalOnlineUsers={}", 
+                dispatcher.getHandlerCount(), dispatcher.getInterceptorCount(), sessionManager.getTotalOnlineCount());
+        
+        return status;
+    }
+
+    /**
+     * 手动触发WebSocket事件进行测试
+     */
+    @PostMapping("/dispatcher/event")
+    public Map<String, Object> testEvent(@RequestParam String eventType, 
+                                        @RequestParam String service,
+                                        @RequestParam String userId,
+                                        @RequestParam(required = false) String message) {
+        Map<String, Object> result = new HashMap<>();
+        
+        try {
+            // 创建测试事件
+            WebSocketEvent<String> testEvent = createTestEvent(eventType, service, userId, message);
+            
+            // 发布事件到EventBus
+            eventBus.post(testEvent);
+            
+            result.put("success", true);
+            result.put("message", "事件已发布到EventBus，请查看日志确认调度器是否正确处理");
+            result.put("event", Map.of(
+                "eventType", eventType,
+                "service", service,
+                "userId", userId,
+                "data", message != null ? message : "null"
+            ));
+            
+            log.info("手动触发WebSocket事件: eventType={}, service={}, userId={}, message={}", 
+                    eventType, service, userId, message);
+            
+        } catch (Exception e) {
+            log.error("触发WebSocket事件失败", e);
+            result.put("success", false);
+            result.put("message", "事件触发失败: " + e.getMessage());
+        }
+        
+        return result;
+    }
+
+    /**
+     * 创建测试事件
+     */
+    private WebSocketEvent<String> createTestEvent(String eventType, String service, String userId, String message) {
+        WebSocketEventType type = WebSocketEventType.valueOf(eventType);
+        String sessionId = "test-session-" + System.currentTimeMillis();
+        
+        switch (type) {
+            case ON_OPEN:
+                return WebSocketEvent.onOpen(sessionId, userId, service, message != null ? message : "测试连接建立");
+            case ON_CLOSE:
+                return WebSocketEvent.onClose(sessionId, userId, service, message != null ? message : "测试连接关闭");
+            case ON_MESSAGE:
+                return WebSocketEvent.onMessage(sessionId, userId, service, message != null ? message : "测试消息");
+            case ON_ERROR:
+                return WebSocketEvent.onError(sessionId, userId, service, message != null ? message : "测试错误", 
+                        new RuntimeException("测试异常"));
+            case ON_HEARTBEAT:
+                return WebSocketEvent.onHeartbeat(sessionId, userId, service, message != null ? message : "测试心跳");
+            case ON_SEND:
+                return WebSocketEvent.onSend(sessionId, userId, service, message != null ? message : "测试发送");
+            default:
+                throw new IllegalArgumentException("不支持的事件类型: " + eventType);
+        }
     }
 }

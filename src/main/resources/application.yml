@@ -10,9 +10,9 @@ spring:
   
   # Redis配置
   redis:
-    host: localhost
+    host: r-uf69q33xkiw5c7tp8cpd.redis.rds.aliyuncs.com
     port: 6379
-    password: 123456
+    password: gOavl0ZCIL5tJk4n
     database: 10
     timeout: 5000ms
     jedis:

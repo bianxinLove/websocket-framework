@@ -397,3 +397,275 @@ Caused by: java.lang.IllegalStateException: javax.websocket.server.ServerContain
 2025-07-25 17:19:23.197 [SpringApplicationShutdownHook] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_CLOSE, sessionId=0, userId=clientId1, service=chatroom, clientIp=null, data=CloseReason: code [1001], reason [The web application is stopping], eventTime=2025-07-25T17:19:23.197, properties=null, errorMessage=null, throwable=null)
 2025-07-25 17:19:23.197 [SpringApplicationShutdownHook] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接关闭: service=chatroom, userId=clientId1, sessionId=0, code=GOING_AWAY, reason=The web application is stopping
 2025-07-25 17:19:23.360 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
+2025-07-25 18:08:49.218 [main] INFO  c.f.w.WebSocketFrameworkApplication - Starting WebSocketFrameworkApplication using Java 1.8.0_202 on DESKTOP-EGK8BP4 with PID 35072 (D:\workTool\IdeaProjects\websocket-framework\target\classes started by admin in D:\workTool\IdeaProjects\websocket-framework)
+2025-07-25 18:08:49.222 [main] DEBUG c.f.w.WebSocketFrameworkApplication - Running with Spring Boot v2.7.0, Spring v5.3.20
+2025-07-25 18:08:49.224 [main] INFO  c.f.w.WebSocketFrameworkApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-25 18:08:50.473 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-07-25 18:08:50.478 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-25 18:08:50.524 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2025-07-25 18:08:51.310 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-07-25 18:08:51.329 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-25 18:08:51.329 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-07-25 18:08:51.599 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-25 18:08:51.600 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2233 ms
+2025-07-25 18:08:51.779 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线初始化完成
+2025-07-25 18:08:53.179 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-07-25 18:08:53.196 [main] INFO  c.f.w.WebSocketFrameworkApplication - Started WebSocketFrameworkApplication in 5.277 seconds (JVM running for 7.911)
+2025-07-25 18:10:00.784 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-25 18:10:00.784 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-25 18:10:00.785 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-07-25 18:10:18.396 [http-nio-8080-exec-2] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket连接来源检查: origin=http://localhost:8080
+2025-07-25 18:10:18.401 [http-nio-8080-exec-2] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket子协议协商: supported=[], requested=[]
+2025-07-25 18:10:18.403 [http-nio-8080-exec-2] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket扩展协商: installed=[org.apache.tomcat.websocket.WsExtension@59db9e3c], requested=[org.apache.tomcat.websocket.WsExtension@6dbc81b6]
+2025-07-25 18:10:18.462 [http-nio-8080-exec-2] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket握手信息提取完成: clientIp=null, userAgent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+2025-07-25 18:10:23.063 [http-nio-8080-exec-2] ERROR c.f.websocket.core.WebSocketServer - WebSocket连接建立失败: service=chatroom, userId=user1
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:325)
+	at com.framework.websocket.session.WebSocketSessionManager.updateHeartbeat(WebSocketSessionManager.java:119)
+	at com.framework.websocket.session.WebSocketSessionManager.updateHeartbeat(WebSocketSessionManager.java:111)
+	at com.framework.websocket.session.WebSocketSessionManager.addSession(WebSocketSessionManager.java:42)
+	at com.framework.websocket.core.WebSocketServer.onOpen(WebSocketServer.java:86)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tomcat.websocket.pojo.PojoEndpointBase.doOnOpen(PojoEndpointBase.java:69)
+	at org.apache.tomcat.websocket.pojo.PojoEndpointServer.onOpen(PojoEndpointServer.java:48)
+	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.init(WsHttpUpgradeHandler.java:136)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:933)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 29 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-25 18:10:23.203 [http-nio-8080-exec-2] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_ERROR, sessionId=0, userId=user1, service=chatroom, clientIp=null, data=连接建立失败: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379, eventTime=2025-07-25T18:10:23.072, properties=null, errorMessage=连接建立失败: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379, throwable=org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379)
+2025-07-25 18:10:36.456 [SpringApplicationShutdownHook] ERROR c.f.websocket.core.WebSocketServer - WebSocket连接关闭处理失败: service=chatroom, userId=user1
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.RedisTemplate.delete(RedisTemplate.java:723)
+	at com.framework.websocket.session.WebSocketSessionManager.clearHeartbeat(WebSocketSessionManager.java:130)
+	at com.framework.websocket.session.WebSocketSessionManager.removeSession(WebSocketSessionManager.java:54)
+	at com.framework.websocket.core.WebSocketServer.onClose(WebSocketServer.java:132)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tomcat.websocket.pojo.PojoEndpointBase.onClose(PojoEndpointBase.java:107)
+	at org.apache.tomcat.websocket.WsSession.fireEndpointOnClose(WsSession.java:767)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:715)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:665)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:652)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1046)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:48)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4814)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5477)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1412)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1401)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:986)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1412)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1401)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:986)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:497)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:979)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:496)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:273)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stop(TomcatWebServer.java:331)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.stop(WebServerStartStopLifecycle.java:51)
+	at org.springframework.context.SmartLifecycle.stop(SmartLifecycle.java:117)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$300(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1067)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:145)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:114)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 64 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-25 18:10:36.612 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
+2025-07-25 18:10:48.526 [main] INFO  c.f.w.WebSocketFrameworkApplication - Starting WebSocketFrameworkApplication using Java 1.8.0_202 on DESKTOP-EGK8BP4 with PID 27500 (D:\workTool\IdeaProjects\websocket-framework\target\classes started by admin in D:\workTool\IdeaProjects\websocket-framework)
+2025-07-25 18:10:48.528 [main] DEBUG c.f.w.WebSocketFrameworkApplication - Running with Spring Boot v2.7.0, Spring v5.3.20
+2025-07-25 18:10:48.528 [main] INFO  c.f.w.WebSocketFrameworkApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-25 18:10:49.001 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-07-25 18:10:49.002 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-25 18:10:49.018 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2025-07-25 18:10:49.362 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-07-25 18:10:49.370 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-25 18:10:49.370 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-07-25 18:10:49.512 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-25 18:10:49.512 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 936 ms
+2025-07-25 18:10:50.123 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线初始化完成
+2025-07-25 18:10:50.824 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-07-25 18:10:50.842 [main] INFO  c.f.w.WebSocketFrameworkApplication - Started WebSocketFrameworkApplication in 2.676 seconds (JVM running for 3.488)
+2025-07-25 18:11:57.817 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-25 18:11:57.818 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-25 18:11:57.821 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-07-25 18:12:35.733 [http-nio-8080-exec-1] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket连接来源检查: origin=http://localhost:8080
+2025-07-25 18:12:35.736 [http-nio-8080-exec-1] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket子协议协商: supported=[], requested=[]
+2025-07-25 18:12:35.738 [http-nio-8080-exec-1] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket扩展协商: installed=[org.apache.tomcat.websocket.WsExtension@1505eb5a], requested=[org.apache.tomcat.websocket.WsExtension@742d39a4]
+2025-07-25 18:12:35.806 [http-nio-8080-exec-1] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket握手信息提取完成: clientIp=null, userAgent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+2025-07-25 18:12:37.964 [http-nio-8080-exec-3] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket连接来源检查: origin=http://localhost:8080
+2025-07-25 18:12:37.964 [http-nio-8080-exec-3] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket子协议协商: supported=[], requested=[]
+2025-07-25 18:12:37.964 [http-nio-8080-exec-3] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket扩展协商: installed=[org.apache.tomcat.websocket.WsExtension@1505eb5a], requested=[org.apache.tomcat.websocket.WsExtension@1f3adee1]
+2025-07-25 18:12:37.966 [http-nio-8080-exec-3] DEBUG c.f.w.core.WebSocketEndpointConfig - WebSocket握手信息提取完成: clientIp=null, userAgent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+2025-07-25 18:12:38.793 [http-nio-8080-exec-3] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user2, timeout=60s
+2025-07-25 18:12:38.793 [http-nio-8080-exec-3] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已添加: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:12:38.793 [http-nio-8080-exec-1] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user1, timeout=60s
+2025-07-25 18:12:38.793 [http-nio-8080-exec-1] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已添加: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:12:38.816 [http-nio-8080-exec-3] DEBUG c.f.w.session.WebSocketSession - 心跳消息发送成功: sessionId=1, userId=user2, service=chatroom
+2025-07-25 18:12:38.816 [http-nio-8080-exec-3] DEBUG c.f.websocket.core.WebSocketServer - 发送WebSocket心跳: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:12:38.816 [http-nio-8080-exec-1] DEBUG c.f.w.session.WebSocketSession - 心跳消息发送成功: sessionId=0, userId=user1, service=chatroom
+2025-07-25 18:12:38.816 [http-nio-8080-exec-1] DEBUG c.f.websocket.core.WebSocketServer - 发送WebSocket心跳: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:12:38.978 [http-nio-8080-exec-3] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_OPEN, sessionId=1, userId=user2, service=chatroom, clientIp=null, data=连接建立成功, eventTime=2025-07-25T18:12:38.822, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:12:38.978 [http-nio-8080-exec-1] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_OPEN, sessionId=0, userId=user1, service=chatroom, clientIp=null, data=连接建立成功, eventTime=2025-07-25T18:12:38.822, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:12:38.978 [http-nio-8080-exec-1] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接建立: service=chatroom, userId=user1, sessionId=0, clientIp=null
+2025-07-25 18:12:38.978 [http-nio-8080-exec-3] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接建立: service=chatroom, userId=user2, sessionId=1, clientIp=null
+2025-07-25 18:12:39.046 [http-nio-8080-exec-3] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user2, timeout=60s
+2025-07-25 18:12:39.046 [http-nio-8080-exec-1] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user1, timeout=60s
+2025-07-25 18:12:39.046 [http-nio-8080-exec-3] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_HEARTBEAT, sessionId=1, userId=user2, service=chatroom, clientIp=null, data=心跳响应, eventTime=2025-07-25T18:12:39.046, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:12:39.046 [http-nio-8080-exec-1] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_HEARTBEAT, sessionId=0, userId=user1, service=chatroom, clientIp=null, data=心跳响应, eventTime=2025-07-25T18:12:39.046, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:12:39.046 [http-nio-8080-exec-3] DEBUG c.f.websocket.core.WebSocketServer - 接收到WebSocket心跳响应: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:12:39.046 [http-nio-8080-exec-1] DEBUG c.f.websocket.core.WebSocketServer - 接收到WebSocket心跳响应: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:13:08.824 [WebSocket-1] DEBUG c.f.w.session.WebSocketSession - 心跳消息发送成功: sessionId=1, userId=user2, service=chatroom
+2025-07-25 18:13:08.824 [WebSocket-2] DEBUG c.f.w.session.WebSocketSession - 心跳消息发送成功: sessionId=0, userId=user1, service=chatroom
+2025-07-25 18:13:08.827 [WebSocket-1] DEBUG c.f.websocket.core.WebSocketServer - 发送WebSocket心跳: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:13:08.827 [WebSocket-2] DEBUG c.f.websocket.core.WebSocketServer - 发送WebSocket心跳: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:13:08.864 [http-nio-8080-exec-7] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user1, timeout=60s
+2025-07-25 18:13:08.865 [http-nio-8080-exec-6] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user2, timeout=60s
+2025-07-25 18:13:08.866 [http-nio-8080-exec-6] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_HEARTBEAT, sessionId=1, userId=user2, service=chatroom, clientIp=null, data=心跳响应, eventTime=2025-07-25T18:13:08.866, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:13:08.866 [http-nio-8080-exec-7] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_HEARTBEAT, sessionId=0, userId=user1, service=chatroom, clientIp=null, data=心跳响应, eventTime=2025-07-25T18:13:08.866, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:13:08.866 [http-nio-8080-exec-6] DEBUG c.f.websocket.core.WebSocketServer - 接收到WebSocket心跳响应: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:13:08.866 [http-nio-8080-exec-7] DEBUG c.f.websocket.core.WebSocketServer - 接收到WebSocket心跳响应: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:13:31.419 [http-nio-8080-exec-8] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_MESSAGE, sessionId=0, userId=user1, service=chatroom, clientIp=null, data=1111, eventTime=2025-07-25T18:13:31.419, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:13:31.419 [http-nio-8080-exec-8] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=chatroom, userId=user1, sessionId=0, message=1111
+2025-07-25 18:13:38.843 [WebSocket-1] DEBUG c.f.w.session.WebSocketSession - 心跳消息发送成功: sessionId=1, userId=user2, service=chatroom
+2025-07-25 18:13:38.843 [WebSocket-1] DEBUG c.f.websocket.core.WebSocketServer - 发送WebSocket心跳: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:13:38.843 [WebSocket-3] DEBUG c.f.w.session.WebSocketSession - 心跳消息发送成功: sessionId=0, userId=user1, service=chatroom
+2025-07-25 18:13:38.843 [WebSocket-3] DEBUG c.f.websocket.core.WebSocketServer - 发送WebSocket心跳: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:13:38.876 [http-nio-8080-exec-10] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user2, timeout=60s
+2025-07-25 18:13:38.876 [http-nio-8080-exec-4] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user1, timeout=60s
+2025-07-25 18:13:38.876 [http-nio-8080-exec-10] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_HEARTBEAT, sessionId=1, userId=user2, service=chatroom, clientIp=null, data=心跳响应, eventTime=2025-07-25T18:13:38.876, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:13:38.876 [http-nio-8080-exec-4] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_HEARTBEAT, sessionId=0, userId=user1, service=chatroom, clientIp=null, data=心跳响应, eventTime=2025-07-25T18:13:38.876, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:13:38.876 [http-nio-8080-exec-10] DEBUG c.f.websocket.core.WebSocketServer - 接收到WebSocket心跳响应: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:13:38.876 [http-nio-8080-exec-4] DEBUG c.f.websocket.core.WebSocketServer - 接收到WebSocket心跳响应: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:14:08.855 [WebSocket-4] DEBUG c.f.w.session.WebSocketSession - 心跳消息发送成功: sessionId=0, userId=user1, service=chatroom
+2025-07-25 18:14:08.855 [WebSocket-4] DEBUG c.f.websocket.core.WebSocketServer - 发送WebSocket心跳: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:14:08.855 [WebSocket-1] DEBUG c.f.w.session.WebSocketSession - 心跳消息发送成功: sessionId=1, userId=user2, service=chatroom
+2025-07-25 18:14:08.855 [WebSocket-1] DEBUG c.f.websocket.core.WebSocketServer - 发送WebSocket心跳: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:14:08.893 [http-nio-8080-exec-1] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user1, timeout=60s
+2025-07-25 18:14:08.893 [http-nio-8080-exec-2] DEBUG c.f.w.s.WebSocketSessionManager - WebSocket心跳已更新: service=chatroom, userId=user2, timeout=60s
+2025-07-25 18:14:08.893 [http-nio-8080-exec-1] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_HEARTBEAT, sessionId=0, userId=user1, service=chatroom, clientIp=null, data=心跳响应, eventTime=2025-07-25T18:14:08.893, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:14:08.893 [http-nio-8080-exec-2] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_HEARTBEAT, sessionId=1, userId=user2, service=chatroom, clientIp=null, data=心跳响应, eventTime=2025-07-25T18:14:08.893, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:14:08.893 [http-nio-8080-exec-1] DEBUG c.f.websocket.core.WebSocketServer - 接收到WebSocket心跳响应: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:14:08.893 [http-nio-8080-exec-2] DEBUG c.f.websocket.core.WebSocketServer - 接收到WebSocket心跳响应: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:14:21.696 [SpringApplicationShutdownHook] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已移除: service=chatroom, userId=user1, sessionId=0
+2025-07-25 18:14:21.696 [SpringApplicationShutdownHook] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_CLOSE, sessionId=0, userId=user1, service=chatroom, clientIp=null, data=CloseReason: code [1001], reason [The web application is stopping], eventTime=2025-07-25T18:14:21.696, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:14:21.697 [SpringApplicationShutdownHook] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接关闭: service=chatroom, userId=user1, sessionId=0, code=GOING_AWAY, reason=The web application is stopping
+2025-07-25 18:14:21.733 [SpringApplicationShutdownHook] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已移除: service=chatroom, userId=user2, sessionId=1
+2025-07-25 18:14:21.733 [SpringApplicationShutdownHook] DEBUG c.f.w.event.WebSocketEventBus - WebSocket事件已发布: WebSocketEvent(eventType=ON_CLOSE, sessionId=1, userId=user2, service=chatroom, clientIp=null, data=CloseReason: code [1001], reason [The web application is stopping], eventTime=2025-07-25T18:14:21.733, properties=null, errorMessage=null, throwable=null)
+2025-07-25 18:14:21.733 [SpringApplicationShutdownHook] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接关闭: service=chatroom, userId=user2, sessionId=1, code=GOING_AWAY, reason=The web application is stopping
+2025-07-25 18:14:21.758 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
+2025-07-25 18:25:02.600 [main] INFO  c.f.w.WebSocketFrameworkApplication - Starting WebSocketFrameworkApplication using Java 1.8.0_202 on DESKTOP-EGK8BP4 with PID 22088 (D:\workTool\IdeaProjects\websocket-framework\target\classes started by admin in D:\workTool\IdeaProjects\websocket-framework)
+2025-07-25 18:25:02.601 [main] DEBUG c.f.w.WebSocketFrameworkApplication - Running with Spring Boot v2.7.0, Spring v5.3.20
+2025-07-25 18:25:02.602 [main] INFO  c.f.w.WebSocketFrameworkApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-25 18:25:03.125 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-07-25 18:25:03.127 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-25 18:25:03.149 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2025-07-25 18:25:03.506 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-07-25 18:25:03.515 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-25 18:25:03.515 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-07-25 18:25:03.647 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-25 18:25:03.647 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1000 ms
+2025-07-25 18:25:03.737 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线初始化完成
+2025-07-25 18:25:04.513 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-07-25 18:25:04.521 [main] INFO  c.f.w.WebSocketFrameworkApplication - Started WebSocketFrameworkApplication in 2.327 seconds (JVM running for 3.223)
+2025-07-25 18:29:06.199 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-25 18:29:06.200 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-25 18:29:06.201 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-07-25 18:29:10.206 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
