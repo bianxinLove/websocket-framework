@@ -1,0 +1,66 @@
+# WebSocket框架配置文件
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: websocket-framework
+  
+  # Redis配置
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 10
+    timeout: 5000ms
+    jedis:
+      pool:
+        max-active: 400
+        max-wait: 2000
+        max-idle: 10
+
+# 日志配置
+logging:
+  level:
+    com.framework.websocket: DEBUG
+    root: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/websocket-framework.log
+    max-size: 100MB
+    max-history: 30
+
+# WebSocket框架自定义配置
+websocket:
+  framework:
+    # 心跳配置
+    heartbeat:
+      interval: 30  # 心跳间隔（秒）
+      timeout: 60   # 心跳超时（秒）
+    
+    # 线程池配置
+    thread-pool:
+      core-size: 10
+      max-size: 50
+      queue-capacity: 1000
+      keep-alive: 60
+    
+    # 会话配置
+    session:
+      max-idle-time: 300  # 最大空闲时间（秒）
+      cleanup-interval: 60  # 清理间隔（秒）
+    
+    # 消息配置
+    message:
+      max-size: 1048576  # 最大消息大小（字节）
+      buffer-size: 8192   # 缓冲区大小
+    
+    # 启用的功能
+    features:
+      metrics: true       # 启用指标统计
+      health-check: true  # 启用健康检查
+      admin-api: true     # 启用管理API
