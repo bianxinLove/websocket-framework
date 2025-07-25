@@ -4,6 +4,7 @@ import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.SubscriberExceptionContext;
 import com.google.common.eventbus.SubscriberExceptionHandler;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,6 +26,11 @@ import java.util.concurrent.ExecutorService;
 public class WebSocketEventBus implements SubscriberExceptionHandler {
 
     private final ExecutorService executorService;
+    /**
+     * -- GETTER --
+     *  获取EventBus实例（供测试使用）
+     */
+    @Getter
     private EventBus eventBus;
 
     @Autowired
@@ -97,10 +103,4 @@ public class WebSocketEventBus implements SubscriberExceptionHandler {
                 exception);
     }
 
-    /**
-     * 获取EventBus实例（供测试使用）
-     */
-    public EventBus getEventBus() {
-        return eventBus;
-    }
 }

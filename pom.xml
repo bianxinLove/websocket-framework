@@ -21,7 +21,6 @@
         <lombok.version>1.18.24</lombok.version>
         <guava.version>31.1-jre</guava.version>
         <hutool.version>5.8.5</hutool.version>
-<!--        <fastjson.version>2.0.12</fastjson.version>-->
         <slf4j.version>1.7.36</slf4j.version>
     </properties>
 
@@ -77,13 +76,6 @@
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
         </dependency>
-
-<!--        &lt;!&ndash; FastJSON &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba</groupId>-->
-<!--            <artifactId>fastjson2</artifactId>-->
-<!--            <version>${fastjson.version}</version>-->
-<!--        </dependency>-->
 
         <!-- Test Dependencies -->
         <dependency>
