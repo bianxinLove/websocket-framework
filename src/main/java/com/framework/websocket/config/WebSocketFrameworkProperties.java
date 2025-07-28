@@ -74,6 +74,26 @@ public class WebSocketFrameworkProperties {
          * 线程保活时间（秒）
          */
         private int keepAlive = 60;
+        
+        /**
+         * 任务执行超时时间（秒）
+         */
+        private int taskTimeout = 300;
+        
+        /**
+         * 队列监控间隔（秒）
+         */
+        private int monitorInterval = 30;
+        
+        /**
+         * 队列警告阈值
+         */
+        private int queueWarningThreshold = 1000;
+        
+        /**
+         * 队列危险阈值
+         */
+        private int queueDangerThreshold = 5000;
     }
 
     @Data

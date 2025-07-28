@@ -3,7 +3,9 @@
     "allow": [
       "Bash(mvn clean compile)",
       "Bash(java -version)",
-      "Bash(find /mnt/d/workTool/IdeaProjects/websocket-framework/src -name \"*.java\" -type f -exec sed -i 's/@author WebSocket Framework/@author bianxin/g' {} ;)"
+      "Bash(find /mnt/d/workTool/IdeaProjects/websocket-framework/src -name \"*.java\" -type f -exec sed -i 's/@author WebSocket Framework/@author bianxin/g' {} ;)",
+      "Bash(find /mnt/d/workTool/IdeaProjects/websocket-framework -name \"*.java\" -exec grep -l \"TimeoutTaskWrapper\" {} ;)",
+      "Bash(find /mnt/d/workTool/IdeaProjects/websocket-framework -name \"*.java\" -exec grep -n \"timeoutTaskWrapper\\|TimeoutTaskWrapper\" {} +)"
     ],
     "deny": []
   }

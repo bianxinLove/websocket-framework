@@ -5,8 +5,10 @@ import com.framework.websocket.event.WebSocketEvent;
 import com.framework.websocket.event.WebSocketEventBus;
 import com.framework.websocket.session.WebSocketSession;
 import com.framework.websocket.session.WebSocketSessionManager;
+import com.framework.websocket.util.TimeoutTaskWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -49,6 +51,7 @@ public class WebSocketServer {
     private static WebSocketEventBus eventBus;
     private static ScheduledExecutorService scheduledExecutorService;
     private static WebSocketFrameworkProperties properties;
+    private static TimeoutTaskWrapper timeoutTaskWrapper;
 
     @Autowired
     public void setSessionManager(WebSocketSessionManager sessionManager) {
@@ -68,6 +71,12 @@ public class WebSocketServer {
     @Autowired
     public void setProperties(WebSocketFrameworkProperties properties) {
         WebSocketServer.properties = properties;
+    }
+
+    @Autowired
+    @Qualifier("timeoutTaskWrapper")
+    public void setTimeoutTaskWrapper(TimeoutTaskWrapper timeoutTaskWrapper) {
+        WebSocketServer.timeoutTaskWrapper = timeoutTaskWrapper;
     }
 
     /**
@@ -157,6 +166,21 @@ public class WebSocketServer {
         String service = webSocketSession.getService();
         String userId = webSocketSession.getUserId();
         
+        // 使用超时保护处理消息
+        if (timeoutTaskWrapper != null) {
+            timeoutTaskWrapper.executeWithTimeout(() -> {
+                processMessage(message, service, userId);
+            }, String.format("消息处理[%s:%s]-%d", service, userId, message.hashCode()));
+        } else {
+            // 降级到直接处理
+            processMessage(message, service, userId);
+        }
+    }
+    
+    /**
+     * 处理接收到的消息
+     */
+    private void processMessage(String message, String service, String userId) {
         try {
             // 更新接收消息计数
             webSocketSession.incrementReceiveCount();
@@ -284,6 +308,53 @@ public class WebSocketServer {
      * 启动心跳检测
      */
     private void startHeartbeat() {
+        if (timeoutTaskWrapper == null) {
+            log.warn("任务超时包装器未初始化，使用原生调度器");
+            startHeartbeatLegacy();
+            return;
+        }
+        
+        // 发送初始心跳（使用超时保护）
+        String service = webSocketSession.getService();
+        String userId = webSocketSession.getUserId();
+        timeoutTaskWrapper.executeWithTimeout(this::sendHeartbeat, 
+            String.format("初始心跳发送[%s:%s]", service, userId));
+        
+        // 启动定期心跳检测（使用智能提交，避免队列过载）
+        scheduleHeartbeatCheck();
+    }
+    
+    /**
+     * 调度心跳检测（使用TimeoutTaskWrapper的智能提交）
+     */
+    private void scheduleHeartbeatCheck() {
+        int heartbeatInterval = properties != null ? properties.getHeartbeat().getInterval() : WebSocketConstants.DEFAULT_HEARTBEAT_INTERVAL;
+        String service = webSocketSession.getService();
+        String userId = webSocketSession.getUserId();
+        
+        // 使用智能提交调度下一次心跳检测
+        scheduledExecutorService.schedule(() -> {
+            if (webSocketSession != null && webSocketSession.isOpen()) {
+                // 使用智能提交，如果队列过载会自动拒绝或延迟
+                boolean submitted = timeoutTaskWrapper.smartSubmit(() -> {
+                    checkHeartbeat();
+                    // 调度下一次检测
+                    scheduleHeartbeatCheck();
+                }, String.format("心跳检测[%s:%s]", service, userId));
+                
+                if (!submitted) {
+                    log.warn("心跳检测任务被拒绝，队列可能过载: service={}, userId={}", service, userId);
+                    // 队列过载时延迟重试
+                    scheduledExecutorService.schedule(this::scheduleHeartbeatCheck, heartbeatInterval * 2L, TimeUnit.SECONDS);
+                }
+            }
+        }, heartbeatInterval, TimeUnit.SECONDS);
+    }
+    
+    /**
+     * 原生心跳检测方法（备用）
+     */
+    private void startHeartbeatLegacy() {
         if (scheduledExecutorService == null) {
             log.warn("心跳检测调度器未初始化，跳过心跳检测");
             return;
@@ -351,9 +422,28 @@ public class WebSocketServer {
             // 初始化心跳超时时间
             int heartbeatTimeout = properties != null ? properties.getHeartbeat().getTimeout() : WebSocketConstants.DEFAULT_HEARTBEAT_TIMEOUT;
             nextHeartbeatTimeout.set(currentTime + heartbeatTimeout * 1000L);
-            sendHeartbeat();
+            
+            // 使用超时保护发送心跳
+            String service = webSocketSession.getService();
+            String userId = webSocketSession.getUserId();
+            sendHeartbeatWithTimeout(String.format("初始心跳检测[%s:%s]", service, userId));
         } else {
             // 继续发送心跳
+            String service = webSocketSession.getService();
+            String userId = webSocketSession.getUserId();
+            sendHeartbeatWithTimeout(String.format("定期心跳检测[%s:%s]", service, userId));
+        }
+    }
+    
+    /**
+     * 使用超时保护发送心跳
+     */
+    private void sendHeartbeatWithTimeout(String taskName) {
+        if (timeoutTaskWrapper != null) {
+            // 使用超时保护
+            timeoutTaskWrapper.executeWithTimeout(this::sendHeartbeat, taskName);
+        } else {
+            // 降级到直接调用
             sendHeartbeat();
         }
     }

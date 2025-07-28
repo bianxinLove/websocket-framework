@@ -48,6 +48,10 @@ websocket:
       max-size: 50
       queue-capacity: 1000
       keep-alive: 60
+      task-timeout: 300              # 任务执行超时时间（秒）
+      monitor-interval: 30           # 队列监控间隔（秒） 
+      queue-warning-threshold: 1000  # 队列警告阈值
+      queue-danger-threshold: 5000   # 队列危险阈值
     
     # 会话配置
     session:

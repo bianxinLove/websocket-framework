@@ -2,7 +2,7 @@
 
 必须用中文回复我
 
-语法使用JDK8
+语法使用Java 8
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
