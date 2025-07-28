@@ -1,5 +1,6 @@
 package com.framework.websocket.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,9 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -25,6 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Configuration
 @EnableWebSocket
 @EnableScheduling
+@Slf4j
 public class WebSocketFrameworkConfig {
 
     @Autowired
@@ -40,14 +44,34 @@ public class WebSocketFrameworkConfig {
 
     /**
      * WebSocket专用线程池
+     * 使用自定义ScheduledThreadPoolExecutor以支持完整配置
      */
     @Bean("webSocketExecutorService")
     public ScheduledExecutorService webSocketExecutorService() {
         WebSocketFrameworkProperties.ThreadPool threadPoolConfig = properties.getThreadPool();
-        return Executors.newScheduledThreadPool(
+        
+        // 使用自定义ScheduledThreadPoolExecutor支持完整配置
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(
             threadPoolConfig.getCoreSize(),
             new WebSocketThreadFactory("WebSocket-")
         );
+        
+        // 设置最大线程数（当核心线程忙碌时扩展）
+        executor.setMaximumPoolSize(threadPoolConfig.getMaxSize());
+        
+        // 设置线程保活时间
+        executor.setKeepAliveTime(threadPoolConfig.getKeepAlive(), TimeUnit.SECONDS);
+        
+        // 允许核心线程超时（节省资源）
+        executor.allowCoreThreadTimeOut(true);
+        
+        // 设置拒绝策略（心跳检测失败时记录日志）
+        executor.setRejectedExecutionHandler((r, e) -> {
+            log.warn("心跳检测任务被拒绝执行，线程池可能过载: activeCount={}, queueSize={}", 
+                e.getActiveCount(), e.getQueue().size());
+        });
+        
+        return executor;
     }
 
     /**
