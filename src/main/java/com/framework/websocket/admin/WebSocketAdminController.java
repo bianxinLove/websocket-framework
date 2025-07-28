@@ -2,6 +2,7 @@ package com.framework.websocket.admin;
 
 import com.framework.websocket.config.WebSocketFrameworkProperties;
 import com.framework.websocket.metrics.WebSocketMetricsCollector;
+import com.framework.websocket.processor.WebSocketServiceProcessor;
 import com.framework.websocket.session.WebSocketSessionManager;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class WebSocketAdminController {
     
     @Autowired
     private WebSocketFrameworkProperties properties;
+    
+    @Autowired
+    private WebSocketServiceProcessor serviceProcessor;
 
     /**
      * 健康检查
@@ -124,6 +128,58 @@ public class WebSocketAdminController {
     }
 
     /**
+     * 获取注册的WebSocket服务列表
+     */
+    @GetMapping("/services")
+    public ResponseEntity<Map<String, WebSocketServiceProcessor.WebSocketServiceInfo>> getServices() {
+        Map<String, WebSocketServiceProcessor.WebSocketServiceInfo> services = serviceProcessor.getAllServices();
+        return ResponseEntity.ok(services);
+    }
+
+    /**
+     * 获取指定服务的详细信息
+     */
+    @GetMapping("/services/{serviceId}")
+    public ResponseEntity<Map<String, Object>> getServiceDetail(@PathVariable String serviceId) {
+        WebSocketServiceProcessor.WebSocketServiceInfo serviceInfo = serviceProcessor.getServiceInfo(serviceId);
+        
+        if (serviceInfo == null) {
+            Map<String, Object> error = new HashMap<>();
+            error.put("error", "服务不存在");
+            error.put("serviceId", serviceId);
+            return ResponseEntity.notFound().build();
+        }
+        
+        Map<String, Object> result = new HashMap<>();
+        result.put("serviceInfo", serviceInfo);
+        result.put("onlineCount", sessionManager.getOnlineCount(serviceId));
+        result.put("onlineUsers", sessionManager.getOnlineUsers(serviceId));
+        
+        return ResponseEntity.ok(result);
+    }
+
+    /**
+     * 获取服务统计概览
+     */
+    @GetMapping("/services/overview")
+    public ResponseEntity<ServiceOverview> getServicesOverview() {
+        Map<String, WebSocketServiceProcessor.WebSocketServiceInfo> allServices = serviceProcessor.getAllServices();
+        
+        ServiceOverview overview = new ServiceOverview();
+        overview.setTotalServices(allServices.size());
+        overview.setEnabledServices((int) serviceProcessor.getEnabledServiceCount());
+        overview.setDisabledServices(allServices.size() - (int) serviceProcessor.getEnabledServiceCount());
+        
+        Map<String, Integer> connectionsByService = new HashMap<>();
+        for (String serviceId : allServices.keySet()) {
+            connectionsByService.put(serviceId, sessionManager.getOnlineCount(serviceId));
+        }
+        overview.setConnectionsByService(connectionsByService);
+        
+        return ResponseEntity.ok(overview);
+    }
+
+    /**
      * 健康状态数据类
      */
     @Data
@@ -140,5 +196,16 @@ public class WebSocketAdminController {
     @Data
     public static class SendMessageRequest {
         private String message;
+    }
+
+    /**
+     * 服务概览数据类
+     */
+    @Data
+    public static class ServiceOverview {
+        private int totalServices;
+        private int enabledServices;
+        private int disabledServices;
+        private Map<String, Integer> connectionsByService;
     }
 }

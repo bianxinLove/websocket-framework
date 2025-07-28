@@ -47,14 +47,11 @@ public class NotificationWebSocketService implements WebSocketMessageHandler<Str
     }
 
     @Override
-    public String[] getSupportedServices() {
-        return new String[]{"notification"};
-    }
-
-    @Override
     public int getPriority() {
         return 200;
     }
+    
+    // 注意：getSupportedServices()方法已移除，现在通过@WebSocketService注解自动获取服务支持列表
 
     /**
      * 处理用户连接

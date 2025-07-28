@@ -1,6 +1,8 @@
 package com.framework.websocket.handler;
 
+import com.framework.websocket.annotation.WebSocketService;
 import com.framework.websocket.event.WebSocketEvent;
+import org.springframework.core.annotation.AnnotationUtils;
 
 /**
  * WebSocket消息处理器接口
@@ -29,10 +31,26 @@ public interface WebSocketMessageHandler<T> {
 
     /**
      * 获取处理器支持的服务标识
-     * 返回null或空数组表示支持所有服务
+     * 优先从@WebSocketService注解获取，如果没有注解则使用getSupportedServices方法
      */
     default String[] getSupportedServices() {
+        // 尝试从@WebSocketService注解获取服务ID
+        WebSocketService annotation = getServiceAnnotation();
+        if (annotation != null && annotation.enabled()) {
+            return new String[]{annotation.value()};
+        }
+        
+        // 如果没有注解，返回null表示支持所有服务
         return null;
+    }
+
+    /**
+     * 获取服务注解信息
+     * 
+     * @return WebSocketService注解，如果没有则返回null
+     */
+    default WebSocketService getServiceAnnotation() {
+        return AnnotationUtils.findAnnotation(this.getClass(), WebSocketService.class);
     }
 
     /**

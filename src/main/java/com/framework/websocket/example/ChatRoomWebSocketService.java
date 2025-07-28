@@ -44,14 +44,11 @@ public class ChatRoomWebSocketService implements WebSocketMessageHandler<String>
     }
 
     @Override
-    public String[] getSupportedServices() {
-        return new String[]{"chatroom"};
-    }
-
-    @Override
     public int getPriority() {
         return 100;
     }
+    
+    // 注意：getSupportedServices()方法已移除，现在通过@WebSocketService注解自动获取服务支持列表
 
     /**
      * 处理用户加入聊天室
