@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * WebSocket日志拦截器
  * 记录WebSocket事件的详细日志
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j

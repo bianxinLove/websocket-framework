@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 /**
  * WebSocket会话统计信息
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Data

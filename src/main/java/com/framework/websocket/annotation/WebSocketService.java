@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * WebSocket服务注解
  * 标记WebSocket业务服务类
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Target({ElementType.TYPE})

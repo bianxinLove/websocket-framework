@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 /**
  * 聊天室WebSocket服务示例
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j

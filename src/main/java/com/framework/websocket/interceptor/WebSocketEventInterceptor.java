@@ -5,7 +5,7 @@ import com.framework.websocket.event.WebSocketEvent;
 /**
  * WebSocket事件拦截器接口
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 public interface WebSocketEventInterceptor {

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * 负责将EventBus中的事件分发给相应的WebSocketMessageHandler处理
  * 支持拦截器链和优先级处理
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j

@@ -1,5 +1,6 @@
 package com.framework.websocket.core;
 
+import com.framework.websocket.config.WebSocketFrameworkProperties;
 import com.framework.websocket.event.WebSocketEvent;
 import com.framework.websocket.event.WebSocketEventBus;
 import com.framework.websocket.session.WebSocketSession;
@@ -20,7 +21,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * WebSocket服务器核心类
  * 处理WebSocket连接的生命周期事件
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @ServerEndpoint(
@@ -30,16 +31,6 @@ import java.util.concurrent.atomic.AtomicLong;
 @Component
 @Slf4j
 public class WebSocketServer {
-
-    /**
-     * 心跳间隔时间（秒）
-     */
-    private static final int HEARTBEAT_INTERVAL = WebSocketConstants.DEFAULT_HEARTBEAT_INTERVAL;
-
-    /**
-     * 心跳超时时间（秒）
-     */
-    private static final int HEARTBEAT_TIMEOUT = WebSocketConstants.DEFAULT_HEARTBEAT_TIMEOUT;
 
     /**
      * 下次心跳超时时间戳
@@ -57,6 +48,7 @@ public class WebSocketServer {
     private static WebSocketSessionManager sessionManager;
     private static WebSocketEventBus eventBus;
     private static ScheduledExecutorService scheduledExecutorService;
+    private static WebSocketFrameworkProperties properties;
 
     @Autowired
     public void setSessionManager(WebSocketSessionManager sessionManager) {
@@ -71,6 +63,11 @@ public class WebSocketServer {
     @Autowired
     public void setScheduledExecutorService(ScheduledExecutorService scheduledExecutorService) {
         WebSocketServer.scheduledExecutorService = scheduledExecutorService;
+    }
+
+    @Autowired
+    public void setProperties(WebSocketFrameworkProperties properties) {
+        WebSocketServer.properties = properties;
     }
 
     /**
@@ -195,10 +192,11 @@ public class WebSocketServer {
         try {
             // 更新心跳时间
             webSocketSession.updateHeartbeat();
-            nextHeartbeatTimeout.set(System.currentTimeMillis() + HEARTBEAT_TIMEOUT * 1000L);
+            int heartbeatTimeout = properties != null ? properties.getHeartbeat().getTimeout() : WebSocketConstants.DEFAULT_HEARTBEAT_TIMEOUT;
+            nextHeartbeatTimeout.set(System.currentTimeMillis() + heartbeatTimeout * 1000L);
             
             // 更新会话管理器中的心跳状态
-            sessionManager.updateHeartbeat(service, userId, HEARTBEAT_TIMEOUT);
+            sessionManager.updateHeartbeat(service, userId, heartbeatTimeout);
             
             // 发布心跳事件
             WebSocketEvent<String> event = WebSocketEvent.onHeartbeat(
@@ -295,10 +293,11 @@ public class WebSocketServer {
         sendHeartbeat();
         
         // 调度定期心跳检测
+        int heartbeatInterval = properties != null ? properties.getHeartbeat().getInterval() : WebSocketConstants.DEFAULT_HEARTBEAT_INTERVAL;
         scheduledExecutorService.scheduleWithFixedDelay(
             this::checkHeartbeat, 
-            HEARTBEAT_INTERVAL, 
-            HEARTBEAT_INTERVAL, 
+            heartbeatInterval, 
+            heartbeatInterval, 
             TimeUnit.SECONDS
         );
     }
@@ -350,7 +349,8 @@ public class WebSocketServer {
             sessionManager.removeAndCloseSession(service, userId, webSocketSession);
         } else if (timeoutTime == 0) {
             // 初始化心跳超时时间
-            nextHeartbeatTimeout.set(currentTime + HEARTBEAT_TIMEOUT * 1000L);
+            int heartbeatTimeout = properties != null ? properties.getHeartbeat().getTimeout() : WebSocketConstants.DEFAULT_HEARTBEAT_TIMEOUT;
+            nextHeartbeatTimeout.set(currentTime + heartbeatTimeout * 1000L);
             sendHeartbeat();
         } else {
             // 继续发送心跳

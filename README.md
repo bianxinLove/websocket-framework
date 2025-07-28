@@ -10,6 +10,11 @@
 - **Redis集成**: 支持分布式会话管理和状态持久化
 - **灵活的消息处理**: 支持自定义消息处理器和拦截器
 - **注解驱动**: 提供便捷的注解支持，简化开发
+- **指标监控**: 实时连接数、消息统计、错误监控
+- **会话清理**: 自动清理断开连接和超时会话
+- **管理API**: RESTful API支持运维管理和监控
+- **健康检查**: 内置健康检查端点
+- **配置化管理**: 支持外部化配置和环境变量
 - **丰富的示例**: 包含聊天室和通知推送等实用示例
 - **可扩展设计**: 支持自定义扩展和插件化开发
 
@@ -57,6 +62,7 @@ websocket-framework/
 ├── session/                 # 会话管理
 │   ├── WebSocketSessionManager  # 会话管理器
 │   ├── WebSocketSession     # 会话包装类
+│   ├── WebSocketSessionCleaner  # 会话清理器
 │   └── SessionStatistics    # 会话统计
 ├── event/                   # 事件处理
 │   ├── WebSocketEventBus    # 事件总线
@@ -64,6 +70,7 @@ websocket-framework/
 │   └── WebSocketEventType   # 事件类型
 ├── handler/                 # 消息处理
 │   ├── WebSocketMessageHandler # 处理器接口
+│   ├── WebSocketMessageHandlerDispatcher # 处理器调度器
 │   └── DefaultWebSocketMessageHandler # 默认处理器
 ├── interceptor/            # 拦截器
 │   ├── WebSocketEventInterceptor # 拦截器接口
@@ -72,7 +79,12 @@ websocket-framework/
 │   ├── WebSocketService    # 服务注解
 │   └── WebSocketEventListener # 监听器注解
 ├── config/                 # 配置
-│   └── WebSocketFrameworkConfig # 框架配置
+│   ├── WebSocketFrameworkConfig # 框架配置
+│   └── WebSocketFrameworkProperties # 配置属性
+├── metrics/                # 指标监控
+│   └── WebSocketMetricsCollector # 指标收集器
+├── admin/                  # 管理API
+│   └── WebSocketAdminController # 管理控制器
 └── example/               # 示例代码
     ├── ChatRoomWebSocketService # 聊天室示例
     └── NotificationWebSocketService # 通知推送示例
@@ -210,11 +222,31 @@ websocket:
       core-size: 10
       max-size: 50
       queue-capacity: 1000
+      keep-alive: 60
     
     # 会话配置
     session:
       max-idle-time: 300  # 最大空闲时间（秒）
       cleanup-interval: 60  # 清理间隔（秒）
+    
+    # 消息配置
+    message:
+      max-size: 1048576  # 最大消息大小（字节）
+      buffer-size: 8192   # 缓冲区大小
+    
+    # 功能开关
+    features:
+      metrics: true       # 启用指标统计
+      health-check: true  # 启用健康检查
+      admin-api: true     # 启用管理API
+
+# Redis配置（支持环境变量）
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    password: ${REDIS_PASSWORD:123456}  # 支持环境变量
+    database: 10
 ```
 
 ## 📝 示例说明
@@ -239,6 +271,79 @@ websocket:
 
 连接地址: `ws://localhost:8080/websocket/connect/notification/{userId}`
 
+## 📊 运维监控
+
+### 管理API
+
+框架提供了完整的管理API用于运维监控：
+
+#### 健康检查
+```bash
+# 获取健康状态
+GET /websocket/admin/health
+
+# 响应示例
+{
+  "status": "UP",
+  "totalConnections": 25,
+  "frameworkVersion": "1.0.0",
+  "details": {
+    "redis": "UP",
+    "eventBus": "UP"
+  }
+}
+```
+
+#### 指标监控
+```bash
+# 获取系统指标
+GET /websocket/admin/metrics
+
+# 响应示例
+{
+  "currentConnections": 25,
+  "totalConnections": 156,
+  "totalDisconnections": 131,
+  "totalMessagesReceived": 2456,
+  "totalMessagesSent": 2389,
+  "totalErrors": 3,
+  "totalHeartbeatTimeouts": 12
+}
+```
+
+#### 会话管理
+```bash
+# 获取在线用户列表
+GET /websocket/admin/sessions/{service}/users
+
+# 获取服务连接数
+GET /websocket/admin/sessions/{service}/count
+
+# 发送消息给指定用户
+POST /websocket/admin/sessions/{service}/{userId}/send
+{
+  "message": "Hello from admin!"
+}
+
+# 广播消息
+POST /websocket/admin/sessions/{service}/broadcast
+{
+  "message": "System notification to all users"
+}
+
+# 获取配置信息
+GET /websocket/admin/config
+```
+
+### 自动化监控
+
+框架内置了自动化监控功能：
+
+- **会话清理**: 自动检测并清理断开的连接和超时会话
+- **指标收集**: 实时收集连接数、消息数、错误数等关键指标
+- **健康检查**: 定期检查系统健康状态
+- **心跳监控**: 监控客户端心跳状态，及时发现异常连接
+
 ## 🧪 测试
 
 访问 http://localhost:8080/test.html 进行功能测试，页面提供了：
@@ -246,6 +351,13 @@ websocket:
 - 通知推送功能测试
 - 连接状态监控
 - 消息收发测试
+
+### 运维测试
+
+访问管理API进行运维功能测试：
+- 健康检查: http://localhost:8080/websocket/admin/health
+- 指标监控: http://localhost:8080/websocket/admin/metrics
+- 在线用户: http://localhost:8080/websocket/admin/sessions/chatroom/users
 
 ## 🔍 API文档
 
@@ -291,13 +403,63 @@ void register(Object subscriber)
 void unregister(Object subscriber)
 ```
 
+### WebSocketMetricsCollector
+
+指标收集器接口：
+
+```java
+// 获取指标快照
+MetricsSnapshot getMetricsSnapshot()
+
+// 指标数据包含
+class MetricsSnapshot {
+    int currentConnections;        // 当前连接数
+    long totalConnections;         // 总连接数
+    long totalDisconnections;      // 总断开数
+    long totalMessagesReceived;    // 总接收消息数
+    long totalMessagesSent;        // 总发送消息数
+    long totalErrors;              // 总错误数
+    long totalHeartbeatTimeouts;   // 心跳超时数
+}
+```
+
+### WebSocketAdminController
+
+管理API接口：
+
+```java
+// 健康检查
+GET /websocket/admin/health
+
+// 获取指标
+GET /websocket/admin/metrics
+
+// 获取在线用户
+GET /websocket/admin/sessions/{service}/users
+
+// 获取连接数
+GET /websocket/admin/sessions/{service}/count
+
+// 发送消息
+POST /websocket/admin/sessions/{service}/{userId}/send
+
+// 广播消息
+POST /websocket/admin/sessions/{service}/broadcast
+
+// 获取配置
+GET /websocket/admin/config
+```
+
 ## 🚨 注意事项
 
 1. **Redis依赖**: 分布式部署时需要Redis支持，单机部署可以不使用Redis
 2. **心跳机制**: 默认启用心跳检测，可通过配置调整心跳间隔
 3. **线程安全**: 所有核心组件都是线程安全的
-4. **内存管理**: 长期运行时注意会话清理，避免内存泄漏
+4. **内存管理**: 框架内置自动会话清理，防止内存泄漏
 5. **错误处理**: 建议在业务代码中添加适当的异常处理
+6. **安全配置**: 生产环境请使用环境变量配置敏感信息
+7. **管理API**: 生产环境建议对管理API进行访问控制
+8. **指标监控**: 可集成到监控系统（如Prometheus）进行可视化监控
 
 ## 🛠️ 扩展开发
 
@@ -351,11 +513,38 @@ public class CustomInterceptor implements WebSocketEventInterceptor {
 
 ## 📊 性能监控
 
-框架内置了会话统计功能，可以获取：
-- 连接数统计
-- 消息收发统计
-- 连接持续时间
-- 心跳状态监控
+### 内置指标
+
+框架提供了丰富的内置指标监控：
+
+- **连接指标**: 当前连接数、总连接数、总断开数
+- **消息指标**: 消息收发统计、消息处理时长
+- **错误指标**: 连接错误、处理异常、心跳超时
+- **性能指标**: 线程池状态、内存使用情况
+
+### 集成监控系统
+
+可以轻松集成到现有监控系统：
+
+```java
+@Component
+public class PrometheusMetricsExporter {
+    
+    @Autowired
+    private WebSocketMetricsCollector metricsCollector;
+    
+    @Scheduled(fixedRate = 30000)
+    public void exportMetrics() {
+        MetricsSnapshot snapshot = metricsCollector.getMetricsSnapshot();
+        // 导出到Prometheus或其他监控系统
+        Metrics.gauge("websocket.connections.current", snapshot.getCurrentConnections());
+        Metrics.counter("websocket.connections.total", snapshot.getTotalConnections());
+        // ... 其他指标
+    }
+}
+```
+
+### 会话统计
 
 ```java
 // 获取会话统计信息
@@ -383,4 +572,15 @@ System.out.println("连接时长: " + stats.getFormattedConnectionDuration());
 
 ---
 
-**WebSocket框架 v1.0.0** - 让WebSocket开发更简单！
+**WebSocket框架 v1.0.0** - 功能完整、监控友好、生产就绪的WebSocket解决方案！
+
+## 🆕 更新日志
+
+### v1.0.0 (2024-01-XX)
+- ✅ 新增指标监控系统
+- ✅ 新增管理API和健康检查
+- ✅ 新增自动会话清理机制  
+- ✅ 新增配置属性管理
+- ✅ 优化安全配置和环境变量支持
+- ✅ 增强错误处理和日志记录
+- ✅ 完善文档和示例代码

@@ -3,7 +3,7 @@ package com.framework.websocket.core;
 /**
  * WebSocket框架常量定义
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 public class WebSocketConstants {

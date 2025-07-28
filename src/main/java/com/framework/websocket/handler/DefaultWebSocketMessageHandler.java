@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * 基础WebSocket消息处理器
  * 处理基本的WebSocket事件，提供默认实现
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j

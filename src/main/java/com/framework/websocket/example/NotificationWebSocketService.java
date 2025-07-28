@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 通知推送WebSocket服务示例
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j

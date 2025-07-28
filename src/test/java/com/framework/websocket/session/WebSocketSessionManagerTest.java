@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 /**
  * WebSocket会话管理器测试
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @RunWith(SpringRunner.class)

@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * WebSocket会话管理器
  * 支持多层级的会话管理和Redis持久化
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j

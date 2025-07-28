@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * WebSocket事件监听器注解
  * 标记WebSocket事件处理方法
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Target({ElementType.METHOD})

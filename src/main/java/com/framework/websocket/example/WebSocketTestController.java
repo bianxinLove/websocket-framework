@@ -17,7 +17,7 @@ import java.util.Set;
  * WebSocket测试控制器
  * 提供HTTP接口用于测试WebSocket功能
  *
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j
@@ -218,15 +218,16 @@ public class WebSocketTestController {
             
             // 发布事件到EventBus
             eventBus.post(testEvent);
-            
+
+            HashMap<String, Object> eventHashMap = new HashMap<>();
+            eventHashMap.put("eventType", eventType);
+            eventHashMap.put("service", service);
+            eventHashMap.put("userId", userId);
+            eventHashMap.put("data", message != null ? message : "null");
+
             result.put("success", true);
             result.put("message", "事件已发布到EventBus，请查看日志确认调度器是否正确处理");
-            result.put("event", Map.of(
-                "eventType", eventType,
-                "service", service,
-                "userId", userId,
-                "data", message != null ? message : "null"
-            ));
+            result.put("event", eventHashMap);
             
             log.info("手动触发WebSocket事件: eventType={}, service={}, userId={}, message={}", 
                     eventType, service, userId, message);

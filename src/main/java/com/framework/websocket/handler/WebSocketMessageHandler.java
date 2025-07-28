@@ -6,7 +6,7 @@ import com.framework.websocket.event.WebSocketEvent;
  * WebSocket消息处理器接口
  * 定义处理WebSocket事件的标准接口
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 public interface WebSocketMessageHandler<T> {

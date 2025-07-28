@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutorService;
  * WebSocket事件总线
  * 基于Google Guava EventBus实现异步事件分发
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j

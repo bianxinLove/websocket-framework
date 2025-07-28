@@ -1,11 +1,13 @@
 package com.framework.websocket.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
@@ -17,12 +19,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * WebSocket框架配置类
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Configuration
 @EnableWebSocket
+@EnableScheduling
 public class WebSocketFrameworkConfig {
+
+    @Autowired
+    private WebSocketFrameworkProperties properties;
 
     /**
      * 注册WebSocket端点
@@ -37,8 +43,9 @@ public class WebSocketFrameworkConfig {
      */
     @Bean("webSocketExecutorService")
     public ScheduledExecutorService webSocketExecutorService() {
+        WebSocketFrameworkProperties.ThreadPool threadPoolConfig = properties.getThreadPool();
         return Executors.newScheduledThreadPool(
-            Runtime.getRuntime().availableProcessors() * 2,
+            threadPoolConfig.getCoreSize(),
             new WebSocketThreadFactory("WebSocket-")
         );
     }

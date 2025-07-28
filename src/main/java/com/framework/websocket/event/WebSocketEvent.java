@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 /**
  * WebSocket事件对象
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Data

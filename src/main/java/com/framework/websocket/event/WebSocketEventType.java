@@ -3,7 +3,7 @@ package com.framework.websocket.event;
 /**
  * WebSocket事件类型枚举
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 public enum WebSocketEventType {

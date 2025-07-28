@@ -12,7 +12,7 @@ import java.util.List;
  * WebSocket端点配置类
  * 处理WebSocket握手过程中的自定义逻辑
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j

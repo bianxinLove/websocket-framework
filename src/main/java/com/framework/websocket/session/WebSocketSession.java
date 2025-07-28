@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * WebSocket会话包装类
  * 封装原生Session，提供更丰富的功能
  * 
- * @author WebSocket Framework
+ * @author bianxin
  * @version 1.0.0
  */
 @Slf4j
@@ -168,6 +168,13 @@ public class WebSocketSession {
      */
     public void updateHeartbeat() {
         lastHeartbeatTime.set(System.currentTimeMillis());
+    }
+
+    /**
+     * 获取最后心跳时间
+     */
+    public AtomicLong getLastHeartbeatTime() {
+        return lastHeartbeatTime;
     }
 
     /**
