@@ -2,7 +2,6 @@ package com.framework.websocket.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * WebSocket框架配置属性
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Component;
  * @version 1.0.0
  */
 @Data
-@Component
 @ConfigurationProperties(prefix = "websocket.framework")
 public class WebSocketFrameworkProperties {
 

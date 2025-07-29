@@ -3,6 +3,7 @@ package com.framework.websocket.config;
 import com.framework.websocket.util.TimeoutTaskWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -84,9 +85,8 @@ public class WebSocketFrameworkConfig {
      * 任务超时包装器Bean
      */
     @Bean("timeoutTaskWrapper")
-    public TimeoutTaskWrapper timeoutTaskWrapper() {
+    public TimeoutTaskWrapper timeoutTaskWrapper(@Qualifier("webSocketExecutorService") ScheduledExecutorService executor) {
         WebSocketFrameworkProperties.ThreadPool threadPoolConfig = properties.getThreadPool();
-        ScheduledExecutorService executor = webSocketExecutorService();
         return new TimeoutTaskWrapper(executor, threadPoolConfig.getTaskTimeout());
     }
 
