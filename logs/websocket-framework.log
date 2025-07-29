@@ -189,3 +189,369 @@ java.lang.RuntimeException: 模拟任务失败
 2025-07-29 12:01:34.790 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者取消注册成功: WebSocketMessageHandlerDispatcher
 2025-07-29 12:01:34.790 [SpringApplicationShutdownHook] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher已取消EventBus订阅
 2025-07-29 12:01:34.790 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
+2025-07-29 13:44:31.357 [main] INFO  c.f.w.WebSocketFrameworkApplication - Starting WebSocketFrameworkApplication using Java 1.8.0_202 on DESKTOP-EGK8BP4 with PID 8144 (D:\workTool\IdeaProjects\websocket-framework\target\classes started by admin in D:\workTool\IdeaProjects\websocket-framework)
+2025-07-29 13:44:31.362 [main] DEBUG c.f.w.WebSocketFrameworkApplication - Running with Spring Boot v2.7.0, Spring v5.3.20
+2025-07-29 13:44:31.364 [main] INFO  c.f.w.WebSocketFrameworkApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-29 13:44:32.886 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-07-29 13:44:32.893 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-29 13:44:32.955 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+2025-07-29 13:44:33.899 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-07-29 13:44:33.919 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-29 13:44:33.920 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-07-29 13:44:34.234 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-29 13:44:34.235 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2702 ms
+2025-07-29 13:44:35.219 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线初始化完成
+2025-07-29 13:44:35.328 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: WebSocketMetricsCollector
+2025-07-29 13:44:35.331 [main] INFO  c.f.w.m.WebSocketMetricsCollector - WebSocket指标收集器已启用并注册到事件总线
+2025-07-29 13:44:35.354 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=chatroom, serviceName=聊天室服务, beanName=chatRoomWebSocketService, class=ChatRoomWebSocketService
+2025-07-29 13:44:35.356 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=notification, serviceName=通知推送服务, beanName=notificationWebSocketService, class=NotificationWebSocketService
+2025-07-29 13:44:35.372 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: WebSocketMessageHandlerDispatcher
+2025-07-29 13:44:35.372 [main] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher初始化完成, 注册了3个消息处理器, 1个拦截器
+2025-07-29 13:44:36.274 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-07-29 13:44:36.313 [WebSocket-1] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:44:36.320 [main] INFO  c.f.w.WebSocketFrameworkApplication - Started WebSocketFrameworkApplication in 6.535 seconds (JVM running for 9.516)
+2025-07-29 13:45:05.163 [WebSocket-2] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=1
+2025-07-29 13:45:35.180 [WebSocket-1] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=2
+2025-07-29 13:45:35.376 [WebSocket-4] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=3
+2025-07-29 13:45:36.316 [WebSocket-3] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:46:05.193 [WebSocket-3] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=5
+2025-07-29 13:46:35.199 [WebSocket-3] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=6
+2025-07-29 13:46:35.385 [WebSocket-7] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=7
+2025-07-29 13:46:36.319 [WebSocket-8] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:47:05.210 [WebSocket-8] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=9
+2025-07-29 13:47:35.218 [WebSocket-8] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=10
+2025-07-29 13:47:35.390 [WebSocket-7] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=11
+2025-07-29 13:47:36.324 [WebSocket-12] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:48:05.226 [WebSocket-8] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=13
+2025-07-29 13:48:35.232 [WebSocket-14] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=14
+2025-07-29 13:48:35.404 [WebSocket-15] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=15
+2025-07-29 13:48:36.325 [WebSocket-12] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:49:05.243 [WebSocket-17] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=17
+2025-07-29 13:49:35.249 [WebSocket-14] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=18
+2025-07-29 13:49:35.421 [WebSocket-12] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=19
+2025-07-29 13:49:36.324 [WebSocket-17] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:50:05.257 [WebSocket-17] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=21
+2025-07-29 13:50:35.260 [WebSocket-12] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=22
+2025-07-29 13:50:35.432 [WebSocket-23] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=23
+2025-07-29 13:50:36.321 [WebSocket-24] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:51:05.262 [WebSocket-25] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=25
+2025-07-29 13:51:35.273 [WebSocket-25] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=26
+2025-07-29 13:51:35.444 [WebSocket-23] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=27
+2025-07-29 13:51:36.315 [WebSocket-24] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:52:05.287 [WebSocket-24] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=29
+2025-07-29 13:52:35.300 [WebSocket-24] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=30
+2025-07-29 13:52:35.456 [WebSocket-23] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=31
+2025-07-29 13:52:36.313 [WebSocket-32] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:53:05.317 [WebSocket-32] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=33
+2025-07-29 13:53:35.317 [WebSocket-34] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=34
+2025-07-29 13:53:35.473 [WebSocket-23] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=35
+2025-07-29 13:53:36.313 [WebSocket-32] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:54:05.332 [WebSocket-32] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=37
+2025-07-29 13:54:35.335 [WebSocket-38] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=38
+2025-07-29 13:54:35.475 [WebSocket-32] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=39
+2025-07-29 13:54:36.316 [WebSocket-32] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:55:05.348 [WebSocket-32] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=41
+2025-07-29 13:55:35.359 [WebSocket-32] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=42
+2025-07-29 13:55:35.483 [WebSocket-43] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=43
+2025-07-29 13:55:36.313 [WebSocket-44] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:56:05.366 [WebSocket-44] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=45
+2025-07-29 13:56:35.375 [WebSocket-32] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=46
+2025-07-29 13:56:35.485 [WebSocket-47] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=47
+2025-07-29 13:56:36.316 [WebSocket-48] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:57:05.391 [WebSocket-47] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=49
+2025-07-29 13:57:35.411 [WebSocket-47] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=50
+2025-07-29 13:57:35.491 [WebSocket-51] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=51
+2025-07-29 13:57:36.318 [WebSocket-52] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:58:05.421 [WebSocket-52] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=53
+2025-07-29 13:58:35.430 [WebSocket-52] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=54
+2025-07-29 13:58:35.491 [WebSocket-51] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=55
+2025-07-29 13:58:36.315 [WebSocket-51] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 13:59:05.443 [WebSocket-51] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=57
+2025-07-29 13:59:35.456 [WebSocket-51] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=58
+2025-07-29 13:59:35.502 [WebSocket-59] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=59
+2025-07-29 13:59:36.316 [WebSocket-60] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:00:05.464 [WebSocket-60] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=61
+2025-07-29 14:00:35.468 [WebSocket-51] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=62
+2025-07-29 14:00:35.515 [WebSocket-59] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=63
+2025-07-29 14:00:36.326 [WebSocket-64] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:01:05.476 [WebSocket-64] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=65
+2025-07-29 14:01:35.492 [WebSocket-59] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=66
+2025-07-29 14:01:35.522 [WebSocket-67] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=67
+2025-07-29 14:01:36.316 [WebSocket-68] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:02:05.499 [WebSocket-68] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=69
+2025-07-29 14:02:35.509 [WebSocket-68] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=70
+2025-07-29 14:02:35.524 [WebSocket-71] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=71
+2025-07-29 14:02:36.320 [WebSocket-72] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:03:05.521 [WebSocket-72] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=73
+2025-07-29 14:03:35.534 [WebSocket-71] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=2, corePoolSize=10, maxPoolSize=50, queueSize=1, completedTaskCount=74
+2025-07-29 14:03:35.534 [WebSocket-75] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=74
+2025-07-29 14:03:36.327 [WebSocket-76] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:04:05.543 [WebSocket-76] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=77
+2025-07-29 14:04:35.549 [WebSocket-79] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=78
+2025-07-29 14:04:35.549 [WebSocket-71] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=1, activeCount=2, completedTaskCount=78
+2025-07-29 14:04:36.313 [WebSocket-80] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:05:05.555 [WebSocket-80] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=81
+2025-07-29 14:05:35.561 [WebSocket-83] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=1, activeCount=1, completedTaskCount=82
+2025-07-29 14:05:35.562 [WebSocket-82] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=2, corePoolSize=10, maxPoolSize=50, queueSize=1, completedTaskCount=82
+2025-07-29 14:05:36.326 [WebSocket-84] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:06:05.573 [WebSocket-85] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=85
+2025-07-29 14:06:35.570 [WebSocket-86] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=86
+2025-07-29 14:06:35.585 [WebSocket-85] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=87
+2025-07-29 14:06:36.315 [WebSocket-84] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:07:05.599 [WebSocket-84] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=89
+2025-07-29 14:07:35.584 [WebSocket-90] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=90
+2025-07-29 14:07:35.602 [WebSocket-85] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=91
+2025-07-29 14:07:36.315 [WebSocket-90] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:08:05.606 [WebSocket-90] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=93
+2025-07-29 14:08:35.591 [WebSocket-94] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=94
+2025-07-29 14:08:35.622 [WebSocket-94] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=95
+2025-07-29 14:08:36.324 [WebSocket-96] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:09:05.637 [WebSocket-96] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=97
+2025-07-29 14:09:35.603 [WebSocket-98] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=98
+2025-07-29 14:09:35.650 [WebSocket-98] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=99
+2025-07-29 14:09:36.321 [WebSocket-100] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:10:05.661 [WebSocket-100] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=101
+2025-07-29 14:10:35.608 [WebSocket-102] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=102
+2025-07-29 14:10:35.671 [WebSocket-102] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=103
+2025-07-29 14:10:36.318 [WebSocket-104] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:11:05.672 [WebSocket-105] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=105
+2025-07-29 14:11:35.619 [WebSocket-106] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=106
+2025-07-29 14:11:35.680 [WebSocket-102] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=107
+2025-07-29 14:11:36.324 [WebSocket-108] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:12:05.693 [WebSocket-112] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=109
+2025-07-29 14:12:35.624 [WebSocket-110] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=110
+2025-07-29 14:12:35.705 [WebSocket-110] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=111
+2025-07-29 14:12:36.321 [WebSocket-108] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:13:05.705 [WebSocket-113] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=113
+2025-07-29 14:13:35.636 [WebSocket-108] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=114
+2025-07-29 14:13:35.709 [WebSocket-115] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=115
+2025-07-29 14:13:36.319 [WebSocket-108] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:14:05.714 [WebSocket-108] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=117
+2025-07-29 14:14:35.645 [WebSocket-108] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=118
+2025-07-29 14:14:35.719 [WebSocket-108] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=119
+2025-07-29 14:14:36.314 [WebSocket-120] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:15:05.733 [WebSocket-122] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=121
+2025-07-29 14:15:35.648 [WebSocket-108] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=122
+2025-07-29 14:15:35.743 [WebSocket-123] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=123
+2025-07-29 14:15:36.317 [WebSocket-120] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:16:05.751 [WebSocket-120] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=125
+2025-07-29 14:16:35.648 [WebSocket-108] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=126
+2025-07-29 14:16:35.758 [WebSocket-108] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=127
+2025-07-29 14:16:36.319 [WebSocket-128] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:17:05.767 [WebSocket-128] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=129
+2025-07-29 14:17:35.654 [WebSocket-130] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=130
+2025-07-29 14:17:35.778 [WebSocket-130] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=131
+2025-07-29 14:17:36.321 [WebSocket-130] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:18:05.779 [WebSocket-133] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=133
+2025-07-29 14:18:35.670 [WebSocket-134] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=134
+2025-07-29 14:18:35.795 [WebSocket-130] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=135
+2025-07-29 14:18:36.324 [WebSocket-136] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:19:05.803 [WebSocket-136] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=137
+2025-07-29 14:19:35.674 [WebSocket-138] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=138
+2025-07-29 14:19:35.814 [WebSocket-138] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=139
+2025-07-29 14:19:36.316 [WebSocket-140] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:20:05.817 [WebSocket-141] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=141
+2025-07-29 14:20:35.686 [WebSocket-142] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=142
+2025-07-29 14:20:35.827 [WebSocket-143] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=143
+2025-07-29 14:20:36.325 [WebSocket-140] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:21:05.829 [WebSocket-145] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=145
+2025-07-29 14:21:35.700 [WebSocket-140] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=146
+2025-07-29 14:21:35.842 [WebSocket-143] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=147
+2025-07-29 14:21:36.324 [WebSocket-140] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:22:05.846 [WebSocket-140] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=149
+2025-07-29 14:22:35.706 [WebSocket-150] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=150
+2025-07-29 14:22:35.862 [WebSocket-150] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=151
+2025-07-29 14:22:36.326 [WebSocket-152] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:23:05.874 [WebSocket-152] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=153
+2025-07-29 14:23:35.710 [WebSocket-154] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=154
+2025-07-29 14:23:35.881 [WebSocket-154] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=155
+2025-07-29 14:23:36.313 [WebSocket-156] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:24:05.889 [WebSocket-156] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=157
+2025-07-29 14:24:35.724 [WebSocket-158] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=158
+2025-07-29 14:24:35.895 [WebSocket-158] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=159
+2025-07-29 14:24:36.327 [WebSocket-160] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:25:05.912 [WebSocket-160] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=161
+2025-07-29 14:25:35.734 [WebSocket-162] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=162
+2025-07-29 14:25:35.922 [WebSocket-162] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=163
+2025-07-29 14:25:36.328 [WebSocket-164] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:26:05.927 [WebSocket-165] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=165
+2025-07-29 14:26:35.748 [WebSocket-166] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=166
+2025-07-29 14:26:35.936 [WebSocket-164] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=167
+2025-07-29 14:26:36.325 [WebSocket-164] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:27:05.955 [WebSocket-164] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=169
+2025-07-29 14:27:35.752 [WebSocket-166] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=170
+2025-07-29 14:27:35.968 [WebSocket-172] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=171
+2025-07-29 14:27:36.326 [WebSocket-164] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:28:05.973 [WebSocket-164] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=173
+2025-07-29 14:28:35.754 [WebSocket-166] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=174
+2025-07-29 14:28:35.987 [WebSocket-166] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=175
+2025-07-29 14:28:36.316 [WebSocket-176] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:29:05.998 [WebSocket-176] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=177
+2025-07-29 14:29:35.765 [WebSocket-178] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=178
+2025-07-29 14:29:36.013 [WebSocket-178] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=179
+2025-07-29 14:29:36.326 [WebSocket-180] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:30:06.028 [WebSocket-180] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=181
+2025-07-29 14:30:35.774 [WebSocket-182] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=182
+2025-07-29 14:30:36.038 [WebSocket-182] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=183
+2025-07-29 14:30:36.321 [WebSocket-184] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:31:06.040 [WebSocket-184] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=185
+2025-07-29 14:31:35.781 [WebSocket-186] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=186
+2025-07-29 14:31:36.042 [WebSocket-186] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=187
+2025-07-29 14:31:36.313 [WebSocket-188] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:32:06.052 [WebSocket-189] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=189
+2025-07-29 14:32:35.785 [WebSocket-190] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=190
+2025-07-29 14:32:36.067 [WebSocket-188] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=191
+2025-07-29 14:32:36.316 [WebSocket-192] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:33:06.073 [WebSocket-192] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=193
+2025-07-29 14:33:35.802 [WebSocket-190] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=194
+2025-07-29 14:33:36.080 [WebSocket-190] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=195
+2025-07-29 14:33:36.314 [WebSocket-196] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:34:06.095 [WebSocket-196] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=197
+2025-07-29 14:34:35.805 [WebSocket-198] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=198
+2025-07-29 14:34:36.100 [WebSocket-198] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=199
+2025-07-29 14:34:36.318 [WebSocket-200] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:35:06.103 [WebSocket-201] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=201
+2025-07-29 14:35:35.825 [WebSocket-200] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=202
+2025-07-29 14:35:36.106 [WebSocket-203] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=203
+2025-07-29 14:35:36.314 [WebSocket-200] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:36:06.110 [WebSocket-205] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=205
+2025-07-29 14:36:35.835 [WebSocket-200] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=206
+2025-07-29 14:36:36.115 [WebSocket-207] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=207
+2025-07-29 14:36:36.318 [WebSocket-200] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:37:06.124 [WebSocket-200] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=209
+2025-07-29 14:37:35.849 [WebSocket-210] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=210
+2025-07-29 14:37:36.131 [WebSocket-210] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=211
+2025-07-29 14:37:36.318 [WebSocket-212] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:38:06.139 [WebSocket-213] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=213
+2025-07-29 14:38:35.854 [WebSocket-212] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=214
+2025-07-29 14:38:36.150 [WebSocket-212] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=215
+2025-07-29 14:38:36.321 [WebSocket-216] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:39:06.158 [WebSocket-216] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=217
+2025-07-29 14:39:35.860 [WebSocket-218] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=218
+2025-07-29 14:39:36.172 [WebSocket-216] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=219
+2025-07-29 14:39:36.327 [WebSocket-220] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:40:06.183 [WebSocket-220] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=221
+2025-07-29 14:40:35.871 [WebSocket-222] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=222
+2025-07-29 14:40:36.199 [WebSocket-222] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=223
+2025-07-29 14:40:36.324 [WebSocket-224] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:41:06.212 [WebSocket-224] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=225
+2025-07-29 14:41:35.886 [WebSocket-226] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=226
+2025-07-29 14:41:36.214 [WebSocket-227] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=227
+2025-07-29 14:41:36.324 [WebSocket-226] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:42:06.222 [WebSocket-224] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=229
+2025-07-29 14:42:35.899 [WebSocket-230] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=230
+2025-07-29 14:42:36.227 [WebSocket-226] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=231
+2025-07-29 14:42:36.319 [WebSocket-232] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:43:06.233 [WebSocket-232] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=233
+2025-07-29 14:43:35.910 [WebSocket-230] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=234
+2025-07-29 14:43:36.240 [WebSocket-230] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=235
+2025-07-29 14:43:36.317 [WebSocket-236] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:44:06.242 [WebSocket-236] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=237
+2025-07-29 14:44:35.912 [WebSocket-238] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=238
+2025-07-29 14:44:36.257 [WebSocket-238] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=239
+2025-07-29 14:44:36.319 [WebSocket-240] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:45:06.270 [WebSocket-240] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=241
+2025-07-29 14:45:35.914 [WebSocket-242] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=242
+2025-07-29 14:45:36.273 [WebSocket-242] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=243
+2025-07-29 14:45:36.314 [WebSocket-244] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:46:06.280 [WebSocket-244] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=245
+2025-07-29 14:46:35.925 [WebSocket-246] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=246
+2025-07-29 14:46:36.290 [WebSocket-246] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=247
+2025-07-29 14:46:36.322 [WebSocket-248] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:47:06.305 [WebSocket-246] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=249
+2025-07-29 14:47:35.938 [WebSocket-250] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=250
+2025-07-29 14:47:36.310 [WebSocket-250] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=251
+2025-07-29 14:47:36.312 [WebSocket-255] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:48:06.315 [WebSocket-246] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=253
+2025-07-29 14:48:35.941 [WebSocket-254] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=254
+2025-07-29 14:48:36.323 [WebSocket-255] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=1, activeCount=2, completedTaskCount=255
+2025-07-29 14:48:36.323 [WebSocket-256] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:49:06.337 [WebSocket-255] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=257
+2025-07-29 14:49:35.944 [WebSocket-258] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=258
+2025-07-29 14:49:36.318 [WebSocket-256] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:49:36.349 [WebSocket-256] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=260
+2025-07-29 14:50:06.366 [WebSocket-256] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=261
+2025-07-29 14:50:35.960 [WebSocket-262] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=262
+2025-07-29 14:50:36.320 [WebSocket-263] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:50:36.383 [WebSocket-263] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=264
+2025-07-29 14:51:06.390 [WebSocket-263] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=265
+2025-07-29 14:51:35.967 [WebSocket-266] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=266
+2025-07-29 14:51:36.328 [WebSocket-267] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:51:36.391 [WebSocket-267] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=268
+2025-07-29 14:52:06.394 [WebSocket-267] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=269
+2025-07-29 14:52:35.971 [WebSocket-270] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=270
+2025-07-29 14:52:36.313 [WebSocket-271] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:52:36.406 [WebSocket-271] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=272
+2025-07-29 14:53:06.416 [WebSocket-270] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=273
+2025-07-29 14:53:35.990 [WebSocket-274] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=274
+2025-07-29 14:53:36.315 [WebSocket-275] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:53:36.423 [WebSocket-275] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=276
+2025-07-29 14:54:06.432 [WebSocket-270] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=277
+2025-07-29 14:54:35.998 [WebSocket-278] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=278
+2025-07-29 14:54:36.326 [WebSocket-279] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:54:36.436 [WebSocket-280] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=280
+2025-07-29 14:55:06.447 [WebSocket-280] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=281
+2025-07-29 14:55:36.010 [WebSocket-279] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=282
+2025-07-29 14:55:36.323 [WebSocket-283] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:55:36.463 [WebSocket-283] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=284
+2025-07-29 14:56:06.467 [WebSocket-283] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=285
+2025-07-29 14:56:36.013 [WebSocket-286] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=286
+2025-07-29 14:56:36.326 [WebSocket-287] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:56:36.482 [WebSocket-287] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=288
+2025-07-29 14:57:06.487 [WebSocket-287] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=289
+2025-07-29 14:57:36.019 [WebSocket-290] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=290
+2025-07-29 14:57:36.315 [WebSocket-291] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:57:36.501 [WebSocket-291] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=292
+2025-07-29 14:58:06.503 [WebSocket-293] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=293
+2025-07-29 14:58:36.029 [WebSocket-294] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=294
+2025-07-29 14:58:36.326 [WebSocket-295] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:58:36.514 [WebSocket-295] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=296
+2025-07-29 14:59:06.520 [WebSocket-294] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=297
+2025-07-29 14:59:36.042 [WebSocket-298] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=298
+2025-07-29 14:59:36.313 [WebSocket-299] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 14:59:36.522 [WebSocket-299] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=300
+2025-07-29 15:00:06.535 [WebSocket-299] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=301
+2025-07-29 15:00:36.052 [WebSocket-302] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=302
+2025-07-29 15:00:36.317 [WebSocket-303] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:00:36.551 [WebSocket-303] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=304
+2025-07-29 15:01:06.556 [WebSocket-303] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=305
+2025-07-29 15:01:36.054 [WebSocket-302] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=306
+2025-07-29 15:01:36.319 [WebSocket-302] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:01:36.571 [WebSocket-302] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=308
+2025-07-29 15:02:06.577 [WebSocket-302] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=309
+2025-07-29 15:02:36.061 [WebSocket-310] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=310
+2025-07-29 15:02:36.325 [WebSocket-311] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:02:36.591 [WebSocket-311] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=312
+2025-07-29 15:03:06.594 [WebSocket-302] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=313
+2025-07-29 15:03:36.064 [WebSocket-310] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=314
+2025-07-29 15:03:36.314 [WebSocket-311] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:03:36.608 [WebSocket-311] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=316
+2025-07-29 15:04:06.612 [WebSocket-311] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=317
+2025-07-29 15:04:36.078 [WebSocket-318] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=318
+2025-07-29 15:04:36.327 [WebSocket-319] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:04:36.624 [WebSocket-320] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=320
+2025-07-29 15:05:06.629 [WebSocket-320] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=321
+2025-07-29 15:05:36.085 [WebSocket-322] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=322
+2025-07-29 15:05:36.318 [WebSocket-323] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:05:36.644 [WebSocket-323] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=324
+2025-07-29 15:06:06.646 [WebSocket-323] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=325
+2025-07-29 15:06:36.093 [WebSocket-326] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=326
+2025-07-29 15:06:36.314 [WebSocket-327] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:06:36.655 [WebSocket-327] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=328
+2025-07-29 15:07:06.666 [WebSocket-326] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=329
+2025-07-29 15:07:36.098 [WebSocket-330] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=330
+2025-07-29 15:07:36.316 [WebSocket-331] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:07:36.675 [WebSocket-331] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=332
+2025-07-29 15:08:06.690 [WebSocket-331] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=333
+2025-07-29 15:08:36.111 [WebSocket-334] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=334
+2025-07-29 15:08:36.315 [WebSocket-335] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:08:36.704 [WebSocket-335] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=336
+2025-07-29 15:09:06.717 [WebSocket-335] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=337
+2025-07-29 15:09:36.125 [WebSocket-334] DEBUG c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查: healthy=true, activeCount=1, corePoolSize=10, maxPoolSize=50, queueSize=2, completedTaskCount=338
+2025-07-29 15:09:36.327 [WebSocket-339] DEBUG c.f.w.s.WebSocketSessionCleaner - 开始清理无效WebSocket会话
+2025-07-29 15:09:36.731 [WebSocket-339] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=340
+2025-07-29 15:10:06.741 [WebSocket-339] DEBUG c.f.w.c.WebSocketFrameworkConfig - 线程池状态监控: queueSize=2, activeCount=1, completedTaskCount=341
+2025-07-29 15:10:12.280 [SpringApplicationShutdownHook] INFO  c.f.w.health.ThreadPoolHealthChecker - 线程池健康检查器正在关闭...
+2025-07-29 15:10:12.280 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者取消注册成功: WebSocketMessageHandlerDispatcher
+2025-07-29 15:10:12.280 [SpringApplicationShutdownHook] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher已取消EventBus订阅
+2025-07-29 15:10:12.281 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭

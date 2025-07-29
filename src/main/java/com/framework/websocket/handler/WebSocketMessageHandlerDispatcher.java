@@ -124,6 +124,13 @@ public class WebSocketMessageHandlerDispatcher {
         } finally {
             // 完成拦截器处理
             applyAfterCompletionInterceptors(interceptors, event, result, exception);
+            
+            // 回收事件对象到对象池（减少GC压力）
+            try {
+                event.recycle();
+            } catch (Exception e) {
+                log.debug("回收事件对象失败", e);
+            }
         }
     }
 
