@@ -3,12 +3,18 @@ package com.framework.websocket.health;
 import com.framework.websocket.config.WebSocketFrameworkConfig;
 import com.framework.websocket.config.WebSocketFrameworkProperties;
 import com.framework.websocket.monitor.ThreadPoolMonitor;
+import com.framework.websocket.session.WebSocketSessionManager;
+import com.framework.websocket.event.WebSocketEventBus;
+import com.framework.websocket.event.WebSocketEvent;
+import com.google.common.eventbus.Subscribe;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -32,6 +38,104 @@ public class ThreadPoolHealthChecker {
     
     @Autowired
     private ThreadPoolMonitor threadPoolMonitor;
+    
+    @Autowired
+    private WebSocketSessionManager sessionManager;
+    
+    @Autowired
+    private WebSocketEventBus eventBus;
+    
+    /**
+     * WebSocket连接统计
+     */
+    private final AtomicLong totalConnections = new AtomicLong(0);
+    private final AtomicLong totalDisconnections = new AtomicLong(0);
+    
+    /**
+     * WebSocket消息统计
+     */
+    private final AtomicLong totalMessagesReceived = new AtomicLong(0);
+    private final AtomicLong totalMessagesSent = new AtomicLong(0);
+    
+    /**
+     * WebSocket错误统计
+     */
+    private final AtomicLong totalErrors = new AtomicLong(0);
+    private final AtomicLong totalHeartbeatTimeouts = new AtomicLong(0);
+    
+    @PostConstruct
+    public void initialize() {
+        if (properties.getFeatures().isMetrics()) {
+            eventBus.register(this);
+            log.info("WebSocket指标收集已启用并注册到健康检查器");
+        }
+    }
+    
+    /**
+     * 监听连接建立事件
+     */
+    @Subscribe
+    public void onConnectionOpen(WebSocketEvent<?> event) {
+        if (!properties.getFeatures().isMetrics() || event == null || event.getEventType() == null) {
+            return;
+        }
+        
+        if (event.getEventType() == com.framework.websocket.event.WebSocketEventType.ON_OPEN) {
+            totalConnections.incrementAndGet();
+            log.debug("连接建立指标更新: service={}, userId={}, 总连接数={}", 
+                event.getService(), event.getUserId(), totalConnections.get());
+        }
+    }
+
+    /**
+     * 监听连接关闭事件
+     */
+    @Subscribe
+    public void onConnectionClose(WebSocketEvent<?> event) {
+        if (!properties.getFeatures().isMetrics() || event == null || event.getEventType() == null) {
+            return;
+        }
+        
+        if (event.getEventType() == com.framework.websocket.event.WebSocketEventType.ON_CLOSE) {
+            totalDisconnections.incrementAndGet();
+            log.debug("连接关闭指标更新: service={}, userId={}, 总断开数={}", 
+                event.getService(), event.getUserId(), totalDisconnections.get());
+        }
+    }
+
+    /**
+     * 监听消息事件
+     */
+    @Subscribe
+    public void onMessage(WebSocketEvent<?> event) {
+        if (!properties.getFeatures().isMetrics() || event == null || event.getEventType() == null) {
+            return;
+        }
+        
+        com.framework.websocket.event.WebSocketEventType eventType = event.getEventType();
+        if (eventType == com.framework.websocket.event.WebSocketEventType.ON_MESSAGE) {
+            totalMessagesReceived.incrementAndGet();
+        } else if (eventType == com.framework.websocket.event.WebSocketEventType.ON_SEND) {
+            totalMessagesSent.incrementAndGet();
+        }
+    }
+
+    /**
+     * 监听错误事件
+     */
+    @Subscribe
+    public void onError(WebSocketEvent<?> event) {
+        if (!properties.getFeatures().isMetrics() || event == null || event.getEventType() == null) {
+            return;
+        }
+        
+        com.framework.websocket.event.WebSocketEventType eventType = event.getEventType();
+        if (eventType == com.framework.websocket.event.WebSocketEventType.ON_ERROR) {
+            totalErrors.incrementAndGet();
+        } else if (eventType == com.framework.websocket.event.WebSocketEventType.ON_HEARTBEAT_TIMEOUT) {
+            totalHeartbeatTimeouts.incrementAndGet();
+        }
+    }
     
     /**
      * 执行健康检查并返回结果Map
@@ -261,6 +365,34 @@ public class ThreadPoolHealthChecker {
         }
         
         return recommendations.toArray(new String[0]);
+    }
+    
+    /**
+     * 获取当前WebSocket指标快照
+     */
+    public WebSocketMetricsSnapshot getWebSocketMetricsSnapshot() {
+        WebSocketMetricsSnapshot snapshot = new WebSocketMetricsSnapshot();
+        snapshot.currentConnections = sessionManager.getTotalOnlineCount();
+        snapshot.totalConnections = totalConnections.get();
+        snapshot.totalDisconnections = totalDisconnections.get();
+        snapshot.totalMessagesReceived = totalMessagesReceived.get();
+        snapshot.totalMessagesSent = totalMessagesSent.get();
+        snapshot.totalErrors = totalErrors.get();
+        snapshot.totalHeartbeatTimeouts = totalHeartbeatTimeouts.get();
+        return snapshot;
+    }
+
+    /**
+     * WebSocket指标快照数据类
+     */
+    public static class WebSocketMetricsSnapshot {
+        public int currentConnections;
+        public long totalConnections;
+        public long totalDisconnections;
+        public long totalMessagesReceived;
+        public long totalMessagesSent;
+        public long totalErrors;
+        public long totalHeartbeatTimeouts;
     }
 
     /**

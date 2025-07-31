@@ -247,15 +247,33 @@ public class WebSocketSessionManager {
      */
     public void broadcast(String service, String message) {
         Map<String, WebSocketSession> sessions = getSessionsByService(service);
+        List<String> failedUsers = new ArrayList<>();
+        
         sessions.forEach((userId, session) -> {
             try {
-                session.sendMessage(message);
-                log.debug("广播消息发送成功: service={}, userId={}, message={}", service, userId, message);
+                // 检查会话是否仍然有效
+                if (session.isOpen()) {
+                    session.sendMessage(message);
+                    log.debug("广播消息发送成功: service={}, userId={}", service, userId);
+                } else {
+                    log.warn("会话已关闭，跳过发送: service={}, userId={}", service, userId);
+                    failedUsers.add(userId);
+                }
             } catch (Exception e) {
                 log.error("广播消息发送失败: service={}, userId={}", service, userId, e);
+                failedUsers.add(userId);
             }
         });
-        log.info("广播消息已发送: service={}, 接收用户数={}, message={}", service, sessions.size(), message);
+        
+        // 清理失效的会话
+        for (String userId : failedUsers) {
+            removeSession(service, userId, sessions.get(userId));
+            log.info("清理失效会话: service={}, userId={}", service, userId);
+        }
+        
+        int successCount = sessions.size() - failedUsers.size();
+        log.info("广播消息已发送: service={}, 成功用户数={}, 失败用户数={}", 
+            service, successCount, failedUsers.size());
     }
 
     /**

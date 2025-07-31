@@ -341,6 +341,166 @@
                 </div>
             </div>
         </div>
+
+        <!-- WebSocket连接统计 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🔗 WebSocket连接统计</div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">当前连接数</div>
+                    <div class="metric-value" id="currentConnections">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">总连接数</div>
+                    <div class="metric-value" id="totalConnections">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">总断开数</div>
+                    <div class="metric-value" id="totalDisconnections">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">连接成功率</div>
+                    <div class="metric-value" id="connectionSuccessRate">--%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WebSocket消息统计 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">💬 消息统计</div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">接收消息数</div>
+                    <div class="metric-value" id="messagesReceived">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">发送消息数</div>
+                    <div class="metric-value" id="messagesSent">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">错误次数</div>
+                    <div class="metric-value" id="totalErrors">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">心跳超时</div>
+                    <div class="metric-value" id="heartbeatTimeouts">--</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内存监控 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🧠 内存监控</div>
+                <div class="health-status">
+                    <div class="status-indicator" id="memoryStatusIndicator"></div>
+                    <span id="memoryStatusText">正常</span>
+                </div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">堆内存使用率</div>
+                    <div class="metric-value" id="heapUsageRatio">--%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">堆内存使用</div>
+                    <div class="metric-value" id="heapUsage">-- MB</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">堆内存最大</div>
+                    <div class="metric-value" id="heapMax">-- MB</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">内存警告次数</div>
+                    <div class="metric-value" id="memoryWarningCount">--</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="memoryChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 系统负载监控 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">⚡ 系统负载</div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">CPU核心数</div>
+                    <div class="metric-value" id="availableProcessors">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">系统负载</div>
+                    <div class="metric-value" id="systemLoadAverage">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">进程CPU使用率</div>
+                    <div class="metric-value" id="processCpuLoad">--%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">系统CPU使用率</div>
+                    <div class="metric-value" id="systemCpuLoad">--%</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="systemLoadChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 事件池统计 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🔄 事件池统计</div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">当前池大小</div>
+                    <div class="metric-value" id="eventPoolSize">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">总创建数</div>
+                    <div class="metric-value" id="eventPoolCreated">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">总复用数</div>
+                    <div class="metric-value" id="eventPoolReused">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">复用率</div>
+                    <div class="metric-value" id="eventPoolReuseRate">--%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 监控性能统计 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📊 监控性能</div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">监控执行次数</div>
+                    <div class="metric-value" id="monitoringExecutions">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">平均耗时</div>
+                    <div class="metric-value" id="avgMonitoringCost">-- ms</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">当前监控间隔</div>
+                    <div class="metric-value" id="currentInterval">-- s</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">采样率</div>
+                    <div class="metric-value" id="samplingRate">1:--</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -351,7 +511,7 @@
         let lastHealthStatus = 'UNKNOWN';
         
         // API 基础URL
-        const API_BASE = '/api/monitor/threadpool';
+        var API_BASE = '/api/monitor/threadpool';
         
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
@@ -425,16 +585,13 @@
                         }
                     ]
                 },
-                options: {
-                    ...chartOptions,
-                    scales: {
-                        ...chartOptions.scales,
-                        y: {
-                            ...chartOptions.scales.y,
+                options: Object.assign({}, chartOptions, {
+                    scales: Object.assign({}, chartOptions.scales, {
+                        y: Object.assign({}, chartOptions.scales.y, {
                             max: 100
-                        }
-                    }
-                }
+                        })
+                    })
+                })
             });
 
             // 队列状态图表
@@ -466,17 +623,84 @@
                         tension: 0.4
                     }]
                 },
-                options: {
-                    ...chartOptions,
-                    scales: {
-                        ...chartOptions.scales,
-                        y: {
-                            ...chartOptions.scales.y,
+                options: Object.assign({}, chartOptions, {
+                    scales: Object.assign({}, chartOptions.scales, {
+                        y: Object.assign({}, chartOptions.scales.y, {
                             min: 0,
                             max: 100
+                        })
+                    })
+                })
+            });
+
+            // 内存使用图表
+            charts.memory = new Chart(document.getElementById('memoryChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: '堆内存使用率 (%)',
+                            data: [],
+                            borderColor: '#FF5722',
+                            backgroundColor: 'rgba(255, 87, 34, 0.1)',
+                            tension: 0.4
                         }
-                    }
-                }
+                    ]
+                },
+                options: Object.assign({}, chartOptions, {
+                    scales: Object.assign({}, chartOptions.scales, {
+                        y: Object.assign({}, chartOptions.scales.y, {
+                            min: 0,
+                            max: 100
+                        })
+                    })
+                })
+            });
+
+            // 系统负载图表
+            charts.systemLoad = new Chart(document.getElementById('systemLoadChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: '进程CPU使用率 (%)',
+                            data: [],
+                            borderColor: '#E91E63',
+                            backgroundColor: 'rgba(233, 30, 99, 0.1)',
+                            tension: 0.4
+                        },
+                        {
+                            label: '系统负载平均值',
+                            data: [],
+                            borderColor: '#673AB7',
+                            backgroundColor: 'rgba(103, 58, 183, 0.1)',
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: Object.assign({}, chartOptions, {
+                    scales: Object.assign({}, chartOptions.scales, {
+                        y: Object.assign({}, chartOptions.scales.y, {
+                            min: 0,
+                            max: 100,
+                            position: 'left'
+                        }),
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            min: 0,
+                            ticks: { color: '#ccc' },
+                            grid: { 
+                                drawOnChartArea: false,
+                                color: 'rgba(255,255,255,0.1)'
+                            }
+                        }
+                    })
+                })
             });
         }
 
@@ -484,8 +708,8 @@
         function connectWebSocket() {
             try {
                 // 生成唯一的用户ID用于监控连接
-                const userId = 'monitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                const wsUrl = `ws://localhost:8080/websocket/connect/monitor/${userId}`;
+                var userId = 'monitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                var wsUrl = 'ws://localhost:8080/websocket/connect/monitor/' + userId;
                 
                 console.log('尝试连接WebSocket:', wsUrl);
                 websocket = new WebSocket(wsUrl);
@@ -508,7 +732,17 @@
                         } else if (data.type === 'welcome') {
                             console.log('收到欢迎消息:', data.message);
                         } else if (data.type === 'system_stats') {
-                            console.log('收到系统统计:', data.payload);
+                            updateSystemStats(data.payload);
+                            // 更新系统图表
+                            const now = new Date().toLocaleTimeString();
+                            addDataPoint(now, null, data.payload);
+                        } else if (data.type === 'websocket_metrics') {
+                            updateWebSocketMetrics(data.payload);
+                        } else if (data.type === 'memory_status') {
+                            updateMemoryStatus(data.payload);
+                            // 更新内存图表
+                            const now = new Date().toLocaleTimeString();
+                            addMemoryDataPoint(now, data.payload);
                         }
                     } catch (e) {
                         console.error('处理WebSocket消息失败:', e);
@@ -538,42 +772,60 @@
         }
 
         // 加载初始数据
-        async function loadInitialData() {
-            try {
-                // 并行加载当前数据和历史数据
-                const [overviewResponse, historyResponse] = await Promise.all([
-                    fetch(`${API_BASE}/overview`),
-                    fetch(`${API_BASE}/history?minutes=60&intervalSeconds=60`)
-                ]);
+        function loadInitialData() {
+            // 并行加载当前数据和历史数据
+            Promise.all([
+                fetch(API_BASE + '/overview'),
+                fetch(API_BASE + '/history?minutes=60&intervalSeconds=60')
+            ]).then(function(responses) {
+                var overviewResponse = responses[0];
+                var historyResponse = responses[1];
                 
+                var promises = [];
                 if (overviewResponse.ok) {
-                    const overviewData = await overviewResponse.json();
-                    if (overviewData.success) {
-                        updateCurrentMetrics(overviewData.current);
-                    }
+                    promises.push(overviewResponse.json());
+                } else {
+                    promises.push(Promise.resolve(null));
                 }
                 
                 if (historyResponse.ok) {
-                    const historyData = await historyResponse.json();
-                    if (historyData.success) {
-                        updateCharts(historyData);
-                    }
+                    promises.push(historyResponse.json());
+                } else {
+                    promises.push(Promise.resolve(null));
                 }
                 
-            } catch (error) {
+                return Promise.all(promises);
+            }).then(function(data) {
+                var overviewData = data[0];
+                var historyData = data[1];
+                
+                if (overviewData && overviewData.success) {
+                    updateCurrentMetrics(overviewData.current);
+                }
+                
+                if (historyData && historyData.success) {
+                    updateCharts(historyData);
+                }
+            }).catch(function(error) {
                 console.error('加载初始数据失败:', error);
                 showAlert('数据加载失败: ' + error.message, 'error');
-            }
+            });
         }
 
         // 发送WebSocket命令
-        function sendWebSocketCommand(action, params = {}) {
+        function sendWebSocketCommand(action, params) {
+            params = params || {};
             if (websocket && websocket.readyState === WebSocket.OPEN) {
-                const command = {
+                var command = {
                     action: action,
-                    ...params,
                     timestamp: Date.now()
                 };
+                // 合并参数
+                for (var key in params) {
+                    if (params.hasOwnProperty(key)) {
+                        command[key] = params[key];
+                    }
+                }
                 websocket.send(JSON.stringify(command));
                 console.log('发送WebSocket命令:', command);
             } else {
@@ -582,17 +834,16 @@
         }
 
         // 刷新数据
-        async function refreshData() {
-            try {
-                // 优先通过WebSocket刷新
-                if (isConnected) {
-                    sendWebSocketCommand('refresh');
-                }
-                
-                // 备用方案：HTTP API
-                const response = await fetch(`${API_BASE}/metrics`);
-                const data = await response.json();
-                
+        function refreshData() {
+            // 优先通过WebSocket刷新
+            if (isConnected) {
+                sendWebSocketCommand('refresh');
+            }
+            
+            // 备用方案：HTTP API
+            fetch(API_BASE + '/metrics').then(function(response) {
+                return response.json();
+            }).then(function(data) {
                 if (data.success) {
                     updateRealTimeData(data);
                     document.getElementById('lastUpdateTime').textContent = 
@@ -600,11 +851,10 @@
                 } else {
                     showAlert('数据刷新失败: ' + data.error, 'error');
                 }
-                
-            } catch (error) {
+            }).catch(function(error) {
                 console.error('刷新数据失败:', error);
                 showAlert('数据刷新失败: ' + error.message, 'error');
-            }
+            });
         }
 
         // 更新实时数据
@@ -615,7 +865,7 @@
             
             // 更新图表（添加新数据点）
             const now = new Date().toLocaleTimeString();
-            addDataPoint(now, data.metrics);
+            addDataPoint(now, data.metrics, null);
         }
 
         // 更新当前指标
@@ -644,6 +894,14 @@
                 (metrics.completedTaskCount / metrics.taskCount * 100).toFixed(1) : 0;
             document.getElementById('completionRate').textContent = completionRate + '%';
             
+            // 更新监控性能统计
+            if (monitoring) {
+                document.getElementById('monitoringExecutions').textContent = monitoring.monitoringExecutions;
+                document.getElementById('avgMonitoringCost').textContent = monitoring.avgMonitoringCostMs.toFixed(2) + ' ms';
+                document.getElementById('currentInterval').textContent = monitoring.currentInterval + ' s';
+                document.getElementById('samplingRate').textContent = '1:' + monitoring.samplingRate;
+            }
+            
             // 更新健康状态
             if (health) {
                 updateHealthStatus(health.status);
@@ -655,12 +913,100 @@
             }
         }
 
+        // 更新系统统计数据
+        function updateSystemStats(payload) {
+            if (payload.jvmMemory) {
+                const memory = payload.jvmMemory;
+                const usedMB = Math.round(memory.usedMemory / 1024 / 1024);
+                const maxMB = Math.round(memory.maxMemory / 1024 / 1024);
+                const usageRatio = (memory.usedMemory / memory.maxMemory * 100).toFixed(1);
+                
+                document.getElementById('heapUsage').textContent = usedMB + ' MB';
+                document.getElementById('heapMax').textContent = maxMB + ' MB';
+                document.getElementById('heapUsageRatio').textContent = usageRatio + '%';
+            }
+            
+            if (payload.systemLoad) {
+                const load = payload.systemLoad;
+                document.getElementById('availableProcessors').textContent = load.availableProcessors || '--';
+                document.getElementById('systemLoadAverage').textContent = 
+                    load.systemLoadAverage ? load.systemLoadAverage.toFixed(2) : '--';
+                document.getElementById('processCpuLoad').textContent = 
+                    load.processCpuLoad ? (load.processCpuLoad * 100).toFixed(1) + '%' : '--';
+                document.getElementById('systemCpuLoad').textContent = 
+                    load.systemCpuLoad ? (load.systemCpuLoad * 100).toFixed(1) + '%' : '--';
+            }
+        }
+
+        // 更新WebSocket指标
+        function updateWebSocketMetrics(payload) {
+            document.getElementById('currentConnections').textContent = payload.currentConnections || '--';
+            document.getElementById('totalConnections').textContent = payload.totalConnections || '--';
+            document.getElementById('totalDisconnections').textContent = payload.totalDisconnections || '--';
+            document.getElementById('messagesReceived').textContent = payload.totalMessagesReceived || '--';
+            document.getElementById('messagesSent').textContent = payload.totalMessagesSent || '--';
+            document.getElementById('totalErrors').textContent = payload.totalErrors || '--';
+            document.getElementById('heartbeatTimeouts').textContent = payload.totalHeartbeatTimeouts || '--';
+            
+            // 计算连接成功率
+            const total = payload.totalConnections || 0;
+            const disconnections = payload.totalDisconnections || 0;
+            const successRate = total > 0 ? ((total - disconnections) / total * 100).toFixed(1) : 0;
+            document.getElementById('connectionSuccessRate').textContent = successRate + '%';
+        }
+
+        // 更新内存状态
+        function updateMemoryStatus(payload) {
+            document.getElementById('heapUsageRatio').textContent = (payload.heapUsageRatio * 100).toFixed(1) + '%';
+            document.getElementById('heapUsage').textContent = Math.round(payload.heapUsed / 1024 / 1024) + ' MB';
+            document.getElementById('heapMax').textContent = Math.round(payload.heapMax / 1024 / 1024) + ' MB';
+            document.getElementById('memoryWarningCount').textContent = payload.totalWarningCount;
+            
+            // 更新内存状态指示器
+            const indicator = document.getElementById('memoryStatusIndicator');
+            const statusText = document.getElementById('memoryStatusText');
+            
+            if (payload.isCriticalMode) {
+                indicator.className = 'status-indicator status-critical';
+                statusText.textContent = '严重';
+            } else if (payload.isWarningMode) {
+                indicator.className = 'status-indicator status-warning';
+                statusText.textContent = '警告';
+            } else {
+                indicator.className = 'status-indicator status-healthy';
+                statusText.textContent = '正常';
+            }
+            
+            // 解析事件池统计
+            if (payload.eventPoolStats) {
+                parseEventPoolStats(payload.eventPoolStats);
+            }
+        }
+
+        // 解析事件池统计信息
+        function parseEventPoolStats(statsString) {
+            try {
+                // 解析形如 "EventPool{当前池大小: 5, 总创建: 100, 总复用: 50, 复用率: 33.3%}" 的字符串
+                const regex = /当前池大小:\s*(\d+).*总创建:\s*(\d+).*总复用:\s*(\d+).*复用率:\s*([\d.]+)%/;
+                const match = statsString.match(regex);
+                
+                if (match) {
+                    document.getElementById('eventPoolSize').textContent = match[1];
+                    document.getElementById('eventPoolCreated').textContent = match[2];
+                    document.getElementById('eventPoolReused').textContent = match[3];
+                    document.getElementById('eventPoolReuseRate').textContent = match[4] + '%';
+                }
+            } catch (e) {
+                console.error('解析事件池统计失败:', e);
+            }
+        }
+
         // 更新图表
         function updateCharts(historyData) {
-            const data = historyData.data;
-            const labels = historyData.labels.map(label => 
-                new Date(label).toLocaleTimeString()
-            );
+            var data = historyData.data;
+            var labels = historyData.labels.map(function(label) {
+                return new Date(label).toLocaleTimeString();
+            });
             
             // 更新吞吐量图表
             charts.throughput.data.labels = labels;
@@ -685,47 +1031,89 @@
         }
 
         // 添加数据点到图表
-        function addDataPoint(label, metrics) {
+        function addDataPoint(label, metrics, systemStats) {
             const maxDataPoints = 20;
             
             // 吞吐量图表
-            if (charts.throughput.data.labels.length >= maxDataPoints) {
+            if (metrics && charts.throughput.data.labels.length >= maxDataPoints) {
                 charts.throughput.data.labels.shift();
                 charts.throughput.data.datasets[0].data.shift();
             }
-            charts.throughput.data.labels.push(label);
-            charts.throughput.data.datasets[0].data.push(metrics.throughput);
-            charts.throughput.update('none');
+            if (metrics) {
+                charts.throughput.data.labels.push(label);
+                charts.throughput.data.datasets[0].data.push(metrics.throughput);
+                charts.throughput.update('none');
+            }
             
             // 利用率图表
-            if (charts.utilization.data.labels.length >= maxDataPoints) {
+            if (metrics && charts.utilization.data.labels.length >= maxDataPoints) {
                 charts.utilization.data.labels.shift();
                 charts.utilization.data.datasets[0].data.shift();
                 charts.utilization.data.datasets[1].data.shift();
             }
-            charts.utilization.data.labels.push(label);
-            charts.utilization.data.datasets[0].data.push(metrics.poolUtilization * 100);
-            charts.utilization.data.datasets[1].data.push(metrics.queueUtilization * 100);
-            charts.utilization.update('none');
+            if (metrics) {
+                charts.utilization.data.labels.push(label);
+                charts.utilization.data.datasets[0].data.push(metrics.poolUtilization * 100);
+                charts.utilization.data.datasets[1].data.push(metrics.queueUtilization * 100);
+                charts.utilization.update('none');
+            }
             
             // 队列图表
-            if (charts.queue.data.labels.length >= maxDataPoints) {
+            if (metrics && charts.queue.data.labels.length >= maxDataPoints) {
                 charts.queue.data.labels.shift();
                 charts.queue.data.datasets[0].data.shift();
             }
-            charts.queue.data.labels.push(label);
-            charts.queue.data.datasets[0].data.push(metrics.queueSize);
-            charts.queue.update('none');
+            if (metrics) {
+                charts.queue.data.labels.push(label);
+                charts.queue.data.datasets[0].data.push(metrics.queueSize);
+                charts.queue.update('none');
+            }
             
             // 健康图表（计算健康评分）
-            const healthScore = calculateHealthScore(metrics);
-            if (charts.health.data.labels.length >= maxDataPoints) {
-                charts.health.data.labels.shift();
-                charts.health.data.datasets[0].data.shift();
+            if (metrics) {
+                const healthScore = calculateHealthScore(metrics);
+                if (charts.health.data.labels.length >= maxDataPoints) {
+                    charts.health.data.labels.shift();
+                    charts.health.data.datasets[0].data.shift();
+                }
+                charts.health.data.labels.push(label);
+                charts.health.data.datasets[0].data.push(healthScore);
+                charts.health.update('none');
             }
-            charts.health.data.labels.push(label);
-            charts.health.data.datasets[0].data.push(healthScore);
-            charts.health.update('none');
+            
+            // 系统负载图表（如果有系统负载数据）
+            if (systemStats && systemStats.systemLoad) {
+                const processCpu = systemStats.systemLoad.processCpuLoad ? 
+                    systemStats.systemLoad.processCpuLoad * 100 : 
+                    (systemStats.systemLoad.estimatedCpuLoad ? systemStats.systemLoad.estimatedCpuLoad * 100 : 0);
+                const systemLoad = systemStats.systemLoad.systemLoadAverage || 0;
+                
+                if (charts.systemLoad.data.labels.length >= maxDataPoints) {
+                    charts.systemLoad.data.labels.shift();
+                    charts.systemLoad.data.datasets[0].data.shift();
+                    charts.systemLoad.data.datasets[1].data.shift();
+                }
+                charts.systemLoad.data.labels.push(label);
+                charts.systemLoad.data.datasets[0].data.push(processCpu);
+                charts.systemLoad.data.datasets[1].data.push(systemLoad);
+                charts.systemLoad.update('none');
+            }
+        }
+
+        // 专门更新内存图表的函数
+        function addMemoryDataPoint(label, memoryStatus) {
+            const maxDataPoints = 20;
+            
+            if (memoryStatus && charts.memory) {
+                const memoryUsage = memoryStatus.heapUsageRatio * 100;
+                if (charts.memory.data.labels.length >= maxDataPoints) {
+                    charts.memory.data.labels.shift();
+                    charts.memory.data.datasets[0].data.shift();
+                }
+                charts.memory.data.labels.push(label);
+                charts.memory.data.datasets[0].data.push(memoryUsage);
+                charts.memory.update('none');
+            }
         }
 
         // 计算健康评分
@@ -801,13 +1189,13 @@
                 }
             }
             
-            indicators.forEach(indicator => {
+            indicators.forEach(function(indicator) {
                 if (indicator) {
                     indicator.className = 'status-indicator ' + statusClass;
                 }
             });
             
-            texts.forEach(text => {
+            texts.forEach(function(text) {
                 if (text) {
                     text.textContent = statusText;
                 }
@@ -816,11 +1204,11 @@
             // 健康状态变化时显示警告
             if (lastHealthStatus !== 'UNKNOWN' && lastHealthStatus !== status) {
                 if (status === 'CRITICAL' || status === 'EMERGENCY' || status === 'DOWN') {
-                    showAlert(`健康状态变更: ${statusText}`, 'error');
+                    showAlert('健康状态变更: ' + statusText, 'error');
                 } else if (status === 'WARNING') {
-                    showAlert(`健康状态变更: ${statusText}`, 'warning');
+                    showAlert('健康状态变更: ' + statusText, 'warning');
                 } else {
-                    showAlert(`健康状态恢复: ${statusText}`, 'info');
+                    showAlert('健康状态恢复: ' + statusText, 'info');
                 }
             }
             
@@ -828,16 +1216,17 @@
         }
 
         // 显示警告
-        function showAlert(message, type = 'info') {
-            const alertsContainer = document.getElementById('alerts');
-            const alert = document.createElement('div');
-            alert.className = `alert ${type}`;
-            alert.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
+        function showAlert(message, type) {
+            type = type || 'info';
+            var alertsContainer = document.getElementById('alerts');
+            var alert = document.createElement('div');
+            alert.className = 'alert ' + type;
+            alert.textContent = new Date().toLocaleTimeString() + ' - ' + message;
             
             alertsContainer.appendChild(alert);
             
             // 5秒后自动移除
-            setTimeout(() => {
+            setTimeout(function() {
                 if (alert.parentNode) {
                     alert.parentNode.removeChild(alert);
                 }

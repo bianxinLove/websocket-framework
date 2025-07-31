@@ -11,10 +11,11 @@ import java.nio.ByteBuffer;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * WebSocket会话包装类
- * 封装原生Session，提供更丰富的功能
+ * 封装原生Session，提供更丰富的功能和线程安全的消息发送
  * 
  * @author bianxin
  * @version 1.0.0
@@ -67,6 +68,11 @@ public class WebSocketSession {
      * 扩展属性
      */
     private final Map<String, Object> attributes;
+    
+    /**
+     * 消息发送锁，防止并发发送导致状态冲突
+     */
+    private final ReentrantLock sendLock = new ReentrantLock();
 
     public WebSocketSession(Session session, String userId, String service) {
         this.session = session;
@@ -85,34 +91,52 @@ public class WebSocketSession {
     }
 
     /**
-     * 发送文本消息
+     * 线程安全的发送文本消息
      */
     public void sendMessage(String message) throws IOException {
-        if (session.isOpen()) {
-            session.getBasicRemote().sendText(message);
-            sendMessageCount.incrementAndGet();
-            log.debug("消息发送成功: sessionId={}, userId={}, service={}, message={}", 
-                    getSessionId(), userId, service, message);
-        } else {
-            log.warn("会话已关闭，消息发送失败: sessionId={}, userId={}, service={}", 
-                    getSessionId(), userId, service);
-            throw new IOException("WebSocket会话已关闭");
+        sendLock.lock();
+        try {
+            if (session.isOpen()) {
+                session.getBasicRemote().sendText(message);
+                sendMessageCount.incrementAndGet();
+                log.debug("消息发送成功: sessionId={}, userId={}, service={}", 
+                        getSessionId(), userId, service);
+            } else {
+                log.warn("会话已关闭，消息发送失败: sessionId={}, userId={}, service={}", 
+                        getSessionId(), userId, service);
+                throw new IOException("WebSocket会话已关闭");
+            }
+        } catch (IllegalStateException e) {
+            log.error("WebSocket状态异常，消息发送失败: sessionId={}, userId={}, service={}, error={}", 
+                    getSessionId(), userId, service, e.getMessage());
+            throw new IOException("WebSocket状态异常: " + e.getMessage(), e);
+        } finally {
+            sendLock.unlock();
         }
     }
 
     /**
-     * 发送二进制消息
+     * 线程安全的发送二进制消息
      */
     public void sendBinary(ByteBuffer data) throws IOException {
-        if (session.isOpen()) {
-            session.getBasicRemote().sendBinary(data);
-            sendMessageCount.incrementAndGet();
-            log.debug("二进制消息发送成功: sessionId={}, userId={}, service={}", 
-                    getSessionId(), userId, service);
-        } else {
-            log.warn("会话已关闭，二进制消息发送失败: sessionId={}, userId={}, service={}", 
-                    getSessionId(), userId, service);
-            throw new IOException("WebSocket会话已关闭");
+        sendLock.lock();
+        try {
+            if (session.isOpen()) {
+                session.getBasicRemote().sendBinary(data);
+                sendMessageCount.incrementAndGet();
+                log.debug("二进制消息发送成功: sessionId={}, userId={}, service={}", 
+                        getSessionId(), userId, service);
+            } else {
+                log.warn("会话已关闭，二进制消息发送失败: sessionId={}, userId={}, service={}", 
+                        getSessionId(), userId, service);
+                throw new IOException("WebSocket会话已关闭");
+            }
+        } catch (IllegalStateException e) {
+            log.error("WebSocket状态异常，二进制消息发送失败: sessionId={}, userId={}, service={}, error={}", 
+                    getSessionId(), userId, service, e.getMessage());
+            throw new IOException("WebSocket状态异常: " + e.getMessage(), e);
+        } finally {
+            sendLock.unlock();
         }
     }
 
@@ -124,17 +148,26 @@ public class WebSocketSession {
     }
 
     /**
-     * 发送Ping消息（心跳）
+     * 线程安全的发送Ping消息（心跳）
      */
     public void sendPing(ByteBuffer data) throws IOException {
-        if (session.isOpen()) {
-            session.getBasicRemote().sendPing(data);
-            log.debug("心跳消息发送成功: sessionId={}, userId={}, service={}", 
-                    getSessionId(), userId, service);
-        } else {
-            log.warn("会话已关闭，心跳消息发送失败: sessionId={}, userId={}, service={}", 
-                    getSessionId(), userId, service);
-            throw new IOException("WebSocket会话已关闭");
+        sendLock.lock();
+        try {
+            if (session.isOpen()) {
+                session.getBasicRemote().sendPing(data);
+                log.debug("心跳消息发送成功: sessionId={}, userId={}, service={}", 
+                        getSessionId(), userId, service);
+            } else {
+                log.warn("会话已关闭，心跳消息发送失败: sessionId={}, userId={}, service={}", 
+                        getSessionId(), userId, service);
+                throw new IOException("WebSocket会话已关闭");
+            }
+        } catch (IllegalStateException e) {
+            log.error("WebSocket状态异常，心跳消息发送失败: sessionId={}, userId={}, service={}, error={}", 
+                    getSessionId(), userId, service, e.getMessage());
+            throw new IOException("WebSocket状态异常: " + e.getMessage(), e);
+        } finally {
+            sendLock.unlock();
         }
     }
 

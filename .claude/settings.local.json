@@ -32,7 +32,24 @@
       "Bash(grep -n \"var \" src/main/java/com/framework/websocket/monitor/ThreadPoolMonitorWebSocketService.java)",
       "Bash(chmod +x syntax-check.sh)",
       "Bash(./syntax-check.sh)",
-      "Bash(chmod +x start-monitor.sh)"
+      "Bash(chmod +x start-monitor.sh)",
+      "Bash(find . -name \"*.md\" -not -path \"./target/*\")",
+      "Bash(ls -la *.sh *.md)",
+      "Bash(rm src/main/java/com/framework/websocket/monitor/MemoryMonitor.java)",
+      "Bash(rm src/main/java/com/framework/websocket/metrics/WebSocketMetricsCollector.java)",
+      "Bash(rmdir src/main/java/com/framework/websocket/metrics)",
+      "Bash(export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64)",
+      "Bash(javac -version)",
+      "Bash(git add src/main/java/com/framework/websocket/monitor/ThreadPoolMonitorWebSocketService.java src/main/resources/static/threadpool-monitor.html MONITORING_INTEGRATION_REPORT.md validate-syntax.sh)",
+      "Bash(grep -n \"\\`\" src/main/resources/static/threadpool-monitor.html)",
+      "Bash(grep -n \"async function\\|await \" src/main/resources/static/threadpool-monitor.html)",
+      "Bash(grep -n \"const \\|let \\|\\`\\|async \\|await \\|=> \" src/main/resources/static/threadpool-monitor.html)",
+      "Bash(grep -n \"const \\|let \\|\\`\\|async \\|await \\|=> \\|\\.\\.\\.\" src/main/resources/static/threadpool-monitor.html)",
+      "Bash(chmod +x websocket-fix-verification.sh)",
+      "Bash(./websocket-fix-verification.sh)",
+      "Bash(chmod +x websocket-concurrency-fix-verification.sh)",
+      "Bash(./websocket-concurrency-fix-verification.sh)",
+      "Bash(mv src/main/resources/static/threadpool-monitor.html src/main/resources/static/monitor.html)"
     ],
     "deny": []
   }

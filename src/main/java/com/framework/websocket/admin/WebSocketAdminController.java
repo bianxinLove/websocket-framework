@@ -1,7 +1,7 @@
 package com.framework.websocket.admin;
 
 import com.framework.websocket.config.WebSocketFrameworkProperties;
-import com.framework.websocket.metrics.WebSocketMetricsCollector;
+import com.framework.websocket.health.ThreadPoolHealthChecker;
 import com.framework.websocket.processor.WebSocketServiceProcessor;
 import com.framework.websocket.session.WebSocketSessionManager;
 import lombok.Data;
@@ -30,7 +30,7 @@ public class WebSocketAdminController {
     private WebSocketSessionManager sessionManager;
     
     @Autowired
-    private WebSocketMetricsCollector metricsCollector;
+    private ThreadPoolHealthChecker healthChecker;
     
     @Autowired
     private WebSocketFrameworkProperties properties;
@@ -60,8 +60,8 @@ public class WebSocketAdminController {
      * 获取指标信息
      */
     @GetMapping("/metrics")
-    public ResponseEntity<WebSocketMetricsCollector.MetricsSnapshot> metrics() {
-        return ResponseEntity.ok(metricsCollector.getMetricsSnapshot());
+    public ResponseEntity<ThreadPoolHealthChecker.WebSocketMetricsSnapshot> metrics() {
+        return ResponseEntity.ok(healthChecker.getWebSocketMetricsSnapshot());
     }
 
     /**

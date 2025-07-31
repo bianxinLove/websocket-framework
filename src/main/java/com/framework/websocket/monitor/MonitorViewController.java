@@ -17,7 +17,7 @@ public class MonitorViewController {
      */
     @GetMapping("/monitor")
     public String monitorPage() {
-        return "redirect:/threadpool-monitor.html";
+        return "redirect:/monitor.html";
     }
 
     /**
@@ -25,6 +25,14 @@ public class MonitorViewController {
      */
     @GetMapping("/monitor/threadpool")
     public String threadPoolMonitorPage() {
-        return "redirect:/threadpool-monitor.html";
+        return "redirect:/monitor.html";
+    }
+    
+    /**
+     * 兼容旧路径访问
+     */
+    @GetMapping("/threadpool-monitor")
+    public String threadpoolMonitorCompatibility() {
+        return "redirect:/monitor.html";
     }
 }

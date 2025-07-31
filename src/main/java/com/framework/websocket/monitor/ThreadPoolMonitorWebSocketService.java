@@ -204,11 +204,13 @@ public class ThreadPoolMonitorWebSocketService implements WebSocketMessageHandle
     /**
      * 定期广播监控数据（每30秒）
      */
-    @Scheduled(fixedRate = 30000)
+    @Scheduled(fixedRate = 30000, initialDelay = 5000) // 延迟5秒启动
     public void broadcastMetrics() {
         try {
             // 检查是否有活跃的监控客户端
-            if (sessionManager.getOnlineCount("monitor") == 0) {
+            int onlineCount = sessionManager.getOnlineCount("monitor");
+            if (onlineCount == 0) {
+                log.debug("没有活跃的监控客户端，跳过广播");
                 return;
             }
             
@@ -229,8 +231,7 @@ public class ThreadPoolMonitorWebSocketService implements WebSocketMessageHandle
             // 广播给所有监控客户端
             sessionManager.broadcast("monitor", jsonMessage);
             
-            log.debug("广播监控数据完成，活跃客户端数: {}", 
-                sessionManager.getOnlineCount("monitor"));
+            log.debug("广播监控数据完成，目标客户端数: {}", onlineCount);
                 
         } catch (Exception e) {
             log.warn("广播监控数据失败: {}", e.getMessage());
@@ -289,10 +290,12 @@ public class ThreadPoolMonitorWebSocketService implements WebSocketMessageHandle
     /**
      * 发送系统统计信息
      */
-    @Scheduled(fixedRate = 300000) // 每5分钟发送一次统计信息
+    @Scheduled(fixedRate = 300000, initialDelay = 60000) // 延迟1分钟启动，每5分钟执行
     public void broadcastSystemStats() {
         try {
-            if (sessionManager.getOnlineCount("monitor") == 0) {
+            int onlineCount = sessionManager.getOnlineCount("monitor");
+            if (onlineCount == 0) {
+                log.debug("没有活跃的监控客户端，跳过系统统计广播");
                 return;
             }
             
@@ -309,8 +312,70 @@ public class ThreadPoolMonitorWebSocketService implements WebSocketMessageHandle
             String jsonMessage = objectMapper.writeValueAsString(stats);
             sessionManager.broadcast("monitor", jsonMessage);
             
+            log.debug("广播系统统计完成，目标客户端数: {}", onlineCount);
+            
         } catch (Exception e) {
             log.warn("广播系统统计信息失败: {}", e.getMessage());
+        }
+    }
+
+    /**
+     * 发送WebSocket指标统计信息
+     */
+    @Scheduled(fixedRate = 60000, initialDelay = 30000) // 延迟30秒启动，每1分钟执行
+    public void broadcastWebSocketMetrics() {
+        try {
+            int onlineCount = sessionManager.getOnlineCount("monitor");
+            if (onlineCount == 0) {
+                log.debug("没有活跃的监控客户端，跳过WebSocket指标广播");
+                return;
+            }
+            
+            ThreadPoolHealthChecker.WebSocketMetricsSnapshot metrics = 
+                healthChecker.getWebSocketMetricsSnapshot();
+            
+            Map<String, Object> message = new HashMap<>();
+            message.put("type", "websocket_metrics");
+            message.put("payload", metrics);
+            message.put("timestamp", System.currentTimeMillis());
+            
+            String jsonMessage = objectMapper.writeValueAsString(message);
+            sessionManager.broadcast("monitor", jsonMessage);
+            
+            log.debug("广播WebSocket指标完成，目标客户端数: {}", onlineCount);
+            
+        } catch (Exception e) {
+            log.warn("广播WebSocket指标失败: {}", e.getMessage());
+        }
+    }
+
+    /**
+     * 发送内存状态信息
+     */
+    @Scheduled(fixedRate = 30000, initialDelay = 15000) // 延迟15秒启动，每30秒执行
+    public void broadcastMemoryStatus() {
+        try {
+            int onlineCount = sessionManager.getOnlineCount("monitor");
+            if (onlineCount == 0) {
+                log.debug("没有活跃的监控客户端，跳过内存状态广播");
+                return;
+            }
+            
+            ThreadPoolMonitor.MemoryStatus memoryStatus = 
+                threadPoolMonitor.getCurrentMemoryStatus();
+            
+            Map<String, Object> message = new HashMap<>();
+            message.put("type", "memory_status");
+            message.put("payload", memoryStatus);
+            message.put("timestamp", System.currentTimeMillis());
+            
+            String jsonMessage = objectMapper.writeValueAsString(message);
+            sessionManager.broadcast("monitor", jsonMessage);
+            
+            log.debug("广播内存状态完成，目标客户端数: {}", onlineCount);
+            
+        } catch (Exception e) {
+            log.warn("广播内存状态失败: {}", e.getMessage());
         }
     }
 
