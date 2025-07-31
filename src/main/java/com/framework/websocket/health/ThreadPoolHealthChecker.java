@@ -1,240 +1,307 @@
 package com.framework.websocket.health;
 
+import com.framework.websocket.config.WebSocketFrameworkConfig;
+import com.framework.websocket.config.WebSocketFrameworkProperties;
+import com.framework.websocket.monitor.ThreadPoolMonitor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
- * 线程池健康检查器
- * 监控线程池状态，提供健康检查信息
+ * 增强的线程池健康检查器
+ * 提供线程池健康状态监控，兼容有无Spring Boot Actuator的环境
  * 
  * @author bianxin
- * @version 1.0.0
+ * @version 2.0.0
  */
 @Slf4j
-@Component
+@Component("threadPoolHealthChecker")
 public class ThreadPoolHealthChecker {
+
+    @Autowired
+    private WebSocketFrameworkProperties properties;
     
     @Autowired
     @Qualifier("webSocketExecutorService")
-    private ScheduledExecutorService executorService;
+    private ScheduledExecutorService threadPoolExecutor;
     
-    private volatile boolean isHealthy = true;
-    private volatile String healthStatus = "OK";
-    
-    @PostConstruct
-    public void init() {
-        startHealthCheck();
-    }
-    
-    @PreDestroy
-    public void destroy() {
-        log.info("线程池健康检查器正在关闭...");
-    }
+    @Autowired
+    private ThreadPoolMonitor threadPoolMonitor;
     
     /**
-     * 启动健康检查
+     * 执行健康检查并返回结果Map
      */
-    private void startHealthCheck() {
-        if (executorService instanceof ScheduledThreadPoolExecutor) {
-            ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) executorService;
+    public HealthCheckResult checkHealth() {
+        try {
+            // 获取线程池监控数据
+            ThreadPoolMonitor.ThreadPoolMetrics metrics = threadPoolMonitor.manualMonitoring();
+            ThreadPoolMonitor.MonitoringStatus monitoringStatus = threadPoolMonitor.getMonitoringStatus();
             
-            // 每分钟检查一次健康状态
-            executor.scheduleWithFixedDelay(() -> {
-                try {
-                    checkHealth(executor);
-                } catch (Exception e) {
-                    log.error("健康检查异常", e);
-                    isHealthy = false;
-                    healthStatus = "检查异常: " + e.getMessage();
-                }
-            }, 60, 60, TimeUnit.SECONDS);
+            // 获取线程池统计信息
+            WebSocketFrameworkConfig.TaskStatistics taskStats = getTaskStatistics();
+            
+            // 评估健康状态
+            HealthStatus healthStatus = evaluateHealth(metrics, taskStats, monitoringStatus);
+            
+            // 构建健康检查结果
+            HealthCheckResult result = new HealthCheckResult();
+            result.status = healthStatus;
+            result.details = buildHealthDetails(metrics, taskStats, monitoringStatus);
+            
+            return result;
+            
+        } catch (Exception e) {
+            log.error("线程池健康检查异常", e);
+            HealthCheckResult result = new HealthCheckResult();
+            result.status = HealthStatus.DOWN;
+            result.details = new HashMap<>();
+            result.details.put("error", "健康检查异常: " + e.getMessage());
+            return result;
         }
     }
-    
+
     /**
-     * 检查线程池健康状态
+     * 获取任务统计信息
      */
-    private void checkHealth(ScheduledThreadPoolExecutor executor) {
-        int activeCount = executor.getActiveCount();
-        int corePoolSize = executor.getCorePoolSize();
-        int maximumPoolSize = executor.getMaximumPoolSize();
-        int queueSize = executor.getQueue().size();
-        long completedTaskCount = executor.getCompletedTaskCount();
-        
-        // 判断健康状态
-        boolean wasHealthy = isHealthy;
-        StringBuilder statusBuilder = new StringBuilder();
-        
-        // 检查活跃线程比例
-        double activeRatio = (double) activeCount / maximumPoolSize;
-        if (activeRatio > 0.9) {
-            isHealthy = false;
-            statusBuilder.append("活跃线程比例过高(").append(String.format("%.1f%%", activeRatio * 100)).append("); ");
-        }
-        
-        // 检查队列积压
-        if (queueSize > 2000) {
-            isHealthy = false;
-            statusBuilder.append("队列积压严重(").append(queueSize).append("个任务); ");
-        }
-        
-        // 检查线程池是否关闭
-        if (executor.isShutdown()) {
-            isHealthy = false;
-            statusBuilder.append("线程池已关闭; ");
-        }
-        
-        // 检查是否终止
-        if (executor.isTerminated()) {
-            isHealthy = false;
-            statusBuilder.append("线程池已终止; ");
-        }
-        
-        if (isHealthy) {
-            healthStatus = "OK";
-            if (!wasHealthy) {
-                log.info("线程池状态已恢复正常");
+    private WebSocketFrameworkConfig.TaskStatistics getTaskStatistics() {
+        try {
+            if (threadPoolExecutor instanceof WebSocketFrameworkConfig.OptimizedScheduledThreadPoolExecutor) {
+                return ((WebSocketFrameworkConfig.OptimizedScheduledThreadPoolExecutor) threadPoolExecutor).getTaskStatistics();
             }
+        } catch (Exception e) {
+            log.debug("无法获取任务统计信息", e);
+        }
+        return null;
+    }
+
+    /**
+     * 评估健康状态
+     */
+    private HealthStatus evaluateHealth(ThreadPoolMonitor.ThreadPoolMetrics metrics, 
+                                       WebSocketFrameworkConfig.TaskStatistics taskStats,
+                                       ThreadPoolMonitor.MonitoringStatus monitoringStatus) {
+        
+        WebSocketFrameworkProperties.HealthThresholds thresholds = 
+            properties.getThreadPool().getMonitoring().getHealthThresholds();
+        
+        // 健康评分系统
+        int healthScore = 100;
+        
+        // 1. 检查线程池利用率
+        if (metrics.poolUtilization >= thresholds.getPoolUtilizationCritical()) {
+            healthScore -= 40;
+        } else if (metrics.poolUtilization >= thresholds.getPoolUtilizationWarning()) {
+            healthScore -= 20;
+        }
+        
+        // 2. 检查队列利用率
+        if (metrics.queueUtilization >= thresholds.getQueueUtilizationCritical()) {
+            healthScore -= 30;
+        } else if (metrics.queueUtilization >= thresholds.getQueueUtilizationWarning()) {
+            healthScore -= 15;
+        }
+        
+        // 3. 检查任务拒绝率
+        if (taskStats != null) {
+            double rejectionRate = taskStats.getRejectionRate();
+            if (rejectionRate >= thresholds.getRejectionRateCritical()) {
+                healthScore -= 25;
+            } else if (rejectionRate >= thresholds.getRejectionRateWarning()) {
+                healthScore -= 10;
+            }
+        }
+        
+        // 4. 检查监控器状态
+        if (!monitoringStatus.isActive) {
+            healthScore -= 15;
+        }
+        
+        // 5. 检查当前健康状态
+        if (monitoringStatus.lastHealthStatus == ThreadPoolMonitor.ThreadPoolHealthStatus.EMERGENCY) {
+            healthScore -= 50;
+        } else if (monitoringStatus.lastHealthStatus == ThreadPoolMonitor.ThreadPoolHealthStatus.CRITICAL) {
+            healthScore -= 30;
+        } else if (monitoringStatus.lastHealthStatus == ThreadPoolMonitor.ThreadPoolHealthStatus.WARNING) {
+            healthScore -= 15;
+        }
+        
+        // 根据综合评分返回健康状态
+        if (healthScore >= 90) {
+            return HealthStatus.UP;
+        } else if (healthScore >= 70) {
+            return HealthStatus.WARNING;
+        } else if (healthScore >= 40) {
+            return HealthStatus.CRITICAL;
         } else {
-            healthStatus = statusBuilder.toString();
-            log.warn("线程池健康检查失败: {}", healthStatus);
-        }
-        
-        // 记录详细统计信息（调试模式）
-        if (log.isDebugEnabled()) {
-            log.debug("线程池健康检查: healthy={}, activeCount={}, corePoolSize={}, maxPoolSize={}, queueSize={}, completedTaskCount={}", 
-                isHealthy, activeCount, corePoolSize, maximumPoolSize, queueSize, completedTaskCount);
+            return HealthStatus.DOWN;
         }
     }
-    
+
     /**
-     * 获取健康状态
+     * 构建健康检查详细信息
      */
-    public boolean isHealthy() {
-        return isHealthy;
-    }
-    
-    /**
-     * 获取健康状态描述
-     */
-    public String getHealthStatus() {
-        return healthStatus;
-    }
-    
-    /**
-     * 获取详细健康信息
-     */
-    public ThreadPoolHealthInfo getHealthInfo() {
-        if (executorService instanceof ScheduledThreadPoolExecutor) {
-            ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) executorService;
-            
-            return ThreadPoolHealthInfo.builder()
-                .healthy(isHealthy)
-                .status(healthStatus)
-                .activeCount(executor.getActiveCount())
-                .corePoolSize(executor.getCorePoolSize())
-                .maximumPoolSize(executor.getMaximumPoolSize())
-                .queueSize(executor.getQueue().size())
-                .completedTaskCount(executor.getCompletedTaskCount())
-                .isShutdown(executor.isShutdown())
-                .isTerminated(executor.isTerminated())
-                .build();
+    private Map<String, Object> buildHealthDetails(ThreadPoolMonitor.ThreadPoolMetrics metrics,
+                                                  WebSocketFrameworkConfig.TaskStatistics taskStats,
+                                                  ThreadPoolMonitor.MonitoringStatus monitoringStatus) {
+        
+        Map<String, Object> details = new HashMap<>();
+        
+        // 线程池基本信息
+        details.put("threadPool.coreSize", metrics.corePoolSize);
+        details.put("threadPool.maximumSize", metrics.maximumPoolSize);
+        details.put("threadPool.activeCount", metrics.activeCount);
+        details.put("threadPool.poolUtilization", String.format("%.1f%%", metrics.poolUtilization * 100));
+        
+        // 队列信息
+        details.put("queue.size", metrics.queueSize);
+        details.put("queue.capacity", properties.getThreadPool().getQueueCapacity());
+        details.put("queue.utilization", String.format("%.1f%%", metrics.queueUtilization * 100));
+        
+        // 任务统计
+        details.put("tasks.completed", metrics.completedTaskCount);
+        details.put("tasks.total", metrics.taskCount);
+        details.put("tasks.throughput", String.format("%.2f tasks/s", metrics.throughput));
+        
+        // 任务拒绝统计
+        if (taskStats != null) {
+            details.put("tasks.rejected", taskStats.rejectedTasks);
+            details.put("tasks.rejectionRate", String.format("%.3f%%", taskStats.getRejectionRate() * 100));
+            details.put("tasks.completionRate", String.format("%.1f%%", taskStats.getCompletionRate() * 100));
         }
         
-        return ThreadPoolHealthInfo.builder()
-            .healthy(false)
-            .status("无法获取线程池信息")
-            .build();
+        // JVM线程信息
+        details.put("jvm.totalThreads", metrics.totalThreadCount);
+        details.put("jvm.peakThreads", metrics.peakThreadCount);
+        
+        // 监控器状态
+        details.put("monitor.active", monitoringStatus.isActive);
+        details.put("monitor.currentInterval", monitoringStatus.currentInterval + "s");
+        details.put("monitor.samplingRate", "1:" + monitoringStatus.samplingRate);
+        details.put("monitor.healthStatus", monitoringStatus.lastHealthStatus.toString());
+        details.put("monitor.executions", monitoringStatus.monitoringExecutions);
+        details.put("monitor.avgCostMs", String.format("%.3f ms", monitoringStatus.avgMonitoringCostMs));
+        
+        // 配置信息
+        WebSocketFrameworkProperties.ThreadPool config = properties.getThreadPool();
+        details.put("config.taskTimeout", config.getTaskTimeout() + "s");
+        details.put("config.keepAlive", config.getKeepAlive() + "s");
+        details.put("config.queueWarningThreshold", config.getQueueWarningThreshold());
+        details.put("config.queueDangerThreshold", config.getQueueDangerThreshold());
+        
+        // 时间戳
+        details.put("checkTime", System.currentTimeMillis());
+        
+        return details;
     }
-    
+
     /**
-     * 线程池健康信息
+     * 获取详细的健康报告
      */
-    public static class ThreadPoolHealthInfo {
-        private boolean healthy;
-        private String status;
-        private int activeCount;
-        private int corePoolSize;
-        private int maximumPoolSize;
-        private int queueSize;
-        private long completedTaskCount;
-        private boolean isShutdown;
-        private boolean isTerminated;
+    public ThreadPoolHealthReport getDetailedHealthReport() {
+        ThreadPoolHealthReport report = new ThreadPoolHealthReport();
         
-        public static ThreadPoolHealthInfoBuilder builder() {
-            return new ThreadPoolHealthInfoBuilder();
+        try {
+            ThreadPoolMonitor.ThreadPoolMetrics metrics = threadPoolMonitor.manualMonitoring();
+            ThreadPoolMonitor.MonitoringStatus monitoringStatus = threadPoolMonitor.getMonitoringStatus();
+            
+            report.timestamp = System.currentTimeMillis();
+            report.healthStatus = monitoringStatus.lastHealthStatus;
+            report.metrics = metrics;
+            report.monitoringStatus = monitoringStatus;
+            report.taskStatistics = getTaskStatistics();
+            
+            // 生成建议
+            report.recommendations = generateRecommendations(metrics, report.taskStatistics, monitoringStatus);
+            
+        } catch (Exception e) {
+            log.error("生成健康报告失败", e);
+            report.error = e.getMessage();
         }
         
-        // Getters
-        public boolean isHealthy() { return healthy; }
-        public String getStatus() { return status; }
-        public int getActiveCount() { return activeCount; }
-        public int getCorePoolSize() { return corePoolSize; }
-        public int getMaximumPoolSize() { return maximumPoolSize; }
-        public int getQueueSize() { return queueSize; }
-        public long getCompletedTaskCount() { return completedTaskCount; }
-        public boolean isShutdown() { return isShutdown; }
-        public boolean isTerminated() { return isTerminated; }
+        return report;
+    }
+
+    /**
+     * 生成优化建议
+     */
+    private String[] generateRecommendations(ThreadPoolMonitor.ThreadPoolMetrics metrics,
+                                           WebSocketFrameworkConfig.TaskStatistics taskStats,
+                                           ThreadPoolMonitor.MonitoringStatus monitoringStatus) {
         
-        public static class ThreadPoolHealthInfoBuilder {
-            private ThreadPoolHealthInfo info = new ThreadPoolHealthInfo();
-            
-            public ThreadPoolHealthInfoBuilder healthy(boolean healthy) {
-                info.healthy = healthy;
-                return this;
-            }
-            
-            public ThreadPoolHealthInfoBuilder status(String status) {
-                info.status = status;
-                return this;
-            }
-            
-            public ThreadPoolHealthInfoBuilder activeCount(int activeCount) {
-                info.activeCount = activeCount;
-                return this;
-            }
-            
-            public ThreadPoolHealthInfoBuilder corePoolSize(int corePoolSize) {
-                info.corePoolSize = corePoolSize;
-                return this;
-            }
-            
-            public ThreadPoolHealthInfoBuilder maximumPoolSize(int maximumPoolSize) {
-                info.maximumPoolSize = maximumPoolSize;
-                return this;
-            }
-            
-            public ThreadPoolHealthInfoBuilder queueSize(int queueSize) {
-                info.queueSize = queueSize;
-                return this;
-            }
-            
-            public ThreadPoolHealthInfoBuilder completedTaskCount(long completedTaskCount) {
-                info.completedTaskCount = completedTaskCount;
-                return this;
-            }
-            
-            public ThreadPoolHealthInfoBuilder isShutdown(boolean isShutdown) {
-                info.isShutdown = isShutdown;
-                return this;
-            }
-            
-            public ThreadPoolHealthInfoBuilder isTerminated(boolean isTerminated) {
-                info.isTerminated = isTerminated;
-                return this;
-            }
-            
-            public ThreadPoolHealthInfo build() {
-                return info;
-            }
+        java.util.List<String> recommendations = new java.util.ArrayList<>();
+        
+        // 线程池大小建议
+        if (metrics.poolUtilization > 0.8) {
+            recommendations.add("考虑增加线程池核心线程数，当前利用率: " + String.format("%.1f%%", metrics.poolUtilization * 100));
         }
+        
+        // 队列大小建议
+        if (metrics.queueUtilization > 0.7) {
+            recommendations.add("考虑增加队列容量或优化任务处理速度，当前队列利用率: " + String.format("%.1f%%", metrics.queueUtilization * 100));
+        }
+        
+        // 任务拒绝建议
+        if (taskStats != null && taskStats.getRejectionRate() > 0.01) {
+            recommendations.add("任务拒绝率较高(" + String.format("%.3f%%", taskStats.getRejectionRate() * 100) + ")，建议检查系统负载");
+        }
+        
+        // 吞吐量建议
+        if (metrics.throughput < 1.0) {
+            recommendations.add("吞吐量较低(" + String.format("%.2f tasks/s", metrics.throughput) + ")，建议检查任务执行效率");
+        }
+        
+        // 监控器建议
+        if (monitoringStatus.avgMonitoringCostMs > 10.0) {
+            recommendations.add("监控开销较高(" + String.format("%.2f ms", monitoringStatus.avgMonitoringCostMs) + ")，已自动调整采样率");
+        }
+        
+        return recommendations.toArray(new String[0]);
+    }
+
+    /**
+     * 健康状态枚举
+     */
+    public enum HealthStatus {
+        UP("正常"),
+        WARNING("警告"),
+        CRITICAL("严重"),
+        DOWN("异常");
+        
+        private final String description;
+        
+        HealthStatus(String description) {
+            this.description = description;
+        }
+        
+        @Override
+        public String toString() {
+            return description;
+        }
+    }
+
+    /**
+     * 健康检查结果
+     */
+    public static class HealthCheckResult {
+        public HealthStatus status;
+        public Map<String, Object> details;
+    }
+
+    /**
+     * 健康报告数据结构
+     */
+    public static class ThreadPoolHealthReport {
+        public long timestamp;
+        public ThreadPoolMonitor.ThreadPoolHealthStatus healthStatus;
+        public ThreadPoolMonitor.ThreadPoolMetrics metrics;
+        public ThreadPoolMonitor.MonitoringStatus monitoringStatus;
+        public WebSocketFrameworkConfig.TaskStatistics taskStatistics;
+        public String[] recommendations;
+        public String error;
     }
 }

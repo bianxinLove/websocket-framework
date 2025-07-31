@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>线程池监控中心</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-healthy { background-color: #4CAF50; }
+        .status-warning { background-color: #FF9800; }
+        .status-critical { background-color: #F44336; }
+        .status-down { background-color: #9E9E9E; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .card-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 15px;
+        }
+
+        .health-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+
+        .refresh-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .alerts {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 400px;
+        }
+
+        .alert {
+            background: rgba(244, 67, 54, 0.9);
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .alert.warning {
+            background: rgba(255, 152, 0, 0.9);
+        }
+
+        .alert.info {
+            background: rgba(33, 150, 243, 0.9);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1em;
+            color: #ccc;
+        }
+
+        .error {
+            color: #F44336;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .status-bar {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 WebSocket框架线程池监控中心</h1>
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="status-indicator status-healthy" id="connectionStatus"></div>
+                <span id="connectionText">连接中...</span>
+            </div>
+            <div class="status-item">
+                <div class="status-indicator" id="healthStatus"></div>
+                <span id="healthText">健康状态检查中...</span>
+            </div>
+            <div class="status-item">
+                <span>最后更新: </span>
+                <span id="lastUpdateTime">--</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="alerts" id="alerts"></div>
+
+    <div class="dashboard">
+        <!-- 实时指标卡片 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🔍 实时指标</div>
+                <button class="refresh-btn" onclick="refreshData()">刷新</button>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">线程池利用率</div>
+                    <div class="metric-value" id="poolUtilization">--%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">队列利用率</div>
+                    <div class="metric-value" id="queueUtilization">--%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">活跃线程数</div>
+                    <div class="metric-value" id="activeThreads">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">队列大小</div>
+                    <div class="metric-value" id="queueSize">--</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 吞吐量监控 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📊 吞吐量监控</div>
+                <div class="card-value" id="throughputValue">0.00</div>
+            </div>
+            <div class="chart-container">
+                <canvas id="throughputChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 线程池利用率趋势 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📈 线程池利用率趋势</div>
+            </div>
+            <div class="chart-container">
+                <canvas id="utilizationChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 队列状态监控 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📋 队列状态监控</div>
+            </div>
+            <div class="chart-container">
+                <canvas id="queueChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 健康状态评分 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">💚 健康状态评分</div>
+                <div class="health-status">
+                    <div class="status-indicator" id="overallHealthIndicator"></div>
+                    <span id="overallHealthText">检查中...</span>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="healthChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 任务统计 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📝 任务统计</div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-label">已完成任务</div>
+                    <div class="metric-value" id="completedTasks">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">总任务数</div>
+                    <div class="metric-value" id="totalTasks">--</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">完成率</div>
+                    <div class="metric-value" id="completionRate">--%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">拒绝任务数</div>
+                    <div class="metric-value" id="rejectedTasks">--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量
+        let charts = {};
+        let websocket = null;
+        let isConnected = false;
+        let lastHealthStatus = 'UNKNOWN';
+        
+        // API 基础URL
+        const API_BASE = '/api/monitor/threadpool';
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            connectWebSocket();
+            loadInitialData();
+            
+            // 定期刷新数据
+            setInterval(refreshData, 30000); // 30秒刷新一次
+        });
+
+        // 初始化图表
+        function initializeCharts() {
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#fff'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#ccc' },
+                        grid: { color: 'rgba(255,255,255,0.1)' }
+                    },
+                    y: {
+                        ticks: { color: '#ccc' },
+                        grid: { color: 'rgba(255,255,255,0.1)' }
+                    }
+                }
+            };
+
+            // 吞吐量图表
+            charts.throughput = new Chart(document.getElementById('throughputChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '吞吐量 (tasks/s)',
+                        data: [],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: chartOptions
+            });
+
+            // 利用率图表
+            charts.utilization = new Chart(document.getElementById('utilizationChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: '线程池利用率 (%)',
+                            data: [],
+                            borderColor: '#2196F3',
+                            backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                            tension: 0.4
+                        },
+                        {
+                            label: '队列利用率 (%)',
+                            data: [],
+                            borderColor: '#FF9800',
+                            backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    ...chartOptions,
+                    scales: {
+                        ...chartOptions.scales,
+                        y: {
+                            ...chartOptions.scales.y,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // 队列状态图表
+            charts.queue = new Chart(document.getElementById('queueChart'), {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '队列大小',
+                        data: [],
+                        backgroundColor: 'rgba(156, 39, 176, 0.6)',
+                        borderColor: '#9C27B0',
+                        borderWidth: 1
+                    }]
+                },
+                options: chartOptions
+            });
+
+            // 健康评分图表
+            charts.health = new Chart(document.getElementById('healthChart'), {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '健康评分',
+                        data: [],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    ...chartOptions,
+                    scales: {
+                        ...chartOptions.scales,
+                        y: {
+                            ...chartOptions.scales.y,
+                            min: 0,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        // 连接WebSocket
+        function connectWebSocket() {
+            try {
+                // 生成唯一的用户ID用于监控连接
+                const userId = 'monitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                const wsUrl = `ws://localhost:8080/websocket/connect/monitor/${userId}`;
+                
+                console.log('尝试连接WebSocket:', wsUrl);
+                websocket = new WebSocket(wsUrl);
+                
+                websocket.onopen = function() {
+                    isConnected = true;
+                    updateConnectionStatus(true);
+                    showAlert('WebSocket连接已建立', 'info');
+                    console.log('WebSocket连接成功');
+                };
+                
+                websocket.onmessage = function(event) {
+                    try {
+                        console.log('收到WebSocket消息:', event.data);
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'threadpool_metrics') {
+                            updateRealTimeData(data.payload);
+                        } else if (data.type === 'health_alert') {
+                            showAlert(data.payload.message, data.payload.level);
+                        } else if (data.type === 'welcome') {
+                            console.log('收到欢迎消息:', data.message);
+                        } else if (data.type === 'system_stats') {
+                            console.log('收到系统统计:', data.payload);
+                        }
+                    } catch (e) {
+                        console.error('处理WebSocket消息失败:', e);
+                    }
+                };
+                
+                websocket.onclose = function(event) {
+                    console.log('WebSocket连接关闭:', event.code, event.reason);
+                    isConnected = false;
+                    updateConnectionStatus(false);
+                    showAlert('WebSocket连接已断开，尝试重连...', 'warning');
+                    
+                    // 5秒后重连
+                    setTimeout(connectWebSocket, 5000);
+                };
+                
+                websocket.onerror = function(error) {
+                    console.error('WebSocket连接错误:', error);
+                    showAlert('WebSocket连接错误', 'error');
+                };
+                
+            } catch (error) {
+                console.error('创建WebSocket连接失败:', error);
+                updateConnectionStatus(false);
+                showAlert('WebSocket连接失败: ' + error.message, 'error');
+            }
+        }
+
+        // 加载初始数据
+        async function loadInitialData() {
+            try {
+                // 并行加载当前数据和历史数据
+                const [overviewResponse, historyResponse] = await Promise.all([
+                    fetch(`${API_BASE}/overview`),
+                    fetch(`${API_BASE}/history?minutes=60&intervalSeconds=60`)
+                ]);
+                
+                if (overviewResponse.ok) {
+                    const overviewData = await overviewResponse.json();
+                    if (overviewData.success) {
+                        updateCurrentMetrics(overviewData.current);
+                    }
+                }
+                
+                if (historyResponse.ok) {
+                    const historyData = await historyResponse.json();
+                    if (historyData.success) {
+                        updateCharts(historyData);
+                    }
+                }
+                
+            } catch (error) {
+                console.error('加载初始数据失败:', error);
+                showAlert('数据加载失败: ' + error.message, 'error');
+            }
+        }
+
+        // 发送WebSocket命令
+        function sendWebSocketCommand(action, params = {}) {
+            if (websocket && websocket.readyState === WebSocket.OPEN) {
+                const command = {
+                    action: action,
+                    ...params,
+                    timestamp: Date.now()
+                };
+                websocket.send(JSON.stringify(command));
+                console.log('发送WebSocket命令:', command);
+            } else {
+                console.warn('WebSocket未连接，无法发送命令:', action);
+            }
+        }
+
+        // 刷新数据
+        async function refreshData() {
+            try {
+                // 优先通过WebSocket刷新
+                if (isConnected) {
+                    sendWebSocketCommand('refresh');
+                }
+                
+                // 备用方案：HTTP API
+                const response = await fetch(`${API_BASE}/metrics`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateRealTimeData(data);
+                    document.getElementById('lastUpdateTime').textContent = 
+                        new Date().toLocaleTimeString();
+                } else {
+                    showAlert('数据刷新失败: ' + data.error, 'error');
+                }
+                
+            } catch (error) {
+                console.error('刷新数据失败:', error);
+                showAlert('数据刷新失败: ' + error.message, 'error');
+            }
+        }
+
+        // 更新实时数据
+        function updateRealTimeData(data) {
+            if (data.metrics) {
+                updateCurrentMetrics({metrics: data.metrics, monitoring: data.monitoringStatus});
+            }
+            
+            // 更新图表（添加新数据点）
+            const now = new Date().toLocaleTimeString();
+            addDataPoint(now, data.metrics);
+        }
+
+        // 更新当前指标
+        function updateCurrentMetrics(current) {
+            const metrics = current.metrics;
+            const monitoring = current.monitoring;
+            const health = current.health;
+            
+            // 更新实时指标
+            document.getElementById('poolUtilization').textContent = 
+                (metrics.poolUtilization * 100).toFixed(1) + '%';
+            document.getElementById('queueUtilization').textContent = 
+                (metrics.queueUtilization * 100).toFixed(1) + '%';
+            document.getElementById('activeThreads').textContent = metrics.activeCount;
+            document.getElementById('queueSize').textContent = metrics.queueSize;
+            
+            // 更新吞吐量
+            document.getElementById('throughputValue').textContent = 
+                metrics.throughput.toFixed(2) + ' tasks/s';
+            
+            // 更新任务统计
+            document.getElementById('completedTasks').textContent = metrics.completedTaskCount;
+            document.getElementById('totalTasks').textContent = metrics.taskCount;
+            
+            const completionRate = metrics.taskCount > 0 ? 
+                (metrics.completedTaskCount / metrics.taskCount * 100).toFixed(1) : 0;
+            document.getElementById('completionRate').textContent = completionRate + '%';
+            
+            // 更新健康状态
+            if (health) {
+                updateHealthStatus(health.status);
+                if (health.details && health.details['tasks.rejected']) {
+                    document.getElementById('rejectedTasks').textContent = health.details['tasks.rejected'];
+                }
+            } else if (monitoring) {
+                updateHealthStatus(monitoring.lastHealthStatus);
+            }
+        }
+
+        // 更新图表
+        function updateCharts(historyData) {
+            const data = historyData.data;
+            const labels = historyData.labels.map(label => 
+                new Date(label).toLocaleTimeString()
+            );
+            
+            // 更新吞吐量图表
+            charts.throughput.data.labels = labels;
+            charts.throughput.data.datasets[0].data = data.throughput;
+            charts.throughput.update();
+            
+            // 更新利用率图表
+            charts.utilization.data.labels = labels;
+            charts.utilization.data.datasets[0].data = data.poolUtilization;
+            charts.utilization.data.datasets[1].data = data.queueUtilization;
+            charts.utilization.update();
+            
+            // 更新队列图表
+            charts.queue.data.labels = labels;
+            charts.queue.data.datasets[0].data = data.queueSize;
+            charts.queue.update();
+            
+            // 更新健康图表
+            charts.health.data.labels = labels;
+            charts.health.data.datasets[0].data = data.healthScore;
+            charts.health.update();
+        }
+
+        // 添加数据点到图表
+        function addDataPoint(label, metrics) {
+            const maxDataPoints = 20;
+            
+            // 吞吐量图表
+            if (charts.throughput.data.labels.length >= maxDataPoints) {
+                charts.throughput.data.labels.shift();
+                charts.throughput.data.datasets[0].data.shift();
+            }
+            charts.throughput.data.labels.push(label);
+            charts.throughput.data.datasets[0].data.push(metrics.throughput);
+            charts.throughput.update('none');
+            
+            // 利用率图表
+            if (charts.utilization.data.labels.length >= maxDataPoints) {
+                charts.utilization.data.labels.shift();
+                charts.utilization.data.datasets[0].data.shift();
+                charts.utilization.data.datasets[1].data.shift();
+            }
+            charts.utilization.data.labels.push(label);
+            charts.utilization.data.datasets[0].data.push(metrics.poolUtilization * 100);
+            charts.utilization.data.datasets[1].data.push(metrics.queueUtilization * 100);
+            charts.utilization.update('none');
+            
+            // 队列图表
+            if (charts.queue.data.labels.length >= maxDataPoints) {
+                charts.queue.data.labels.shift();
+                charts.queue.data.datasets[0].data.shift();
+            }
+            charts.queue.data.labels.push(label);
+            charts.queue.data.datasets[0].data.push(metrics.queueSize);
+            charts.queue.update('none');
+            
+            // 健康图表（计算健康评分）
+            const healthScore = calculateHealthScore(metrics);
+            if (charts.health.data.labels.length >= maxDataPoints) {
+                charts.health.data.labels.shift();
+                charts.health.data.datasets[0].data.shift();
+            }
+            charts.health.data.labels.push(label);
+            charts.health.data.datasets[0].data.push(healthScore);
+            charts.health.update('none');
+        }
+
+        // 计算健康评分
+        function calculateHealthScore(metrics) {
+            let score = 100;
+            
+            if (metrics.poolUtilization > 0.9) {
+                score -= 30;
+            } else if (metrics.poolUtilization > 0.7) {
+                score -= 15;
+            }
+            
+            if (metrics.queueUtilization > 0.8) {
+                score -= 25;
+            } else if (metrics.queueUtilization > 0.5) {
+                score -= 10;
+            }
+            
+            return Math.max(0, score);
+        }
+
+        // 更新连接状态
+        function updateConnectionStatus(connected) {
+            const indicator = document.getElementById('connectionStatus');
+            const text = document.getElementById('connectionText');
+            
+            if (connected) {
+                indicator.className = 'status-indicator status-healthy';
+                text.textContent = '已连接';
+            } else {
+                indicator.className = 'status-indicator status-critical';
+                text.textContent = '连接断开';
+            }
+        }
+
+        // 更新健康状态
+        function updateHealthStatus(status) {
+            const indicators = [
+                document.getElementById('healthStatus'),
+                document.getElementById('overallHealthIndicator')
+            ];
+            const texts = [
+                document.getElementById('healthText'),
+                document.getElementById('overallHealthText')
+            ];
+            
+            let statusClass = 'status-healthy';
+            let statusText = '健康';
+            
+            if (typeof status === 'string') {
+                switch (status.toUpperCase()) {
+                    case 'HEALTHY':
+                    case 'UP':
+                        statusClass = 'status-healthy';
+                        statusText = '健康';
+                        break;
+                    case 'WARNING':
+                        statusClass = 'status-warning';
+                        statusText = '警告';
+                        break;
+                    case 'CRITICAL':
+                        statusClass = 'status-critical';
+                        statusText = '严重';
+                        break;
+                    case 'EMERGENCY':
+                    case 'DOWN':
+                        statusClass = 'status-down';
+                        statusText = '异常';
+                        break;
+                    default:
+                        statusClass = 'status-warning';
+                        statusText = '未知';
+                }
+            }
+            
+            indicators.forEach(indicator => {
+                if (indicator) {
+                    indicator.className = 'status-indicator ' + statusClass;
+                }
+            });
+            
+            texts.forEach(text => {
+                if (text) {
+                    text.textContent = statusText;
+                }
+            });
+            
+            // 健康状态变化时显示警告
+            if (lastHealthStatus !== 'UNKNOWN' && lastHealthStatus !== status) {
+                if (status === 'CRITICAL' || status === 'EMERGENCY' || status === 'DOWN') {
+                    showAlert(`健康状态变更: ${statusText}`, 'error');
+                } else if (status === 'WARNING') {
+                    showAlert(`健康状态变更: ${statusText}`, 'warning');
+                } else {
+                    showAlert(`健康状态恢复: ${statusText}`, 'info');
+                }
+            }
+            
+            lastHealthStatus = status;
+        }
+
+        // 显示警告
+        function showAlert(message, type = 'info') {
+            const alertsContainer = document.getElementById('alerts');
+            const alert = document.createElement('div');
+            alert.className = `alert ${type}`;
+            alert.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
+            
+            alertsContainer.appendChild(alert);
+            
+            // 5秒后自动移除
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.parentNode.removeChild(alert);
+                }
+            }, 5000);
+            
+            // 最多保留5个警告
+            while (alertsContainer.children.length > 5) {
+                alertsContainer.removeChild(alertsContainer.firstChild);
+            }
+        }
+    </script>
+</body>
+</html>

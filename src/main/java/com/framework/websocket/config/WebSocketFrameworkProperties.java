@@ -79,11 +79,6 @@ public class WebSocketFrameworkProperties {
         private int taskTimeout = 300;
         
         /**
-         * 队列监控间隔（秒）
-         */
-        private int monitorInterval = 30;
-        
-        /**
          * 队列警告阈值
          */
         private int queueWarningThreshold = 1000;
@@ -92,6 +87,77 @@ public class WebSocketFrameworkProperties {
          * 队列危险阈值
          */
         private int queueDangerThreshold = 5000;
+        
+        /**
+         * 监控配置
+         */
+        private Monitoring monitoring = new Monitoring();
+    }
+    
+    @Data
+    public static class Monitoring {
+        /**
+         * 启用智能监控
+         */
+        private boolean enabled = true;
+        
+        /**
+         * 初始监控间隔（秒）
+         */
+        private int initialInterval = 30;
+        
+        /**
+         * 最小监控间隔（秒）
+         */
+        private int minInterval = 5;
+        
+        /**
+         * 最大监控间隔（秒）
+         */
+        private int maxInterval = 120;
+        
+        /**
+         * 初始采样率（1表示每次都采样）
+         */
+        private int initialSamplingRate = 2;
+        
+        /**
+         * 健康检查阈值配置
+         */
+        private HealthThresholds healthThresholds = new HealthThresholds();
+    }
+    
+    @Data
+    public static class HealthThresholds {
+        /**
+         * 线程池利用率警告阈值（0.0-1.0）
+         */
+        private double poolUtilizationWarning = 0.7;
+        
+        /**
+         * 线程池利用率严重阈值（0.0-1.0）
+         */
+        private double poolUtilizationCritical = 0.9;
+        
+        /**
+         * 队列利用率警告阈值（0.0-1.0）
+         */
+        private double queueUtilizationWarning = 0.5;
+        
+        /**
+         * 队列利用率严重阈值（0.0-1.0）
+         */
+        private double queueUtilizationCritical = 0.8;
+        
+        /**
+         * 任务拒绝率警告阈值（0.0-1.0）
+         */
+        private double rejectionRateWarning = 0.01;
+        
+        /**
+         * 任务拒绝率严重阈值（0.0-1.0）
+         */
+        private double rejectionRateCritical = 0.05;
     }
 
     @Data

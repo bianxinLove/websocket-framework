@@ -17,6 +17,18 @@ public class DefaultWebSocketMessageHandler implements WebSocketMessageHandler<O
 
     @Override
     public Object handleEvent(WebSocketEvent<Object> event) {
+        // 添加空值检查
+        if (event == null) {
+            log.error("WebSocketEvent为null，无法处理");
+            return null;
+        }
+        
+        if (event.getEventType() == null) {
+            log.error("WebSocketEvent的eventType为null: sessionId={}, service={}, userId={}", 
+                event.getSessionId(), event.getService(), event.getUserId());
+            return null;
+        }
+        
         switch (event.getEventType()) {
             case ON_OPEN:
                 handleOnOpen(event);

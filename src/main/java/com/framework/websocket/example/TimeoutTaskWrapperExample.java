@@ -24,7 +24,7 @@ public class TimeoutTaskWrapperExample {
     @Qualifier("timeoutTaskWrapper")
     private TimeoutTaskWrapper timeoutTaskWrapper;
     
-    @PostConstruct
+//    @PostConstruct
     public void demonstrateUsage() {
         log.info("开始演示TimeoutTaskWrapper的正确使用方法");
         

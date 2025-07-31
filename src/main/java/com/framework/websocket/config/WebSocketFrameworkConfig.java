@@ -4,6 +4,7 @@ import com.framework.websocket.util.TimeoutTaskWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -14,14 +15,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * WebSocket框架配置类
@@ -32,6 +28,7 @@ import java.util.concurrent.RejectedExecutionHandler;
 @Configuration
 @EnableWebSocket
 @EnableScheduling
+@EnableConfigurationProperties(WebSocketFrameworkProperties.class)
 @Slf4j
 public class WebSocketFrameworkConfig {
 
@@ -48,19 +45,19 @@ public class WebSocketFrameworkConfig {
 
     /**
      * WebSocket专用线程池
-     * 使用自定义ScheduledThreadPoolExecutor以支持完整配置
+     * 优化版本：移除内置监控，使用独立的智能监控器
      */
     @Bean("webSocketExecutorService")
     public ScheduledExecutorService webSocketExecutorService() {
         WebSocketFrameworkProperties.ThreadPool threadPoolConfig = properties.getThreadPool();
         
-        // 使用自定义ScheduledThreadPoolExecutor支持完整配置
-        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(
+        // 使用优化的ScheduledThreadPoolExecutor
+        OptimizedScheduledThreadPoolExecutor executor = new OptimizedScheduledThreadPoolExecutor(
             threadPoolConfig.getCoreSize(),
             new WebSocketThreadFactory("WebSocket-")
         );
         
-        // 设置最大线程数（当核心线程忙碌时扩展）
+        // 设置最大线程数
         executor.setMaximumPoolSize(threadPoolConfig.getMaxSize());
         
         // 设置线程保活时间
@@ -69,20 +66,20 @@ public class WebSocketFrameworkConfig {
         // 允许核心线程超时（节省资源）
         executor.allowCoreThreadTimeOut(true);
         
-        // 设置拒绝策略（心跳检测失败时记录日志）
-        executor.setRejectedExecutionHandler((r, e) -> {
-            log.warn("心跳检测任务被拒绝执行，线程池可能过载: activeCount={}, queueSize={}", 
-                e.getActiveCount(), e.getQueue().size());
-        });
+        // 设置智能拒绝策略
+        executor.setRejectedExecutionHandler(new SmartRejectedExecutionHandler());
         
-        // 启动队列容量监控
-        startQueueMonitoring(executor);
+        // 预热线程池
+        executor.prestartAllCoreThreads();
+        
+        log.info("WebSocket线程池已创建: 核心线程={}, 最大线程={}, 队列容量={}", 
+            threadPoolConfig.getCoreSize(), threadPoolConfig.getMaxSize(), threadPoolConfig.getQueueCapacity());
         
         return executor;
     }
     
     /**
-     * 任务超时包装器Bean
+     * 任务超时包装器Bean（优化版本）
      */
     @Bean("timeoutTaskWrapper")
     public TimeoutTaskWrapper timeoutTaskWrapper(@Qualifier("webSocketExecutorService") ScheduledExecutorService executor) {
@@ -91,138 +88,146 @@ public class WebSocketFrameworkConfig {
     }
 
     /**
-     * 启动队列容量监控
-     * 防止任务队列无界增长导致OOM
+     * 优化的ScheduledThreadPoolExecutor
+     * 去除了性能瓶颈的内置监控，改为外部监控
      */
-    private void startQueueMonitoring(ScheduledThreadPoolExecutor executor) {
-        WebSocketFrameworkProperties.ThreadPool threadPoolConfig = properties.getThreadPool();
+    public static class OptimizedScheduledThreadPoolExecutor extends ScheduledThreadPoolExecutor {
         
-        // 使用配置的监控间隔
-        executor.scheduleWithFixedDelay(() -> {
-            try {
-                int queueSize = executor.getQueue().size();
-                int activeCount = executor.getActiveCount();
-                long completedTaskCount = executor.getCompletedTaskCount();
-                
-                // 队列大小超过警告阈值
-                if (queueSize > threadPoolConfig.getQueueWarningThreshold()) {
-                    log.warn("线程池队列大小过大: queueSize={}, activeCount={}, completedTaskCount={}", 
-                        queueSize, activeCount, completedTaskCount);
-                }
-                
-                // 队列大小超过危险阈值，开始清理
-                if (queueSize > threadPoolConfig.getQueueDangerThreshold()) {
-                    log.error("线程池队列大小达到危险阈值，开始清理任务: queueSize={}", queueSize);
-                    cleanupStaleTask(executor);
-                }
-                
-                // 记录监控信息（调试模式）
-                if (log.isDebugEnabled()) {
-                    log.debug("线程池状态监控: queueSize={}, activeCount={}, completedTaskCount={}", 
-                        queueSize, activeCount, completedTaskCount);
-                }
-            } catch (Exception e) {
-                log.error("队列监控异常", e);
+        private final AtomicLong totalTasks = new AtomicLong(0);
+        private final AtomicLong rejectedTasks = new AtomicLong(0);
+        
+        public OptimizedScheduledThreadPoolExecutor(int corePoolSize, ThreadFactory threadFactory) {
+            super(corePoolSize, threadFactory);
+        }
+        
+        @Override
+        public void execute(Runnable command) {
+            totalTasks.incrementAndGet();
+            super.execute(command);
+        }
+        
+        @Override
+        public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit) {
+            totalTasks.incrementAndGet();
+            return super.schedule(command, delay, unit);
+        }
+        
+        @Override
+        public <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit) {
+            totalTasks.incrementAndGet();
+            return super.schedule(callable, delay, unit);
+        }
+        
+        @Override
+        public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) {
+            // 定期任务只计数一次，不重复计数
+            totalTasks.incrementAndGet();
+            return super.scheduleAtFixedRate(command, initialDelay, period, unit);
+        }
+        
+        @Override
+        public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit) {
+            // 定期任务只计数一次，不重复计数
+            totalTasks.incrementAndGet();
+            return super.scheduleWithFixedDelay(command, initialDelay, delay, unit);
+        }
+        
+        @Override
+        protected void afterExecute(Runnable r, Throwable t) {
+            super.afterExecute(r, t);
+            
+            // 只在异常情况下记录日志，避免性能开销
+            if (t != null) {
+                log.warn("任务执行异常", t);
             }
-        }, threadPoolConfig.getMonitorInterval(), threadPoolConfig.getMonitorInterval(), TimeUnit.SECONDS);
-    }
-    
-    /**
-     * 清理过期任务
-     * 当队列大小过大时，清理可能的僵尸任务
-     */
-    private void cleanupStaleTask(ScheduledThreadPoolExecutor executor) {
-        try {
-            int queueSizeBefore = executor.getQueue().size();
-            
-            // 1. 清理已取消但未移除的任务
-            executor.purge();
-            
-            int queueSizeAfterPurge = executor.getQueue().size();
-            
-            // 2. 如果purge()效果不明显，执行强制清理
-            if (queueSizeAfterPurge > properties.getThreadPool().getQueueDangerThreshold() * 0.8) {
-                forceCleanupTasks(executor);
-            }
-            
-            int queueSizeAfter = executor.getQueue().size();
-            log.info("任务清理完成: 清理前={}, purge后={}, 最终={}", 
-                queueSizeBefore, queueSizeAfterPurge, queueSizeAfter);
-                
-        } catch (Exception e) {
-            log.error("清理过期任务失败", e);
+        }
+        
+        /**
+         * 获取任务统计信息（供外部监控使用）
+         */
+        public TaskStatistics getTaskStatistics() {
+            return new TaskStatistics(
+                totalTasks.get(),
+                rejectedTasks.get(), 
+                getCompletedTaskCount(),
+                getActiveCount(),
+                getQueue().size()
+            );
+        }
+        
+        /**
+         * 增加拒绝任务计数
+         */
+        public void incrementRejectedTasks() {
+            rejectedTasks.incrementAndGet();
         }
     }
     
     /**
-     * 强制清理任务队列
-     * 当常规清理无效时的最后手段
+     * 智能拒绝执行处理器
+     * 根据任务类型和系统状态采用不同的拒绝策略
      */
-    private void forceCleanupTasks(ScheduledThreadPoolExecutor executor) {
-        try {
-            // 获取队列中的任务
-            BlockingQueue<Runnable> queue = executor.getQueue();
-            int originalSize = queue.size();
+    private class SmartRejectedExecutionHandler implements RejectedExecutionHandler {
+        
+        private final AtomicLong lastWarningTime = new AtomicLong(0);
+        private static final long WARNING_INTERVAL = 60000; // 1分钟警告间隔
+        
+        @Override
+        public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+            // 安全的类型转换
+            if (executor instanceof OptimizedScheduledThreadPoolExecutor) {
+                ((OptimizedScheduledThreadPoolExecutor) executor).incrementRejectedTasks();
+            }
             
-            // 强制清理队列中等待时间过长的任务
-            queue.removeIf(task -> {
+            // 限制警告频率，避免日志洪水
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastWarningTime.get() > WARNING_INTERVAL) {
+                lastWarningTime.set(currentTime);
+                log.warn("线程池任务被拒绝: 活跃线程={}, 队列大小={}, 建议检查系统负载", 
+                    executor.getActiveCount(), executor.getQueue().size());
+            }
+            
+            // 尝试在调用线程中执行（降级策略）
+            if (!executor.isShutdown()) {
                 try {
-                    // 检查是否是延迟任务
-                    if (task instanceof java.util.concurrent.RunnableScheduledFuture) {
-                        java.util.concurrent.RunnableScheduledFuture<?> scheduledTask = 
-                            (java.util.concurrent.RunnableScheduledFuture<?>) task;
-                        
-                        // 清理延迟时间过长的任务（超过5分钟）
-                        long delay = scheduledTask.getDelay(TimeUnit.MILLISECONDS);
-                        if (delay < -300000) { // 延迟超过5分钟的任务
-                            scheduledTask.cancel(false);
-                            return true;
-                        }
-                    }
+                    r.run();
+                    log.debug("任务在调用线程中执行完成");
                 } catch (Exception e) {
-                    log.debug("检查任务时异常，移除该任务", e);
-                    return true;
+                    log.error("调用线程执行任务失败", e);
+                    // 如果调用线程执行也失败，则抛出异常
+                    throw new RejectedExecutionException("任务执行被拒绝且调用线程执行失败", e);
                 }
-                return false;
-            });
-            
-            int cleanedCount = originalSize - queue.size();
-            if (cleanedCount > 0) {
-                log.warn("强制清理了{}个过期任务，剩余队列大小: {}", cleanedCount, queue.size());
+            } else {
+                throw new RejectedExecutionException("线程池已关闭，任务被拒绝");
             }
-            
-            // 如果队列仍然过大，临时拒绝新任务
-            if (queue.size() > properties.getThreadPool().getQueueDangerThreshold()) {
-                log.error("队列大小仍然过大({}), 建议考虑重启应用或增加线程池容量", queue.size());
-                
-                // 设置临时的拒绝策略（拒绝非关键任务）
-                setTemporaryRejectPolicy(executor);
-            }
-            
-        } catch (Exception e) {
-            log.error("强制清理任务失败", e);
         }
     }
     
     /**
-     * 设置临时拒绝策略
-     * 当队列过载时临时拒绝新任务
+     * 任务统计信息
      */
-    private void setTemporaryRejectPolicy(ScheduledThreadPoolExecutor executor) {
-        // 保存原始拒绝策略
-        RejectedExecutionHandler originalHandler = executor.getRejectedExecutionHandler();
+    public static class TaskStatistics {
+        public final long totalTasks;
+        public final long rejectedTasks;
+        public final long completedTasks;
+        public final int activeTasks;
+        public final int queuedTasks;
         
-        // 设置临时拒绝策略
-        executor.setRejectedExecutionHandler((r, e) -> {
-            log.warn("队列过载，拒绝执行任务: queueSize={}, activeCount={}", 
-                e.getQueue().size(), e.getActiveCount());
-        });
+        public TaskStatistics(long totalTasks, long rejectedTasks, long completedTasks, int activeTasks, int queuedTasks) {
+            this.totalTasks = totalTasks;
+            this.rejectedTasks = rejectedTasks;
+            this.completedTasks = completedTasks;
+            this.activeTasks = activeTasks;
+            this.queuedTasks = queuedTasks;
+        }
         
-        // 60秒后恢复原始策略
-        executor.schedule(() -> {
-            executor.setRejectedExecutionHandler(originalHandler);
-            log.info("已恢复原始拒绝策略");
-        }, 60, TimeUnit.SECONDS);
+        public double getRejectionRate() {
+            return totalTasks > 0 ? (double) rejectedTasks / totalTasks : 0.0;
+        }
+        
+        public double getCompletionRate() {
+            return totalTasks > 0 ? (double) completedTasks / totalTasks : 0.0;
+        }
     }
 
     /**

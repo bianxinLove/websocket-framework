@@ -24,7 +24,8 @@ spring:
 # 日志配置
 logging:
   level:
-    com.framework.websocket: DEBUG
+    com.framework.websocket: INFO
+    com.framework.websocket.monitor: INFO  # 监控组件使用INFO级别，减少DEBUG输出
     root: INFO
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
@@ -49,9 +50,23 @@ websocket:
       queue-capacity: 1000
       keep-alive: 60
       task-timeout: 300              # 任务执行超时时间（秒）
-      monitor-interval: 30           # 队列监控间隔（秒） 
       queue-warning-threshold: 1000  # 队列警告阈值
       queue-danger-threshold: 5000   # 队列危险阈值
+      
+      # 监控配置
+      monitoring:
+        enabled: true
+        initial-interval: 30
+        min-interval: 5
+        max-interval: 120
+        initial-sampling-rate: 2
+        health-thresholds:
+          pool-utilization-warning: 0.7
+          pool-utilization-critical: 0.9
+          queue-utilization-warning: 0.5
+          queue-utilization-critical: 0.8
+          rejection-rate-warning: 0.01
+          rejection-rate-critical: 0.05
     
     # 会话配置
     session:
@@ -65,6 +80,8 @@ websocket:
     
     # 启用的功能
     features:
-      metrics: true       # 启用指标统计
-      health-check: true  # 启用健康检查
-      admin-api: true     # 启用管理API
+      metrics: true         # 启用指标统计
+      health-check: true    # 启用健康检查
+      admin-api: true       # 启用管理API
+      redis-enabled: true   # 启用Redis功能
+      monitoring-ui: true   # 启用监控界面

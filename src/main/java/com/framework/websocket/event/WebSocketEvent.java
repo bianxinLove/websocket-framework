@@ -101,7 +101,8 @@ public class WebSocketEvent<T> {
         if (event != null) {
             POOL_SIZE.decrementAndGet();
             event.inPool = false;
-            event.reset(); // 重置状态
+            // 注意：不在这里调用reset()，因为reset()会清空所有字段
+            // reset()应该只在回收时调用
             TOTAL_REUSED.incrementAndGet();
             return event;
         } else {
@@ -139,54 +140,58 @@ public class WebSocketEvent<T> {
     }
 
     /**
+     * 初始化事件对象（用于复用对象）
+     */
+    private void initializeEvent(WebSocketEventType eventType, String sessionId, String userId, String service, T data) {
+        this.eventType = eventType;
+        this.sessionId = sessionId;
+        this.userId = userId;
+        this.service = service;
+        this.data = data;
+        this.eventTimestamp = System.currentTimeMillis();
+        this.clientIp = null;
+        this.properties = null;
+        this.errorMessage = null;
+        this.throwable = null;
+    }
+
+    /**
      * 创建连接开启事件
      */
+    @SuppressWarnings("unchecked")
     public static <T> WebSocketEvent<T> onOpen(String sessionId, String userId, String service, T data) {
         WebSocketEvent<T> event = obtain();
-        event.eventType = WebSocketEventType.ON_OPEN;
-        event.sessionId = sessionId;
-        event.userId = userId;
-        event.service = service;
-        event.data = data;
+        event.initializeEvent(WebSocketEventType.ON_OPEN, sessionId, userId, service, data);
         return event;
     }
 
     /**
      * 创建连接关闭事件
      */
+    @SuppressWarnings("unchecked")
     public static <T> WebSocketEvent<T> onClose(String sessionId, String userId, String service, T data) {
         WebSocketEvent<T> event = obtain();
-        event.eventType = WebSocketEventType.ON_CLOSE;
-        event.sessionId = sessionId;
-        event.userId = userId;
-        event.service = service;
-        event.data = data;
+        event.initializeEvent(WebSocketEventType.ON_CLOSE, sessionId, userId, service, data);
         return event;
     }
 
     /**
      * 创建消息接收事件
      */
+    @SuppressWarnings("unchecked")
     public static <T> WebSocketEvent<T> onMessage(String sessionId, String userId, String service, T data) {
         WebSocketEvent<T> event = obtain();
-        event.eventType = WebSocketEventType.ON_MESSAGE;
-        event.sessionId = sessionId;
-        event.userId = userId;
-        event.service = service;
-        event.data = data;
+        event.initializeEvent(WebSocketEventType.ON_MESSAGE, sessionId, userId, service, data);
         return event;
     }
 
     /**
      * 创建消息发送事件
      */
+    @SuppressWarnings("unchecked")
     public static <T> WebSocketEvent<T> onSend(String sessionId, String userId, String service, T data) {
         WebSocketEvent<T> event = obtain();
-        event.eventType = WebSocketEventType.ON_SEND;
-        event.sessionId = sessionId;
-        event.userId = userId;
-        event.service = service;
-        event.data = data;
+        event.initializeEvent(WebSocketEventType.ON_SEND, sessionId, userId, service, data);
         return event;
     }
 
@@ -195,11 +200,7 @@ public class WebSocketEvent<T> {
      */
     public static WebSocketEvent<String> onError(String sessionId, String userId, String service, String errorMessage, Throwable throwable) {
         WebSocketEvent<String> event = obtain();
-        event.eventType = WebSocketEventType.ON_ERROR;
-        event.sessionId = sessionId;
-        event.userId = userId;
-        event.service = service;
-        event.data = errorMessage;
+        event.initializeEvent(WebSocketEventType.ON_ERROR, sessionId, userId, service, errorMessage);
         event.errorMessage = errorMessage;
         event.throwable = throwable;
         return event;
@@ -208,39 +209,30 @@ public class WebSocketEvent<T> {
     /**
      * 创建心跳事件
      */
+    @SuppressWarnings("unchecked")
     public static <T> WebSocketEvent<T> onHeartbeat(String sessionId, String userId, String service, T data) {
         WebSocketEvent<T> event = obtain();
-        event.eventType = WebSocketEventType.ON_HEARTBEAT;
-        event.sessionId = sessionId;
-        event.userId = userId;
-        event.service = service;
-        event.data = data;
+        event.initializeEvent(WebSocketEventType.ON_HEARTBEAT, sessionId, userId, service, data);
         return event;
     }
 
     /**
      * 创建心跳超时事件
      */
+    @SuppressWarnings("unchecked")
     public static <T> WebSocketEvent<T> onHeartbeatTimeout(String sessionId, String userId, String service, T data) {
         WebSocketEvent<T> event = obtain();
-        event.eventType = WebSocketEventType.ON_HEARTBEAT_TIMEOUT;
-        event.sessionId = sessionId;
-        event.userId = userId;
-        event.service = service;
-        event.data = data;
+        event.initializeEvent(WebSocketEventType.ON_HEARTBEAT_TIMEOUT, sessionId, userId, service, data);
         return event;
     }
 
     /**
      * 创建自定义事件
      */
+    @SuppressWarnings("unchecked")
     public static <T> WebSocketEvent<T> custom(String sessionId, String userId, String service, T data) {
         WebSocketEvent<T> event = obtain();
-        event.eventType = WebSocketEventType.CUSTOM;
-        event.sessionId = sessionId;
-        event.userId = userId;
-        event.service = service;
-        event.data = data;
+        event.initializeEvent(WebSocketEventType.CUSTOM, sessionId, userId, service, data);
         return event;
     }
 
