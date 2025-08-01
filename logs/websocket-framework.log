@@ -6745,3 +6745,1064 @@ Caused by: io.lettuce.core.RedisCommandTimeoutException: Command timed out after
 2025-07-31 17:06:59.187 [SpringApplicationShutdownHook] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher已取消EventBus订阅
 2025-07-31 17:06:59.190 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
 2025-07-31 17:06:59.190 [SpringApplicationShutdownHook] INFO  c.f.w.monitor.ThreadPoolMonitor - 线程池监控器已关闭
+2025-07-31 17:41:02.855 [main] INFO  c.f.w.WebSocketFrameworkApplication - Starting WebSocketFrameworkApplication using Java 1.8.0_202 on DESKTOP-EGK8BP4 with PID 35360 (D:\workTool\IdeaProjects\websocket-framework\target\classes started by admin in D:\workTool\IdeaProjects\websocket-framework)
+2025-07-31 17:41:02.858 [main] INFO  c.f.w.WebSocketFrameworkApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-31 17:41:04.175 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-07-31 17:41:04.181 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-31 17:41:04.232 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+2025-07-31 17:41:05.064 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-07-31 17:41:05.087 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-31 17:41:05.087 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-07-31 17:41:05.385 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-31 17:41:05.386 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2381 ms
+2025-07-31 17:41:06.257 [main] INFO  c.f.w.c.WebSocketFrameworkConfig - WebSocket线程池已创建: 核心线程=10, 最大线程=50, 队列容量=1000
+2025-07-31 17:41:06.308 [main] INFO  c.f.w.monitor.ThreadPoolMonitor - 智能线程池监控器已启动，初始监控间隔: 30秒
+2025-07-31 17:41:06.373 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线初始化完成
+2025-07-31 17:41:06.478 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: ThreadPoolHealthChecker
+2025-07-31 17:41:06.478 [main] INFO  c.f.w.health.ThreadPoolHealthChecker - WebSocket指标收集已启用并注册到健康检查器
+2025-07-31 17:41:06.511 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=chatroom, serviceName=聊天室服务, beanName=chatRoomWebSocketService, class=ChatRoomWebSocketService
+2025-07-31 17:41:06.513 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=notification, serviceName=通知推送服务, beanName=notificationWebSocketService, class=NotificationWebSocketService
+2025-07-31 17:41:06.526 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=monitor, serviceName=线程池监控服务, beanName=threadPoolMonitorWebSocketService, class=ThreadPoolMonitorWebSocketService
+2025-07-31 17:41:06.531 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: WebSocketMessageHandlerDispatcher
+2025-07-31 17:41:06.532 [main] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher初始化完成, 注册了4个消息处理器, 1个拦截器
+2025-07-31 17:41:06.535 [main] INFO  c.f.w.monitor.ThreadPoolMetricsStore - 线程池监控数据存储服务已启动，数据保留时间: 24小时
+2025-07-31 17:41:07.570 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-07-31 17:41:07.601 [WebSocket-6] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:41:07.619 [main] INFO  c.f.w.WebSocketFrameworkApplication - Started WebSocketFrameworkApplication in 6.011 seconds (JVM running for 8.656)
+2025-07-31 17:41:07.626 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 开始TimeoutTaskWrapper集成测试...
+2025-07-31 17:41:07.635 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试基本超时功能 ===
+2025-07-31 17:41:08.651 [WebSocket-10] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 正常任务执行完成
+2025-07-31 17:41:09.817 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-31 17:41:09.817 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-31 17:41:09.819 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-07-31 17:41:11.656 [WebSocket-5] ERROR c.f.w.s.WebSocketSessionManager - 清理过期心跳缓存失败
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.RedisTemplate.keys(RedisTemplate.java:896)
+	at com.framework.websocket.session.WebSocketSessionManager.cleanupExpiredHeartbeats(WebSocketSessionManager.java:221)
+	at com.framework.websocket.session.WebSocketSessionCleaner.cleanupExpiredHeartbeatCache(WebSocketSessionCleaner.java:270)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:308)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 26 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:12.605 [WebSocket-7] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:41:12.624 [WebSocket-7] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:41:13.674 [http-nio-8080-exec-1] WARN  c.f.w.s.WebSocketSessionManager - 更新心跳缓存失败: service=monitor, userId=monitor_1753954869311_lb7bd3gvk
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:325)
+	at com.framework.websocket.session.WebSocketSessionManager.updateHeartbeat(WebSocketSessionManager.java:133)
+	at com.framework.websocket.session.WebSocketSessionManager.updateHeartbeat(WebSocketSessionManager.java:120)
+	at com.framework.websocket.session.WebSocketSessionManager.addSession(WebSocketSessionManager.java:45)
+	at com.framework.websocket.core.WebSocketServer.onOpen(WebSocketServer.java:92)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tomcat.websocket.pojo.PojoEndpointBase.doOnOpen(PojoEndpointBase.java:69)
+	at org.apache.tomcat.websocket.pojo.PojoEndpointServer.onOpen(PojoEndpointServer.java:48)
+	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.init(WsHttpUpgradeHandler.java:136)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:933)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 29 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:13.677 [http-nio-8080-exec-1] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已添加: service=monitor, userId=monitor_1753954869311_lb7bd3gvk, sessionId=0
+2025-07-31 17:41:13.691 [http-nio-8080-exec-1] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接建立: service=monitor, userId=monitor_1753954869311_lb7bd3gvk, sessionId=0, clientIp=null
+2025-07-31 17:41:13.693 [WebSocket-8] INFO  c.f.w.m.ThreadPoolMonitorWebSocketService - 监控客户端连接: monitor_1753954869311_lb7bd3gvk
+2025-07-31 17:41:13.694 [WebSocket-8] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753954869311_lb7bd3gvk, message={"type":"welcome","message":"欢迎连接线程池监控中心","timestamp":1753954873693}
+2025-07-31 17:41:13.694 [WebSocket-8] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:41:13.694 [WebSocket-8] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753954869311_lb7bd3gvk, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":30,"samplingRate":2,"lastHealthStatus":"HEALTHY","monitoringExecutions":0,"avgMonitoringCostMs":0.0},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":3,"queueSize":9,"completedTaskCount":10,"taskCount":22,"totalThreadCount":42,"peakThreadCount":42,"poolUtilization":0.06,"queueUtilization":0.009,"throughput":5.5096418732782375,"timestamp":1753954873694},"timestamp":1753954873694},"type":"threadpool_metrics"}
+2025-07-31 17:41:13.694 [WebSocket-8] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:41:15.713 [WebSocket-6] WARN  c.f.w.monitor.ThreadPoolMetricsStore - 收集监控数据失败
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:325)
+	at com.framework.websocket.monitor.ThreadPoolMetricsStore.collectAndStoreMetrics(ThreadPoolMetricsStore.java:69)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:308)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 26 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:17.652 [WebSocket-2] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 超时任务执行完成（不应该看到这条日志）
+2025-07-31 17:41:17.654 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 基本超时功能测试完成
+2025-07-31 17:41:17.654 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试智能提交功能 ===
+2025-07-31 17:41:17.747 [http-nio-8080-exec-1] WARN  c.f.w.s.WebSocketSessionManager - 更新心跳缓存失败: service=monitor, userId=monitor_1753954869311_lb7bd3gvk
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:325)
+	at com.framework.websocket.session.WebSocketSessionManager.updateHeartbeat(WebSocketSessionManager.java:133)
+	at com.framework.websocket.core.WebSocketServer.onPong(WebSocketServer.java:223)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tomcat.websocket.pojo.PojoMessageHandlerWholeBase.onMessage(PojoMessageHandlerWholeBase.java:104)
+	at org.apache.tomcat.websocket.WsFrameBase.processDataControl(WsFrameBase.java:376)
+	at org.apache.tomcat.websocket.WsFrameBase.processData(WsFrameBase.java:296)
+	at org.apache.tomcat.websocket.WsFrameBase.processInputBuffer(WsFrameBase.java:133)
+	at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:85)
+	at org.apache.tomcat.websocket.server.WsFrameServer.doOnDataAvailable(WsFrameServer.java:183)
+	at org.apache.tomcat.websocket.server.WsFrameServer.notifyDataAvailable(WsFrameServer.java:162)
+	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.upgradeDispatch(WsHttpUpgradeHandler.java:157)
+	at org.apache.coyote.http11.upgrade.UpgradeProcessorInternal.dispatch(UpgradeProcessorInternal.java:60)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:59)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 34 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:18.070 [WebSocket-5] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:41:22.614 [WebSocket-4] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:41:22.671 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 智能提交功能测试完成
+2025-07-31 17:41:22.671 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试批量任务处理 ===
+2025-07-31 17:41:22.673 [WebSocket-1] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 批量任务1执行成功
+2025-07-31 17:41:22.674 [WebSocket-10] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务失败测试, attempt=1/2
+java.lang.RuntimeException: 模拟任务总是失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$7(TimeoutTaskWrapperIntegrationTest.java:152)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:22.675 [WebSocket-2] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=1/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:23.686 [WebSocket-3] ERROR c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，已达最大重试次数: task=批量任务失败测试, maxRetries=2
+java.lang.RuntimeException: 模拟任务总是失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$7(TimeoutTaskWrapperIntegrationTest.java:152)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:23.686 [WebSocket-5] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=2/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:24.688 [WebSocket-5] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 批量任务2重试成功
+2025-07-31 17:41:24.689 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 批量任务处理测试完成
+2025-07-31 17:41:24.690 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试心跳检测场景 ===
+2025-07-31 17:41:25.217 [WebSocket-7] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user5心跳检测完成
+2025-07-31 17:41:25.399 [WebSocket-1] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user1心跳检测完成
+2025-07-31 17:41:25.445 [WebSocket-2] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user4心跳检测完成
+2025-07-31 17:41:25.728 [WebSocket-10] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user3心跳检测完成
+2025-07-31 17:41:25.855 [WebSocket-8] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user2心跳检测完成
+2025-07-31 17:41:25.855 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 心跳检测场景测试完成
+2025-07-31 17:41:25.855 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - TimeoutTaskWrapper集成测试完成
+2025-07-31 17:41:35.324 [WebSocket-6] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753954869311_lb7bd3gvk, sessionId=0, message={"action":"refresh","timestamp":1753954895318}
+2025-07-31 17:41:35.380 [WebSocket-5] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:41:35.381 [WebSocket-5] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753954869311_lb7bd3gvk, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":30,"samplingRate":2,"lastHealthStatus":"HEALTHY","monitoringExecutions":0,"avgMonitoringCostMs":0.0},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":55,"taskCount":66,"totalThreadCount":54,"peakThreadCount":55,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":2.0749757919490937,"timestamp":1753954895381},"timestamp":1753954895381},"type":"threadpool_metrics"}
+2025-07-31 17:41:35.381 [WebSocket-5] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:41:35.381 [http-nio-8080-exec-6] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:41:37.611 [WebSocket-8] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:41:37.613 [WebSocket-10] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:41:39.670 [WebSocket-8] WARN  c.f.w.monitor.ThreadPoolMetricsStore - 收集监控数据失败
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:325)
+	at com.framework.websocket.monitor.ThreadPoolMetricsStore.collectAndStoreMetrics(ThreadPoolMetricsStore.java:69)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:308)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 26 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:42.602 [WebSocket-9] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:41:42.606 [WebSocket-9] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:41:45.750 [http-nio-8080-exec-5] WARN  c.f.w.s.WebSocketSessionManager - 更新心跳缓存失败: service=monitor, userId=monitor_1753954869311_lb7bd3gvk
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:325)
+	at com.framework.websocket.session.WebSocketSessionManager.updateHeartbeat(WebSocketSessionManager.java:133)
+	at com.framework.websocket.core.WebSocketServer.onPong(WebSocketServer.java:223)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tomcat.websocket.pojo.PojoMessageHandlerWholeBase.onMessage(PojoMessageHandlerWholeBase.java:104)
+	at org.apache.tomcat.websocket.WsFrameBase.processDataControl(WsFrameBase.java:376)
+	at org.apache.tomcat.websocket.WsFrameBase.processData(WsFrameBase.java:296)
+	at org.apache.tomcat.websocket.WsFrameBase.processInputBuffer(WsFrameBase.java:133)
+	at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:85)
+	at org.apache.tomcat.websocket.server.WsFrameServer.doOnDataAvailable(WsFrameServer.java:183)
+	at org.apache.tomcat.websocket.server.WsFrameServer.notifyDataAvailable(WsFrameServer.java:162)
+	at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.upgradeDispatch(WsHttpUpgradeHandler.java:157)
+	at org.apache.coyote.http11.upgrade.UpgradeProcessorInternal.dispatch(UpgradeProcessorInternal.java:60)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:59)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 34 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:45.753 [WebSocket-8] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:41:53.757 [SpringApplicationShutdownHook] WARN  c.f.w.s.WebSocketSessionManager - 清除心跳缓存失败: service=monitor, userId=monitor_1753954869311_lb7bd3gvk
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.RedisTemplate.delete(RedisTemplate.java:723)
+	at com.framework.websocket.session.WebSocketSessionManager.clearHeartbeat(WebSocketSessionManager.java:185)
+	at com.framework.websocket.session.WebSocketSessionManager.removeSession(WebSocketSessionManager.java:57)
+	at com.framework.websocket.core.WebSocketServer.onClose(WebSocketServer.java:138)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.tomcat.websocket.pojo.PojoEndpointBase.onClose(PojoEndpointBase.java:107)
+	at org.apache.tomcat.websocket.WsSession.fireEndpointOnClose(WsSession.java:767)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:715)
+	at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:665)
+	at org.apache.tomcat.websocket.WsSession.close(WsSession.java:652)
+	at org.apache.tomcat.websocket.WsWebSocketContainer.destroy(WsWebSocketContainer.java:1046)
+	at org.apache.tomcat.websocket.server.WsContextListener.contextDestroyed(WsContextListener.java:48)
+	at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4814)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5477)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1412)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1401)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:986)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1412)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1401)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:986)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:497)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:979)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:257)
+	at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:496)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stopTomcat(TomcatWebServer.java:273)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.stop(TomcatWebServer.java:331)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.stop(WebServerStartStopLifecycle.java:51)
+	at org.springframework.context.SmartLifecycle.stop(SmartLifecycle.java:117)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$300(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1067)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:145)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:114)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 64 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:717)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:710)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:995)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:41:53.758 [SpringApplicationShutdownHook] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已移除: service=monitor, userId=monitor_1753954869311_lb7bd3gvk, sessionId=0
+2025-07-31 17:41:53.758 [SpringApplicationShutdownHook] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接关闭: service=monitor, userId=monitor_1753954869311_lb7bd3gvk, sessionId=0, code=GOING_AWAY, reason=The web application is stopping
+2025-07-31 17:41:53.759 [WebSocket-6] INFO  c.f.w.m.ThreadPoolMonitorWebSocketService - 监控客户端断开: monitor_1753954869311_lb7bd3gvk
+2025-07-31 17:41:53.759 [WebSocket-6] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:41:53.767 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者取消注册成功: WebSocketMessageHandlerDispatcher
+2025-07-31 17:41:53.767 [SpringApplicationShutdownHook] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher已取消EventBus订阅
+2025-07-31 17:41:58.779 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
+2025-07-31 17:41:58.779 [SpringApplicationShutdownHook] INFO  c.f.w.monitor.ThreadPoolMonitor - 线程池监控器已关闭
+2025-07-31 17:42:04.571 [main] INFO  c.f.w.WebSocketFrameworkApplication - Starting WebSocketFrameworkApplication using Java 1.8.0_202 on DESKTOP-EGK8BP4 with PID 28216 (D:\workTool\IdeaProjects\websocket-framework\target\classes started by admin in D:\workTool\IdeaProjects\websocket-framework)
+2025-07-31 17:42:04.576 [main] INFO  c.f.w.WebSocketFrameworkApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-31 17:42:06.391 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-07-31 17:42:06.398 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-31 17:42:06.469 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30 ms. Found 0 Redis repository interfaces.
+2025-07-31 17:42:07.717 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-07-31 17:42:07.746 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-31 17:42:07.747 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-07-31 17:42:08.876 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-31 17:42:08.876 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4081 ms
+2025-07-31 17:42:10.321 [main] INFO  c.f.w.c.WebSocketFrameworkConfig - WebSocket线程池已创建: 核心线程=10, 最大线程=50, 队列容量=1000
+2025-07-31 17:42:10.459 [main] INFO  c.f.w.monitor.ThreadPoolMonitor - 智能线程池监控器已启动，初始监控间隔: 30秒
+2025-07-31 17:42:10.672 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线初始化完成
+2025-07-31 17:42:11.065 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: ThreadPoolHealthChecker
+2025-07-31 17:42:11.088 [main] INFO  c.f.w.health.ThreadPoolHealthChecker - WebSocket指标收集已启用并注册到健康检查器
+2025-07-31 17:42:11.187 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=chatroom, serviceName=聊天室服务, beanName=chatRoomWebSocketService, class=ChatRoomWebSocketService
+2025-07-31 17:42:11.197 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=notification, serviceName=通知推送服务, beanName=notificationWebSocketService, class=NotificationWebSocketService
+2025-07-31 17:42:11.236 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=monitor, serviceName=线程池监控服务, beanName=threadPoolMonitorWebSocketService, class=ThreadPoolMonitorWebSocketService
+2025-07-31 17:42:11.247 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: WebSocketMessageHandlerDispatcher
+2025-07-31 17:42:11.248 [main] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher初始化完成, 注册了4个消息处理器, 1个拦截器
+2025-07-31 17:42:11.261 [main] INFO  c.f.w.monitor.ThreadPoolMetricsStore - 线程池监控数据存储服务已启动，数据保留时间: 24小时
+2025-07-31 17:42:14.180 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-07-31 17:42:14.236 [WebSocket-4] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:42:14.270 [main] INFO  c.f.w.WebSocketFrameworkApplication - Started WebSocketFrameworkApplication in 11.062 seconds (JVM running for 12.119)
+2025-07-31 17:42:14.289 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 开始TimeoutTaskWrapper集成测试...
+2025-07-31 17:42:14.290 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试基本超时功能 ===
+2025-07-31 17:42:15.317 [WebSocket-8] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 正常任务执行完成
+2025-07-31 17:42:19.699 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-31 17:42:19.700 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-31 17:42:19.706 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-07-31 17:42:21.997 [http-nio-8080-exec-1] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已添加: service=monitor, userId=monitor_1753954937683_x72v09ihc, sessionId=0
+2025-07-31 17:42:22.072 [http-nio-8080-exec-1] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接建立: service=monitor, userId=monitor_1753954937683_x72v09ihc, sessionId=0, clientIp=null
+2025-07-31 17:42:22.093 [WebSocket-8] INFO  c.f.w.m.ThreadPoolMonitorWebSocketService - 监控客户端连接: monitor_1753954937683_x72v09ihc
+2025-07-31 17:42:22.147 [WebSocket-8] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753954937683_x72v09ihc, message={"type":"welcome","message":"欢迎连接线程池监控中心","timestamp":1753954942094}
+2025-07-31 17:42:22.148 [WebSocket-8] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:42:22.158 [WebSocket-8] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753954937683_x72v09ihc, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":30,"samplingRate":2,"lastHealthStatus":"HEALTHY","monitoringExecutions":0,"avgMonitoringCostMs":0.0},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":2,"queueSize":10,"completedTaskCount":11,"taskCount":23,"totalThreadCount":46,"peakThreadCount":46,"poolUtilization":0.04,"queueUtilization":0.01,"throughput":1.1376564277588168,"timestamp":1753954942148},"timestamp":1753954942148},"type":"threadpool_metrics"}
+2025-07-31 17:42:22.158 [WebSocket-8] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:42:22.163 [WebSocket-7] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:42:24.324 [WebSocket-9] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 超时任务执行完成（不应该看到这条日志）
+2025-07-31 17:42:24.325 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 基本超时功能测试完成
+2025-07-31 17:42:24.325 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试智能提交功能 ===
+2025-07-31 17:42:29.247 [WebSocket-4] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:42:29.336 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 智能提交功能测试完成
+2025-07-31 17:42:29.337 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试批量任务处理 ===
+2025-07-31 17:42:29.337 [WebSocket-6] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 批量任务1执行成功
+2025-07-31 17:42:29.344 [WebSocket-3] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=1/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:42:29.344 [WebSocket-8] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务失败测试, attempt=1/2
+java.lang.RuntimeException: 模拟任务总是失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$7(TimeoutTaskWrapperIntegrationTest.java:152)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:42:30.354 [WebSocket-10] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=2/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:42:30.355 [WebSocket-1] ERROR c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，已达最大重试次数: task=批量任务失败测试, maxRetries=2
+java.lang.RuntimeException: 模拟任务总是失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$7(TimeoutTaskWrapperIntegrationTest.java:152)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:42:31.370 [WebSocket-1] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=3/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:42:32.380 [WebSocket-5] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=4/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:42:33.387 [WebSocket-5] ERROR c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，已达最大重试次数: task=批量任务重试测试, maxRetries=5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:42:36.324 [WebSocket-8] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753954937683_x72v09ihc, sessionId=0, message={"action":"refresh","timestamp":1753954956316}
+2025-07-31 17:42:36.562 [http-nio-8080-exec-3] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:42:36.611 [WebSocket-2] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:42:36.617 [WebSocket-2] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753954937683_x72v09ihc, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":30,"samplingRate":2,"lastHealthStatus":"HEALTHY","monitoringExecutions":0,"avgMonitoringCostMs":0.0},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":52,"taskCount":63,"totalThreadCount":46,"peakThreadCount":47,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.0,"timestamp":1753954956616},"timestamp":1753954956616},"type":"threadpool_metrics"}
+2025-07-31 17:42:36.619 [WebSocket-2] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:42:39.342 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 批量任务处理测试完成
+2025-07-31 17:42:39.344 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试心跳检测场景 ===
+2025-07-31 17:42:39.886 [WebSocket-4] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user1心跳检测完成
+2025-07-31 17:42:39.887 [WebSocket-6] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user3心跳检测完成
+2025-07-31 17:42:39.949 [WebSocket-7] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user2心跳检测完成
+2025-07-31 17:42:40.120 [WebSocket-8] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user4心跳检测完成
+2025-07-31 17:42:40.419 [WebSocket-5] ERROR c.f.w.t.TimeoutTaskWrapperIntegrationTest - 用户user5心跳检测失败
+java.lang.RuntimeException: 心跳检测网络异常
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.simulateHeartbeatCheck(TimeoutTaskWrapperIntegrationTest.java:204)
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testHeartbeatScenario$8(TimeoutTaskWrapperIntegrationTest.java:179)
+	at com.framework.websocket.util.TimeoutTaskWrapper$InterruptibleTaskWrapper.run(TimeoutTaskWrapper.java:112)
+	at java.util.concurrent.CompletableFuture$AsyncRun.run$$$capture(CompletableFuture.java:1626)
+	at java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:42:40.421 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 心跳检测场景测试完成
+2025-07-31 17:42:40.421 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - TimeoutTaskWrapper集成测试完成
+2025-07-31 17:42:44.236 [WebSocket-2] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:42:44.240 [WebSocket-1] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:42:49.236 [WebSocket-10] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:42:49.238 [WebSocket-10] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:42:52.178 [WebSocket-10] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:42:59.239 [WebSocket-1] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:43:10.837 [ThreadPoolMonitor] INFO  c.f.w.monitor.ThreadPoolMonitor - 调整监控策略: 健康状态=健康, 监控间隔: 30秒->40秒, 采样率: 1:2 -> 1:3
+2025-07-31 17:43:10.984 [ThreadPoolMonitor] INFO  c.f.w.monitor.ThreadPoolMonitor - 调整监控策略: 健康状态=健康, 监控间隔: 40秒->50秒, 采样率: 1:3 -> 1:4
+2025-07-31 17:43:11.132 [ThreadPoolMonitor] INFO  c.f.w.monitor.ThreadPoolMonitor - 调整监控策略: 健康状态=健康, 监控间隔: 50秒->60秒, 采样率: 1:4 -> 1:5
+2025-07-31 17:43:11.286 [ThreadPoolMonitor] INFO  c.f.w.monitor.ThreadPoolMonitor - 调整监控策略: 健康状态=健康, 监控间隔: 60秒->70秒, 采样率: 1:5 -> 1:5
+2025-07-31 17:43:14.243 [WebSocket-4] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:43:14.291 [WebSocket-8] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:43:14.741 [SpringApplicationShutdownHook] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已移除: service=monitor, userId=monitor_1753954937683_x72v09ihc, sessionId=0
+2025-07-31 17:43:14.742 [SpringApplicationShutdownHook] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接关闭: service=monitor, userId=monitor_1753954937683_x72v09ihc, sessionId=0, code=GOING_AWAY, reason=The web application is stopping
+2025-07-31 17:43:14.743 [WebSocket-2] INFO  c.f.w.m.ThreadPoolMonitorWebSocketService - 监控客户端断开: monitor_1753954937683_x72v09ihc
+2025-07-31 17:43:14.745 [WebSocket-2] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:43:14.754 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者取消注册成功: WebSocketMessageHandlerDispatcher
+2025-07-31 17:43:14.754 [SpringApplicationShutdownHook] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher已取消EventBus订阅
+2025-07-31 17:43:19.770 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
+2025-07-31 17:43:19.771 [SpringApplicationShutdownHook] INFO  c.f.w.monitor.ThreadPoolMonitor - 线程池监控器已关闭
+2025-07-31 17:44:48.837 [main] INFO  c.f.w.WebSocketFrameworkApplication - Starting WebSocketFrameworkApplication using Java 1.8.0_202 on DESKTOP-EGK8BP4 with PID 14640 (D:\workTool\IdeaProjects\websocket-framework\target\classes started by admin in D:\workTool\IdeaProjects\websocket-framework)
+2025-07-31 17:44:48.838 [main] INFO  c.f.w.WebSocketFrameworkApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-31 17:44:49.334 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-07-31 17:44:49.336 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-31 17:44:49.356 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2025-07-31 17:44:49.700 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-07-31 17:44:49.709 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-31 17:44:49.709 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-07-31 17:44:49.841 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-31 17:44:49.841 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 950 ms
+2025-07-31 17:44:50.243 [main] INFO  c.f.w.c.WebSocketFrameworkConfig - WebSocket线程池已创建: 核心线程=10, 最大线程=50, 队列容量=1000
+2025-07-31 17:44:50.265 [main] INFO  c.f.w.monitor.ThreadPoolMonitor - 智能线程池监控器已启动，初始监控间隔: 30秒
+2025-07-31 17:44:50.293 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线初始化完成
+2025-07-31 17:44:50.340 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: ThreadPoolHealthChecker
+2025-07-31 17:44:50.340 [main] INFO  c.f.w.health.ThreadPoolHealthChecker - WebSocket指标收集已启用并注册到健康检查器
+2025-07-31 17:44:50.355 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=chatroom, serviceName=聊天室服务, beanName=chatRoomWebSocketService, class=ChatRoomWebSocketService
+2025-07-31 17:44:50.359 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=notification, serviceName=通知推送服务, beanName=notificationWebSocketService, class=NotificationWebSocketService
+2025-07-31 17:44:50.368 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=monitor, serviceName=线程池监控服务, beanName=threadPoolMonitorWebSocketService, class=ThreadPoolMonitorWebSocketService
+2025-07-31 17:44:50.372 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: WebSocketMessageHandlerDispatcher
+2025-07-31 17:44:50.372 [main] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher初始化完成, 注册了4个消息处理器, 1个拦截器
+2025-07-31 17:44:50.374 [main] INFO  c.f.w.monitor.ThreadPoolMetricsStore - 线程池监控数据存储服务已启动，数据保留时间: 24小时
+2025-07-31 17:44:50.953 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-07-31 17:44:50.975 [WebSocket-5] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:44:50.989 [main] INFO  c.f.w.WebSocketFrameworkApplication - Started WebSocketFrameworkApplication in 2.515 seconds (JVM running for 3.267)
+2025-07-31 17:44:51.006 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 开始TimeoutTaskWrapper集成测试...
+2025-07-31 17:44:51.007 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试基本超时功能 ===
+2025-07-31 17:44:52.013 [WebSocket-7] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 正常任务执行完成
+2025-07-31 17:45:01.027 [WebSocket-9] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 超时任务执行完成（不应该看到这条日志）
+2025-07-31 17:45:01.029 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 基本超时功能测试完成
+2025-07-31 17:45:01.030 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试智能提交功能 ===
+2025-07-31 17:45:06.036 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 智能提交功能测试完成
+2025-07-31 17:45:06.037 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试批量任务处理 ===
+2025-07-31 17:45:06.041 [WebSocket-7] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 批量任务1执行成功
+2025-07-31 17:45:06.057 [WebSocket-9] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务失败测试, attempt=1/2
+java.lang.RuntimeException: 模拟任务总是失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$7(TimeoutTaskWrapperIntegrationTest.java:152)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:45:06.057 [WebSocket-10] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=1/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:45:07.065 [WebSocket-9] ERROR c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，已达最大重试次数: task=批量任务失败测试, maxRetries=2
+java.lang.RuntimeException: 模拟任务总是失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$7(TimeoutTaskWrapperIntegrationTest.java:152)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:45:07.065 [WebSocket-2] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=2/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:45:08.079 [WebSocket-8] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=3/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:45:09.090 [WebSocket-7] WARN  c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，准备重试: task=批量任务重试测试, attempt=4/5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:45:10.104 [WebSocket-7] ERROR c.f.w.util.TimeoutTaskWrapper - 批量任务执行失败，已达最大重试次数: task=批量任务重试测试, maxRetries=5
+java.lang.RuntimeException: 模拟任务失败
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.lambda$testBatchProcessing$6(TimeoutTaskWrapperIntegrationTest.java:144)
+	at com.framework.websocket.util.TimeoutTaskWrapper$1.run(TimeoutTaskWrapper.java:162)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2025-07-31 17:45:11.763 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者取消注册成功: WebSocketMessageHandlerDispatcher
+2025-07-31 17:45:11.763 [SpringApplicationShutdownHook] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher已取消EventBus订阅
+2025-07-31 17:45:16.055 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - 批量任务处理测试完成
+2025-07-31 17:45:16.056 [main] INFO  c.f.w.t.TimeoutTaskWrapperIntegrationTest - === 测试心跳检测场景 ===
+2025-07-31 17:45:16.064 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2025-07-31 17:45:16.105 [main] ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: Failed to execute CommandLineRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:755)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.framework.websocket.WebSocketFrameworkApplication.main(WebSocketFrameworkApplication.java:21)
+Caused by: java.util.concurrent.RejectedExecutionException: Task java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask@da09250 rejected from java.util.concurrent.ScheduledThreadPoolExecutor@587f4f63[Shutting down, pool size = 2, active threads = 0, queued tasks = 3, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2063)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:830)
+	at java.util.concurrent.ScheduledThreadPoolExecutor.delayedExecute(ScheduledThreadPoolExecutor.java:326)
+	at java.util.concurrent.ScheduledThreadPoolExecutor.schedule(ScheduledThreadPoolExecutor.java:533)
+	at com.framework.websocket.util.TimeoutTaskWrapper.executeWithTimeout(TimeoutTaskWrapper.java:51)
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.testHeartbeatScenario(TimeoutTaskWrapperIntegrationTest.java:176)
+	at com.framework.websocket.test.TimeoutTaskWrapperIntegrationTest.run(TimeoutTaskWrapperIntegrationTest.java:43)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:771)
+	... 5 common frames omitted
+2025-07-31 17:45:16.780 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
+2025-07-31 17:45:16.781 [SpringApplicationShutdownHook] INFO  c.f.w.monitor.ThreadPoolMonitor - 线程池监控器已关闭
+2025-07-31 17:45:25.321 [main] INFO  c.f.w.WebSocketFrameworkApplication - Starting WebSocketFrameworkApplication using Java 1.8.0_202 on DESKTOP-EGK8BP4 with PID 20188 (D:\workTool\IdeaProjects\websocket-framework\target\classes started by admin in D:\workTool\IdeaProjects\websocket-framework)
+2025-07-31 17:45:25.326 [main] INFO  c.f.w.WebSocketFrameworkApplication - No active profile set, falling back to 1 default profile: "default"
+2025-07-31 17:45:26.609 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2025-07-31 17:45:26.616 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-07-31 17:45:26.667 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 0 Redis repository interfaces.
+2025-07-31 17:45:27.500 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-07-31 17:45:27.521 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-07-31 17:45:27.522 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.63]
+2025-07-31 17:45:27.810 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-07-31 17:45:27.810 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2345 ms
+2025-07-31 17:45:28.680 [main] INFO  c.f.w.c.WebSocketFrameworkConfig - WebSocket线程池已创建: 核心线程=10, 最大线程=50, 队列容量=1000
+2025-07-31 17:45:28.726 [main] INFO  c.f.w.monitor.ThreadPoolMonitor - 智能线程池监控器已启动，初始监控间隔: 30秒
+2025-07-31 17:45:28.790 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线初始化完成
+2025-07-31 17:45:28.896 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: ThreadPoolHealthChecker
+2025-07-31 17:45:28.896 [main] INFO  c.f.w.health.ThreadPoolHealthChecker - WebSocket指标收集已启用并注册到健康检查器
+2025-07-31 17:45:28.923 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=chatroom, serviceName=聊天室服务, beanName=chatRoomWebSocketService, class=ChatRoomWebSocketService
+2025-07-31 17:45:28.926 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=notification, serviceName=通知推送服务, beanName=notificationWebSocketService, class=NotificationWebSocketService
+2025-07-31 17:45:28.938 [main] INFO  c.f.w.p.WebSocketServiceProcessor - WebSocket服务注册成功: serviceId=monitor, serviceName=线程池监控服务, beanName=threadPoolMonitorWebSocketService, class=ThreadPoolMonitorWebSocketService
+2025-07-31 17:45:28.943 [main] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者注册成功: WebSocketMessageHandlerDispatcher
+2025-07-31 17:45:28.944 [main] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher初始化完成, 注册了4个消息处理器, 1个拦截器
+2025-07-31 17:45:28.947 [main] INFO  c.f.w.monitor.ThreadPoolMetricsStore - 线程池监控数据存储服务已启动，数据保留时间: 24小时
+2025-07-31 17:45:29.832 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2025-07-31 17:45:29.857 [WebSocket-1] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:45:29.872 [main] INFO  c.f.w.WebSocketFrameworkApplication - Started WebSocketFrameworkApplication in 5.746 seconds (JVM running for 7.988)
+2025-07-31 17:45:32.083 [WebSocket-1] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:45:59.864 [WebSocket-3] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:46:21.379 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-31 17:46:21.380 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-07-31 17:46:21.380 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-07-31 17:46:21.867 [http-nio-8080-exec-1] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:46:21.868 [http-nio-8080-exec-1] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:46:22.037 [http-nio-8080-exec-2] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已添加: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0
+2025-07-31 17:46:22.062 [http-nio-8080-exec-2] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接建立: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, clientIp=null
+2025-07-31 17:46:22.065 [WebSocket-9] INFO  c.f.w.m.ThreadPoolMonitorWebSocketService - 监控客户端连接: monitor_1753955181823_goqepqe46
+2025-07-31 17:46:22.075 [WebSocket-9] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"type":"welcome","message":"欢迎连接线程池监控中心","timestamp":1753955182065}
+2025-07-31 17:46:22.075 [WebSocket-9] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:46:22.078 [WebSocket-9] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":30,"samplingRate":2,"lastHealthStatus":"HEALTHY","monitoringExecutions":1,"avgMonitoringCostMs":0.0233},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":16,"taskCount":27,"totalThreadCount":61,"peakThreadCount":61,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":24.154589371980677,"timestamp":1753955182075},"timestamp":1753955182075},"type":"threadpool_metrics"}
+2025-07-31 17:46:22.078 [WebSocket-9] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:46:22.104 [WebSocket-7] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:46:29.161 [ThreadPoolMonitor] INFO  c.f.w.monitor.ThreadPoolMonitor - 调整监控策略: 健康状态=健康, 监控间隔: 30秒->40秒, 采样率: 1:2 -> 1:3
+2025-07-31 17:46:29.313 [ThreadPoolMonitor] INFO  c.f.w.monitor.ThreadPoolMonitor - 调整监控策略: 健康状态=健康, 监控间隔: 40秒->50秒, 采样率: 1:3 -> 1:4
+2025-07-31 17:46:29.468 [ThreadPoolMonitor] INFO  c.f.w.monitor.ThreadPoolMonitor - 调整监控策略: 健康状态=健康, 监控间隔: 50秒->60秒, 采样率: 1:4 -> 1:5
+2025-07-31 17:46:29.622 [ThreadPoolMonitor] INFO  c.f.w.monitor.ThreadPoolMonitor - 调整监控策略: 健康状态=健康, 监控间隔: 60秒->70秒, 采样率: 1:5 -> 1:5
+2025-07-31 17:46:29.864 [WebSocket-3] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:46:29.910 [WebSocket-9] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:46:34.872 [WebSocket-5] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:46:34.873 [WebSocket-5] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:46:44.866 [WebSocket-10] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:46:52.094 [WebSocket-5] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:46:52.310 [WebSocket-3] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955212307}
+2025-07-31 17:46:52.321 [http-nio-8080-exec-5] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:46:52.363 [WebSocket-10] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:46:52.364 [WebSocket-10] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":70,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":6,"avgMonitoringCostMs":161.36283333333333},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":41,"taskCount":52,"totalThreadCount":64,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.0,"timestamp":1753955212364},"timestamp":1753955212364},"type":"threadpool_metrics"}
+2025-07-31 17:46:52.364 [WebSocket-10] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:46:59.871 [WebSocket-2] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:46:59.871 [WebSocket-9] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:47:04.869 [WebSocket-4] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:47:04.870 [WebSocket-4] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:47:14.872 [WebSocket-6] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:47:22.106 [WebSocket-11] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:47:22.321 [WebSocket-7] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955242321}
+2025-07-31 17:47:22.322 [WebSocket-4] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:47:22.322 [WebSocket-4] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":70,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":6,"avgMonitoringCostMs":161.36283333333333},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":60,"taskCount":71,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.8594510972325675,"timestamp":1753955242322},"timestamp":1753955242322},"type":"threadpool_metrics"}
+2025-07-31 17:47:22.322 [WebSocket-4] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:47:22.330 [http-nio-8080-exec-10] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:47:29.870 [WebSocket-10] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:47:34.867 [WebSocket-2] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:47:34.869 [WebSocket-2] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:47:44.862 [WebSocket-9] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:47:52.129 [WebSocket-6] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:47:52.318 [WebSocket-9] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955272317}
+2025-07-31 17:47:52.319 [WebSocket-10] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:47:52.320 [WebSocket-10] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":70,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":7,"avgMonitoringCostMs":138.31142857142856},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":79,"taskCount":90,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.8594510972325675,"timestamp":1753955272320},"timestamp":1753955272320},"type":"threadpool_metrics"}
+2025-07-31 17:47:52.321 [WebSocket-10] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:47:52.324 [http-nio-8080-exec-4] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:47:59.868 [WebSocket-6] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:47:59.868 [WebSocket-3] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:48:04.870 [WebSocket-11] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:48:04.874 [WebSocket-11] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:48:14.859 [WebSocket-13] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:48:22.138 [WebSocket-6] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:48:22.319 [WebSocket-10] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955302318}
+2025-07-31 17:48:22.320 [WebSocket-9] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:48:22.320 [WebSocket-9] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":70,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":7,"avgMonitoringCostMs":138.31142857142856},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":98,"taskCount":109,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.8595988538681949,"timestamp":1753955302320},"timestamp":1753955302320},"type":"threadpool_metrics"}
+2025-07-31 17:48:22.320 [WebSocket-9] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:48:22.322 [http-nio-8080-exec-8] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:48:29.867 [WebSocket-12] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:48:34.865 [WebSocket-2] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:48:34.866 [WebSocket-2] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:48:44.872 [WebSocket-13] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:48:52.149 [WebSocket-14] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:48:52.312 [WebSocket-3] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955332309}
+2025-07-31 17:48:52.313 [http-nio-8080-exec-3] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:48:52.313 [WebSocket-13] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:48:52.313 [WebSocket-13] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":70,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":8,"avgMonitoringCostMs":121.02295},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":117,"taskCount":128,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.0,"timestamp":1753955332313},"timestamp":1753955332313},"type":"threadpool_metrics"}
+2025-07-31 17:48:52.313 [WebSocket-13] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:48:59.868 [WebSocket-4] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:48:59.869 [WebSocket-2] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:49:04.867 [WebSocket-14] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:49:04.870 [WebSocket-14] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:49:14.861 [WebSocket-10] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:49:22.156 [WebSocket-9] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:49:22.312 [WebSocket-13] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955362312}
+2025-07-31 17:49:22.312 [WebSocket-11] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:49:22.314 [WebSocket-11] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":70,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":8,"avgMonitoringCostMs":121.02295},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":136,"taskCount":147,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.8598452278589853,"timestamp":1753955362313},"timestamp":1753955362313},"type":"threadpool_metrics"}
+2025-07-31 17:49:22.314 [WebSocket-11] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:49:22.315 [http-nio-8080-exec-6] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:49:29.860 [WebSocket-3] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:49:34.871 [WebSocket-4] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:49:34.873 [WebSocket-4] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:49:44.865 [WebSocket-12] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:49:52.166 [WebSocket-14] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:49:52.318 [WebSocket-11] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955392316}
+2025-07-31 17:49:52.320 [WebSocket-11] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:49:52.321 [WebSocket-11] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":70,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":8,"avgMonitoringCostMs":121.02295},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":155,"taskCount":166,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.859746661317132,"timestamp":1753955392320},"timestamp":1753955392320},"type":"threadpool_metrics"}
+2025-07-31 17:49:52.321 [WebSocket-11] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:49:52.322 [http-nio-8080-exec-8] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:49:59.872 [WebSocket-10] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:49:59.872 [WebSocket-6] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:50:04.864 [WebSocket-9] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:50:04.864 [WebSocket-9] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:50:14.871 [WebSocket-14] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:50:22.171 [WebSocket-6] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:50:29.862 [WebSocket-11] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:50:29.910 [WebSocket-11] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:50:30.005 [WebSocket-4] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955430004}
+2025-07-31 17:50:30.006 [WebSocket-14] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:50:30.008 [WebSocket-14] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":70,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":9,"avgMonitoringCostMs":107.57637777777778},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":178,"taskCount":189,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":72.91666666666667,"timestamp":1753955430007},"timestamp":1753955430007},"type":"threadpool_metrics"}
+2025-07-31 17:50:30.009 [WebSocket-14] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:50:30.011 [http-nio-8080-exec-2] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:50:34.859 [WebSocket-2] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:50:34.863 [WebSocket-2] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:50:44.858 [WebSocket-12] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:50:52.291 [WebSocket-4] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:50:52.307 [WebSocket-3] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955452306}
+2025-07-31 17:50:52.308 [WebSocket-10] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:50:52.309 [WebSocket-10] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":70,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":9,"avgMonitoringCostMs":107.57637777777778},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":194,"taskCount":205,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.859697386519945,"timestamp":1753955452309},"timestamp":1753955452309},"type":"threadpool_metrics"}
+2025-07-31 17:50:52.310 [WebSocket-10] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:50:52.311 [http-nio-8080-exec-1] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:50:59.872 [WebSocket-11] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:50:59.872 [WebSocket-11] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:51:04.857 [WebSocket-9] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:51:04.859 [WebSocket-9] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:51:09.837 [ThreadPoolMonitor] INFO  c.f.w.monitor.ThreadPoolMonitor - 调整监控策略: 健康状态=健康, 监控间隔: 70秒->80秒, 采样率: 1:5 -> 1:5
+2025-07-31 17:51:14.863 [WebSocket-14] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:51:22.178 [WebSocket-11] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:51:22.321 [WebSocket-3] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955482319}
+2025-07-31 17:51:22.321 [WebSocket-2] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:51:22.321 [WebSocket-2] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":80,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":11,"avgMonitoringCostMs":106.07411818181818},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":213,"taskCount":224,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":1.1214354373598205,"timestamp":1753955482321},"timestamp":1753955482321},"type":"threadpool_metrics"}
+2025-07-31 17:51:22.321 [WebSocket-2] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:51:22.321 [http-nio-8080-exec-8] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:51:29.869 [WebSocket-11] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:51:29.988 [WebSocket-4] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:51:34.870 [WebSocket-10] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:51:34.870 [WebSocket-10] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:51:44.869 [WebSocket-12] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:51:52.188 [WebSocket-11] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:51:58.310 [WebSocket-9] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955518311}
+2025-07-31 17:51:58.310 [WebSocket-15] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:51:58.310 [WebSocket-15] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":80,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":11,"avgMonitoringCostMs":106.07411818181818},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":233,"taskCount":244,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.6399317406143344,"timestamp":1753955518310},"timestamp":1753955518310},"type":"threadpool_metrics"}
+2025-07-31 17:51:58.310 [WebSocket-15] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:51:58.319 [http-nio-8080-exec-3] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:51:59.874 [WebSocket-3] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:51:59.874 [WebSocket-6] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:52:04.861 [WebSocket-2] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:52:04.863 [WebSocket-2] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:52:14.869 [WebSocket-14] INFO  c.f.w.s.WebSocketSessionManager - 广播消息已发送: service=monitor, 成功用户数=1, 失败用户数=0
+2025-07-31 17:52:22.195 [WebSocket-6] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:52:22.310 [WebSocket-10] INFO  c.f.websocket.core.WebSocketServer - 接收到WebSocket消息: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, message={"action":"refresh","timestamp":1753955542307}
+2025-07-31 17:52:22.310 [WebSocket-15] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:52:22.310 [WebSocket-15] INFO  c.f.w.s.WebSocketSessionManager - 消息发送成功: service=monitor, userId=monitor_1753955181823_goqepqe46, message={"payload":{"monitoringStatus":{"isActive":true,"currentInterval":80,"samplingRate":5,"lastHealthStatus":"HEALTHY","monitoringExecutions":11,"avgMonitoringCostMs":106.07411818181818},"metrics":{"corePoolSize":10,"maximumPoolSize":50,"activeCount":1,"queueSize":10,"completedTaskCount":252,"taskCount":263,"totalThreadCount":61,"peakThreadCount":64,"poolUtilization":0.02,"queueUtilization":0.01,"throughput":0.859746661317132,"timestamp":1753955542310},"timestamp":1753955542310},"type":"threadpool_metrics"}
+2025-07-31 17:52:22.310 [WebSocket-15] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:52:22.318 [http-nio-8080-exec-6] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:52:29.859 [WebSocket-12] INFO  c.f.w.monitor.ThreadPoolMonitor - 手动触发线程池监控
+2025-07-31 17:52:31.281 [SpringApplicationShutdownHook] INFO  c.f.w.s.WebSocketSessionManager - WebSocket会话已移除: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0
+2025-07-31 17:52:31.297 [SpringApplicationShutdownHook] INFO  c.f.websocket.core.WebSocketServer - WebSocket连接关闭: service=monitor, userId=monitor_1753955181823_goqepqe46, sessionId=0, code=GOING_AWAY, reason=The web application is stopping
+2025-07-31 17:52:31.297 [WebSocket-11] INFO  c.f.w.m.ThreadPoolMonitorWebSocketService - 监控客户端断开: monitor_1753955181823_goqepqe46
+2025-07-31 17:52:31.297 [WebSocket-11] ERROR c.f.w.h.DefaultWebSocketMessageHandler - WebSocketEvent的eventType为null: sessionId=null, service=null, userId=null
+2025-07-31 17:52:31.318 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件订阅者取消注册成功: WebSocketMessageHandlerDispatcher
+2025-07-31 17:52:31.318 [SpringApplicationShutdownHook] INFO  c.f.w.h.WebSocketMessageHandlerDispatcher - WebSocketMessageHandlerDispatcher已取消EventBus订阅
+2025-07-31 17:52:31.329 [SpringApplicationShutdownHook] INFO  c.f.w.event.WebSocketEventBus - WebSocket事件总线线程池已关闭
+2025-07-31 17:52:31.330 [SpringApplicationShutdownHook] INFO  c.f.w.monitor.ThreadPoolMonitor - 线程池监控器已关闭

@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Slf4j
 @Component
-@WebSocketService("monitor")
+@WebSocketService(value = "monitor", name = "线程池监控服务", description = "用于监控线程池的状态和健康情况")
 public class ThreadPoolMonitorWebSocketService implements WebSocketMessageHandler<String> {
 
     @Autowired
