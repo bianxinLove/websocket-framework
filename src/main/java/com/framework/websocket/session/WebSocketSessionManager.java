@@ -368,7 +368,6 @@ public class WebSocketSessionManager {
             ConcurrentHashMap<K2, V> subMap = innerMap.get(key1);
             if (subMap != null) {
                 V removed = subMap.remove(key2);
-                // 使用CAS操作安全地清理空Map
                 if (subMap.isEmpty()) {
                     // 双重检查锁定模式确保线程安全
                     synchronized (innerMap) {

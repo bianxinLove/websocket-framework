@@ -180,7 +180,7 @@ public class ThreadPoolMonitor {
             ThreadPoolHealthStatus healthStatus = analyzeHealthStatus(metrics);
             
             // 根据健康状态调整监控策略
-            adjustMonitoringStrategy(healthStatus, metrics);
+            adjustMonitoringStrategy(healthStatus);
             
             // 执行清理策略（如果需要）
             if (shouldPerformCleanup(healthStatus, metrics)) {
@@ -303,7 +303,7 @@ public class ThreadPoolMonitor {
     /**
      * 根据健康状态调整监控策略
      */
-    private void adjustMonitoringStrategy(ThreadPoolHealthStatus healthStatus, ThreadPoolMetrics metrics) {
+    private void adjustMonitoringStrategy(ThreadPoolHealthStatus healthStatus) {
         WebSocketFrameworkProperties.Monitoring monitoringConfig = properties.getThreadPool().getMonitoring();
         if (monitoringConfig == null) {
             return;
